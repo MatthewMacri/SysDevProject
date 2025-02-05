@@ -1,38 +1,6 @@
-# System Development - Deliverable #1
+# Project/Inventory Management System
 
-## Logi IV
-
-I, Matthew Veroutis, 6243511, certify that I have contributed to this deliverable.  
-I, Matthew Macri, 2124478, certify that I have contributed to this deliverable.  
-I, Kais Rafie, 2371100, certify that I have contributed to this deliverable.  
-I, Tarek Abou Chahin, 2264928, certify that I have contributed to this deliverable.  
-
----
-
-## Client Info
-**Company Name:** Texas Gears  
-**Contact Names:** Scott Gohrt and Sean Gohrt  
-
----
-
-## Table of Contents
-1. [Executive Overview](#executive-overview)
-2. [Client Details](#client-details)
-3. [Team Details](#team-details)
-4. [Team Meetings](#team-meetings)
-5. [Repositories](#repositories)
-6. [Communication Strategy](#communication-strategy)
-7. [Team Policies](#team-policies)
-8. [Areas of Responsibility](#areas-of-responsibility)
-9. [Team Leader](#team-leader)
-10. [Client Contact](#client-contact)
-11. [Reports](#reports)
-12. [Team Contact Information](#team-contact-information)
-13. [Project Plan](#project-plan)
-
----
-
-## Executive Overview
+## Overview
 Our project focuses on developing a **Project/Inventory Management System** for **Texas Gear and Euro Gear**. These companies operate in the **mechanical engineering industry**, specializing in designing and manufacturing driveline components such as gears, shafts, and related equipment for heavy industries like mining, oil and gas, and power generation.
 
 The primary goal is to create a **web application** that helps **Texas Gear** manage inventory efficiently and monitor processes. 
@@ -49,8 +17,10 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 
 ---
 
-## Client Details
-### Texas Gear & Euro Gear
+## Client Information
+**Company Name:** Texas Gear & Euro Gear  
+**Contact Names:** Scott Gohrt and Sean Gohrt  
+
 **Industry:** Mechanical Engineering  
 **Specialization:** Design and manufacturing of driveline components  
 **Main Business Problem:** Inventory management and process monitoring  
@@ -65,7 +35,7 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 
 ---
 
-## Team Details
+## Team Organization
 ### Team Meetings
 - **Tuesdays (12:00 - 2:00 PM)** - Theory class of System Development
 - **Mondays (8:30 - 11:30 AM)** - Additional in-person meeting
@@ -75,9 +45,7 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 - **GitHub Repository:** [GitHub Link](#)  
 - **Google Drive:** [Drive Link](https://drive.google.com/drive/folders/1IKmMJHQ8GsyfiEsLtdMCoJcwRlNlh5Fj?usp=sharing)  
 
----
-
-## Communication Strategy
+### Communication Strategy
 - **Primary communication:** Discord (Text and Voice Channels)
 - **Urgent updates:** SMS messaging
 - **Discussion organization:** Separate text channels on Discord (e.g., `#brainstorm` for ideas)
@@ -98,7 +66,7 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 
 ---
 
-## Areas of Responsibility
+## Responsibilities
 | Implementation Task | Assigned Member(s) |
 |--------------------|------------------|
 | **Back-end Development** | Tarek Abou Chahin, Matthew Macri |
@@ -109,38 +77,10 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 
 ---
 
-## Team Leader Rotation
-| Deliverable | Team Leader |
-|------------|------------|
-| **1. Project Plan** | Matthew Veroutis |
-| **2. Requirements Gathering** | Matthew Macri |
-| **3. UML Diagrams** | Matthew Macri |
-| **4. Prototype UI** | Kais Rafie |
-| **5. Database Design** | Kais Rafie |
-| **6. Implementation & Client Feedback** | Tarek Abou Chahin |
-
----
-
 ## Client Contact
 - **Primary Contact:** Matthew Macri
 - **Reason:** Established relationship with the client, ensuring consistency and trust.
 - **Other members may attend meetings as needed.**
-
----
-
-## Reports
-- **Team leader for each deliverable** is responsible for ensuring the quality of the report.
-- Reports will be reviewed and finalized before submission.
-
----
-
-## Team Contact Information
-| Name | Phone | Email |
-|------|--------|-----------------|
-| **Matthew Veroutis** | 514-688-2776 | veroutism@gmail.com |
-| **Tarek Abou Chahin** | 514-909-1131 | abushaheen.tarek@gmail.com |
-| **Matthew Macri** | 514-714-1021 | matthewmacri11@gmail.com |
-| **Kais Rafie** | 438-525-5611 | kaisrafie9@gmail.com |
 
 ---
 
@@ -152,3 +92,8 @@ Our **project plan** is structured based on the instructions and deadlines outli
 - Tasks may change based on evolving requirements.
 - Workload is balanced among all members to ensure fairness.
 - The project plan will be **revised before each deliverable** to optimize workflow.
+
+---
+
+## Conclusion
+This document serves as a **guideline** for our **Project/Inventory Management System**. With clear team roles, structured communication, and a well-defined plan, we aim for successful project completion while maintaining efficiency and teamwork.
