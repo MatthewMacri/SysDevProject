@@ -1,0 +1,170 @@
+/* Reset and common styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #fff;
+    color: #333;
+  }
+  
+  /* Example lighter gradient at top */
+  .top-gradient {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, #f9a97a 0%, #ffd7b5 50%, #fff 100%);
+  }
+  
+  .header {
+    text-align: center;
+    padding: 15px 0;
+  }
+  .header img {
+    max-width: 300px;
+    height: auto;
+  }
+  
+  /* Main login container */
+  .login-container {
+    max-width: 350px;
+    margin: 20px auto;
+    padding: 15px;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  .form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9rem;
+  }
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    padding: 10px 12px;
+    background-color: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+  }
+  .login-container input[type="text"]:focus,
+  .login-container input[type="password"]:focus {
+    border-color: #999;
+  }
+  
+  /* Login button */
+  .login-button {
+    margin-top: 10px;
+    padding: 12px 0;
+    background-color: #f68a30;
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+  }
+  .login-button:hover {
+    background-color: #e66700;
+  }
+  
+  /* Forgot password link */
+  .forgot-password {
+    margin-top: 10px;
+    text-align: left;
+  }
+  .forgot-password a {
+    text-decoration: none;
+    color: #000;
+    font-size: 0.9rem;
+  }
+  .forgot-password a:hover {
+    text-decoration: underline;
+  }
+  
+/* --- Modal / Popup styling --- */
+.modal-container {
+    /* Hidden by default; use JavaScript to set display: flex when needed */
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /* Increase modal width: using !important forces this rule */
+  .modal {
+    background: #fff;
+    width: 800px !important;      /* Force the width to 800px */
+    max-width: 800px !important;  /* Ensure it does not shrink below this on larger screens */
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .modal p {
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+  
+  /* Updated inner text field with a darker grey background */
+  .modal input[type="text"] {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;  /* Darker grey */
+    border-radius: 8px;
+    margin-bottom: 20px;
+    outline: none;
+    font-size: 1rem;
+    color: #666;
+  }
+  
+  /* Button group container: spans full width and pushes buttons to far edges */
+  .button-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;  /* Cancel to far left, Confirm to far right */
+  }
+  
+  /* Modal buttons styling */
+  .modal-button {
+    padding: 10px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1.5px solid #000;
+    background-color: #f68a30;
+    color: #fff;
+    cursor: pointer;
+    min-width: 120px;
+    box-shadow: none;
+    transition: background-color 0.3s, transform 0.1s;
+  }
+  .modal-button:hover {
+    background-color: #e66700;
+    transform: scale(1.02);
+  }
+  
+  .modal-button.cancel {
+    background-color: #f68a30;
+  }
+  .modal-button.cancel:hover {
+    background-color: #e66700;
+  }
+  
+  
+  
+  
