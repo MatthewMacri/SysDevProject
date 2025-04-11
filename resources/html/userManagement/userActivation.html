@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Activation</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="../../css/userActivation.css" />
 </head>
 <body>
   <div class="form-container">
@@ -30,16 +30,17 @@
       </div>
     </div>
   </div>
+
   <div id="deactivateConfirmBox" class="hidden-overlay">
     <div class="confirm-content">
-      <p>You are activating user <span id="deactivateUserID"></span><br>Confirm to Proceed</p>
+      <p>You are deactivating user <span id="deactivateUserID"></span><br>Confirm to Proceed</p>
       <div class="confirm-buttons">
-        <button class="btn" onclick="hideConfirmBox()">Cancel</button>
+        <button class="btn" onclick="hideDeactivateConfirmBox()">Cancel</button>
         <button class="btn">Confirm</button>
       </div>
     </div>
   </div>
   
-  <script src="javascript/js.js"></script>
+  <script src="../../js/userActivation.js"></script>
 </body>
 </html>
