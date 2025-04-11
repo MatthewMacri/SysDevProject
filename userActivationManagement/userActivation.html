@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Activation</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="form-container">
+    <div class="form-box">
+      <label for="username">Username</label>
+      <input type="text" id="username" placeholder="TGUser" />
+
+      <label for="admin-password">Admin Password</label>
+      <input type="password" id="admin-password" placeholder="Value" />
+
+      <div class="buttons">
+        <button class="activateButton">Activate User</button>
+        <button class="deactivateButton">Deactivate User</button>
+      </div>
+    </div>
+  </div>
+  <div id="confirmBox" class="hidden-overlay">
+    <div class="confirm-content">
+      <p>You are activating user <span id="activateUserID"></span><br>Confirm to Proceed</p>
+      <div class="confirm-buttons">
+        <button class="btn" onclick="hideConfirmBox()">Cancel</button>
+        <button class="btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+  <div id="deactivateConfirmBox" class="hidden-overlay">
+    <div class="confirm-content">
+      <p>You are activating user <span id="deactivateUserID"></span><br>Confirm to Proceed</p>
+      <div class="confirm-buttons">
+        <button class="btn" onclick="hideConfirmBox()">Cancel</button>
+        <button class="btn">Confirm</button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="javascript/js.js"></script>
+</body>
+</html>

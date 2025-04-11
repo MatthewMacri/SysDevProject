@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form-box {
+    background-color: #fafafa;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    width: 900px;
+    height: 273px;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  
+  .activateButton {
+    width: 246px;
+    height: 40px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #F68A30;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .activateButton:hover {
+    background-color: #e66700;
+  }
+  
+  .activateButton {
+    background-color: #F68A30;
+  }
+  
+  .activateButton {
+    background-color: #F68A30;
+  }
+
+  .activateButton:active {
+    background-color: #999;
+  }
+
+  .deactivateButton {
+    width: 246px;
+    height: 40px;
+    padding: 10px 20px;
+    font-size: 14px;
+    border: 1px solid #999;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: #F68A30;
+    color: white;
+    transition: background-color 0.3s ease;
+  }
+  
+  .deactivateButton {
+    background-color: #F68A30;
+  }
+  
+  .deactivateButton:hover {
+    background-color: #e66700;
+  }
+
+
+  .deactivateButton:active {
+    background-color: #999;
+  }
+
+  .hidden-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .confirm-content {
+    position: relative;
+    width: 720px;
+    height: 50px;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 30px 40px 80px;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .confirm-buttons {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0 40px;
+    box-sizing: border-box;
+  }
+  
+  .btn {
+    width: 100px;
+    height: 30px;
+    background-color: #f58220;
+    border: 1px solid #999;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #e66700;
+  }
+
+  .btn:active {
+    background-color: #999;
+  }
+  
+  
