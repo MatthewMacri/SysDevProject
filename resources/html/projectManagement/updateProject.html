@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Details</title>
+  <link rel="stylesheet" href="../../css/updateProject.css" />
+  <link rel="stylesheet" href="../../css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+</head>
+<body>
+  
+  <div class="navbar">
+    <div class="nav-left">
+      <a href="#" class="active">Home</a>
+      <a href="SearchProject.html">Project Search</a>
+      <a href="history.html">Project History</a>
+      <a href="CreateProjectView.html">Create Project</a>
+      <a href="#">Status Overview</a>
+    </div>
+
+    <a class="logo-container" href="#"><img src="../../../public/logo/New TGE Logo 2025.png" alt="Logo" class="logo"></a>
+
+    <div class="nav-right">
+      <div class="search-box">
+        <input type="text" placeholder="Search">
+        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+      </div>
+      <button class="logout-btn">Logout</button>
+      <div class="dropdown">
+        <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
+        <div class="dropdown-content">
+          <a href="#">Manage</a>
+          <a href="#">Create</a>
+          <a href="deleteProject.html">Delete</a>
+          <a href="#">User Status</a>
+          <a href="archive.html">Project Archive</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    <form class="project-form" method="PUT">
+    <div class="project-header">
+        <div>
+          <input id="projectTitle" class="input-title" />
+          <p class="project-id" id="projectSerial"></p>
+        </div>
+        <input id="projectStatus" class="input-status" />
+      </div>
+    
+      <h4>Project Description:</h4>
+      <div class="project-description">
+        <textarea id="projectDescription" class="input-textarea"></textarea>
+      </div>
+    
+      <div class="gray-box">
+        <label>Client Details:</label>
+        <textarea id="clientDetails" class="input-textarea"></textarea>
+    
+        <label>Supplier Info:</label>
+        <textarea id="supplierInfo" class="input-textarea"></textarea>
+    
+        <label>Supplier Date:</label>
+        <input type="date" id="supplierDate" class="input-date" />
+    
+        <label>Client Date:</label>
+        <input type="date" id="clientDate" class="input-date" />
+    
+        <label>Buffer Days (Slack Time):</label>
+        <input type="number" id="bufferDays" class="input-number" />
+      </div>
+    
+
+    <div class="media-section">
+        <button class="media-button">
+          Project Media <i class="fas fa-image"></i>
+        </button>
+        <button class="media-button">
+          KanBan Board <i class="fas fa-table-columns"></i>
+        </button>
+        <button class="media-button">
+          Gantt Chart <i class="fas fa-chart-bar"></i>
+        </button>
+      </div>
+
+    <div class="form-actions">
+      <button class="form-button cancel-button">Cancel</button>
+      <button type="submit" class="form-button confirm-Confirm">Confirm</button>
+    </div>
+  </main>
+
+</form>
+  <div id="confirmationPopup" class="popup-overlay">
+    <div class="popup-box">
+      <p>You are Updating a project. Please make sure the information provided is correct.</p>
+      <div class="popup-buttons">
+        <button id="cancelPopup" class="orange-btn small">Cancel</button>
+        <button id="confirmPopup" class="orange-btn small">Confirm</button>
+      </div>
+    </div>
+  </div>
+  <script src="../../js/updateProject.js"></script>
+</body>
+</html>
