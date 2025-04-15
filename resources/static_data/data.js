@@ -1204,3 +1204,24 @@ const tasks = [{
     taskId: 85,
     resourceId: 2,
   }];
+
+  const recentProjects = [
+    {
+      serial: 'TXG-2024-001',
+      title: 'Smart Inventory System',
+      status: 'In Progress',
+      description: 'IoT-powered inventory tracking for warehouse management.'
+    },
+    {
+      serial: 'TXG-2024-002',
+      title: 'AI Chatbot Integration',
+      status: 'Completed',
+      description: 'Chatbot support integration for TexasGears helpdesk.'
+    },
+    {
+      serial: 'TXG-2024-003',
+      title: 'Customer Portal Redesign',
+      status: 'Planning',
+      description: 'UI/UX revamp for customer-facing dashboard.'
+    }
+  ];
