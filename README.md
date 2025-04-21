@@ -1,66 +1,99 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Project/Inventory Management System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Overview
+Our project focuses on developing a **Project/Inventory Management System** for **Texas Gear and Euro Gear**. These companies operate in the **mechanical engineering industry**, specializing in designing and manufacturing driveline components such as gears, shafts, and related equipment for heavy industries like mining, oil and gas, and power generation.
 
-## About Laravel
+The primary goal is to create a **web application** that helps **Texas Gear** manage inventory efficiently and monitor processes. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Meeting Schedule
+- **Tuesdays** (12:00 PM - 2:00 PM) - System Development Class
+- **Mondays** (8:30 AM - 11:30 AM) - In-person meeting
+- Additional meetings as required
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Tools & Collaboration
+- **Virtual Meetings:** Discord (for screen sharing and collaboration)
+- **Documentation:** Google Docs
+- **Code Repository:** GitHub
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Client Information
+**Company Name:** Texas Gear & Euro Gear  
+**Contact Names:** Scott Gohrt and Sean Gohrt  
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**Industry:** Mechanical Engineering  
+**Specialization:** Design and manufacturing of driveline components  
+**Main Business Problem:** Inventory management and process monitoring  
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Client Leadership
+| Name         | Role                                    |
+|-------------|----------------------------------------|
+| Scott Gohrt | Technical Contact (Mechanical Engineer) |
+| Sean Gohrt  | Technical Contact (Mechanical Engineer) |
+| Greg Eloise | CEO & CFO                              |
+| Sarah Gohrt | Marketing Lead                         |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Team Organization
+### Team Meetings
+- **Tuesdays (12:00 - 2:00 PM)** - Theory class of System Development
+- **Mondays (8:30 - 11:30 AM)** - Additional in-person meeting
+- **Supplementary meetings** scheduled as needed
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Repositories
+- **GitHub Repository:** [GitHub Link](#)  
+- **Google Drive:** [Drive Link](https://drive.google.com/drive/folders/1IKmMJHQ8GsyfiEsLtdMCoJcwRlNlh5Fj?usp=sharing)  
 
-### Premium Partners
+### Communication Strategy
+- **Primary communication:** Discord (Text and Voice Channels)
+- **Urgent updates:** SMS messaging
+- **Discussion organization:** Separate text channels on Discord (e.g., `#brainstorm` for ideas)
+- **Meeting discussions:** Discord voice channels
+- **Discord Invite:** [Join Server](https://discord.gg/qdcdxH8paM)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## Team Policies
+| Policy Number | Description |
+|--------------|-------------|
+| 1 | Always communicate with respect and professionalism. |
+| 2 | Ensure all tasks are completed by agreed deadlines. |
+| 3 | Actively participate in team meetings and discussions. |
+| 4 | Share progress updates regularly. |
+| 5 | Support team members when needed. |
+| 6 | Promote inclusivity and a welcoming environment. |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+---
 
-## Code of Conduct
+## Responsibilities
+| Implementation Task | Assigned Member(s) |
+|--------------------|------------------|
+| **Back-end Development** | Tarek Abou Chahin, Matthew Macri |
+| **Front-end Development** | Matthew Veroutis |
+| **Database Management** | Kais Rafie |
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+*Note: Collaboration across domains is encouraged when needed.*
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Client Contact
+- **Primary Contact:** Matthew Macri
+- **Reason:** Established relationship with the client, ensuring consistency and trust.
+- **Other members may attend meetings as needed.**
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Project Plan
+Our **project plan** is structured based on the instructions and deadlines outlined in the course syllabus. Since some project tasks are unclear, we are actively communicating with instructors for clarification. 
+
+### Key Points:
+- Tasks assigned based on **skills, efficiency, and preference**.
+- Tasks may change based on evolving requirements.
+- Workload is balanced among all members to ensure fairness.
+- The project plan will be **revised before each deliverable** to optimize workflow.
+
+---
+
+## Conclusion
+This document serves as a **guideline** for our **Project/Inventory Management System**. With clear team roles, structured communication, and a well-defined plan, we aim for successful project completion while maintaining efficiency and teamwork.
