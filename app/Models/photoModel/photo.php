@@ -2,6 +2,10 @@
 
 namespace App\Models;
 
+require_once 'app/Models/photo.php';
+
+use PDO;
+
 class Photo {
     private ?int $photoId;
     private ?string $photoUrl;
@@ -9,13 +13,32 @@ class Photo {
     private ?int $timestamp;
     private ?string $caption;
 
-    public function __construct(?int $photoId, ?string $photoUrl, ?string $format, ?int $timestamp, ?string $caption)
-    {
-        $this->photoId = $photoId;
-        $this->photoUrl = $photoUrl;
-        $this->format = $format;
-        $this->timestamp = $timestamp;
-        $this->caption = $caption;
+    private $db;
+    private $model;
+    public function __construct($db) {
+        $this->model = new \App\Models\Photo($db);
+    }
+
+    public function getAll() {
+        $stmt = $this->db->query("SELECT * FROM photo");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getByProject($project_id) {
+        $stmt = $this->db->prepare("SELECT * FROM photo WHERE project_id = ?");
+        $stmt->execute([$project_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function upload($data) {
+        $stmt = $this->db->prepare("INSERT INTO photo (project_id, photo_url, format, upload_time, caption) VALUES (?, ?, ?, ?, ?)");
+        return $stmt->execute([
+            $data['project_id'],
+            $data['photo_url'],
+            $data['format'],
+            $data['upload_time'],
+            $data['caption']
+        ]);
     }
 
     public function getPhotoId(): ?int {
