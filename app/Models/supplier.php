@@ -2,49 +2,36 @@
 
 namespace App\Models;
 
+use PDO;
+
 class Supplier {
-    private ?int $supplierId;
-    private ?string $companyName;
-    private ?string $email;
-    private ?string $supplierPhoneNumber;
+    private $db;
 
-    public function __construct(?int $supplierId, ?string $companyName, ?string $email, ?string $supplierPhoneNumber)
-    {
-        $this->supplierId = $supplierId;
-        $this->companyName = $companyName;
-        $this->email = $email;
-        $this->supplierPhoneNumber = $supplierPhoneNumber;
+    public function __construct($db) {
+        $this->db = $db;
     }
 
-    public function getSupplierId(): ?int {
-        return $this->supplierId;
+    public function getAll() {
+        $stmt = $this->db->query("SELECT * FROM supplier");
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getCompanyName(): ?string {
-        return $this->companyName;
+    public function getById($id) {
+        $stmt = $this->db->prepare("SELECT * FROM supplier WHERE supplier_id = ?");
+        $stmt->execute([$id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getEmail(): ?string {
-        return $this->email;
-    }
-
-    public function getSupplierPhoneNumber(): ?string {
-        return $this->supplierPhoneNumber;
-    }
-
-    public function setSupplierId(?int $supplierId): void {
-        $this->supplierId = $supplierId;
-    }
-
-    public function setCompanyName(?string $companyName): void {
-        $this->companyName = $companyName;
-    }
-
-    public function setEmail(?string $email): void {
-        $this->email = $email;
-    }
-
-    public function setSupplierPhoneNumber(?string $supplierPhoneNumber): void {
-        $this->supplierPhoneNumber = $supplierPhoneNumber;
+    public function create($data) {
+        $stmt = $this->db->prepare("
+            INSERT INTO supplier (supplier_name, company_name, supplier_email, supplier_phone_number)
+            VALUES (?, ?, ?, ?)
+        ");
+        return $stmt->execute([
+            $data['supplier_name'],
+            $data['company_name'],
+            $data['supplier_email'],
+            $data['supplier_phone_number']
+        ]);
     }
 }
