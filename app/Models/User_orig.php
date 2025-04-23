@@ -3,7 +3,7 @@
 
 namespace App\Models;
 
-class User{
+class User_orig{
 
     //ORM in Laravel may require ID
     private $userID;
