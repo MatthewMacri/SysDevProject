@@ -1,9 +1,9 @@
 # Project/Inventory Management System
 
 ## Overview
-Our project focuses on developing a **Project/Inventory Management System** for **Texas Gear and Euro Gear**. These companies operate in the **mechanical engineering industry**, specializing in designing and manufacturing driveline components such as gears, shafts, and related equipment for heavy industries like mining, oil and gas, and power generation.
+Our project focuses on developing a **Project/Inventory Management System** for -----. These companies operate in the **mechanical engineering industry**, specializing in designing and manufacturing driveline components such as gears, shafts, and related equipment for heavy industries like mining, oil and gas, and power generation.
 
-The primary goal is to create a **web application** that helps **Texas Gear** manage inventory efficiently and monitor processes. 
+The primary goal is to create a **web application** that helps ----- manage inventory efficiently and monitor processes. 
 
 ### Meeting Schedule
 - **Tuesdays** (12:00 PM - 2:00 PM) - System Development Class
@@ -14,24 +14,6 @@ The primary goal is to create a **web application** that helps **Texas Gear** ma
 - **Virtual Meetings:** Discord (for screen sharing and collaboration)
 - **Documentation:** Google Docs
 - **Code Repository:** GitHub
-
----
-
-## Client Information
-**Company Name:** Texas Gear & Euro Gear  
-**Contact Names:** Scott Gohrt and Sean Gohrt  
-
-**Industry:** Mechanical Engineering  
-**Specialization:** Design and manufacturing of driveline components  
-**Main Business Problem:** Inventory management and process monitoring  
-
-### Client Leadership
-| Name         | Role                                    |
-|-------------|----------------------------------------|
-| Scott Gohrt | Technical Contact (Mechanical Engineer) |
-| Sean Gohrt  | Technical Contact (Mechanical Engineer) |
-| Greg Eloise | CEO & CFO                              |
-| Sarah Gohrt | Marketing Lead                         |
 
 ---
 
