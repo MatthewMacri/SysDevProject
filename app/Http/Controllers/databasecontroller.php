@@ -6,9 +6,11 @@ use PDO;
 use PDOException;
 
 class DatabaseController {
+    private static ?DatabaseController $instance = null;
     private PDO $connection;
 
-    public function __construct(string $databasePath = 'database.sqlite')
+    // Private constructor to prevent direct instantiation
+    private function __construct(string $databasePath = 'database.sqlite')
     {
         try {
             $this->connection = new PDO("sqlite:" . $databasePath);
@@ -16,6 +18,15 @@ class DatabaseController {
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
+    }
+
+    // Access point to the singleton instance, better encapsulation and more efficient when a singleton
+    public static function getInstance(string $databasePath = 'database.sqlite'): self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self($databasePath);
+        }
+        return self::$instance;
     }
 
     public function getConnection(): PDO

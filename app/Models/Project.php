@@ -95,5 +95,96 @@ class project
     {
         $this->bufferedDate = $bufferedDate;
     }
+
+    public function create(PDO $pdo): bool
+{
+    $stmt = $pdo->prepare("
+        INSERT INTO projects (projectName, bufferDays) 
+        VALUES (:projectName, :bufferDays)
+    ");
+
+    if ($stmt->execute([
+        ':projectName' => $this->projectName,
+        ':bufferDays' => $this->bufferDays
+    ])) {
+        $this->projectId = (int)$pdo->lastInsertId();
+
+        //fetching again to get dates and times from database
+        $fresh = self::selectById($pdo, $this->projectId);
+        if ($fresh) {
+            $this->creationTime = $fresh->getCreationTime();
+            $this->startDate = $fresh->getStartDate();
+            $this->endDate = $fresh->getEndDate();
+            $this->bufferedDate = $fresh->getBufferedDate();
+        }
+
+        return true;
+    }
+
+    return false;
+}
+
+
+public function update(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("
+        UPDATE projects 
+        SET projectName = :projectName, creationTime = :creationTime, startDate = :startDate, 
+            endDate = :endDate, bufferDays = :bufferDays, bufferedDate = :bufferedDate 
+        WHERE projectId = :id
+    ");
+
+    return $stmt->execute([
+        ':id' => $id,
+        ':projectName' => $this->projectName,
+        ':creationTime' => $this->creationTime,
+        ':startDate' => $this->startDate,
+        ':endDate' => $this->endDate,
+        ':bufferDays' => $this->bufferDays,
+        ':bufferedDate' => $this->bufferedDate
+    ]);
+}
+
+public function delete(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("DELETE FROM projects WHERE projectId = :id");
+    return $stmt->execute([':id' => $id]);
+}
+
+public static function selectById(PDO $pdo, int $id): ?self
+{
+    $stmt = $pdo->prepare("SELECT * FROM projects WHERE projectId = :id");
+    $stmt->execute([':id' => $id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        $project = new self($data['projectId'], $data['projectName'], $data['bufferDays']);
+        $project->setCreationTime($data['creationTime']);
+        $project->setStartDate($data['startDate']);
+        $project->setEndDate($data['endDate']);
+        $project->setBufferedDate($data['bufferedDate']);
+        return $project;
+    }
+
+    return null;
+}
+
+public static function selectAll(PDO $pdo): array
+{
+    $stmt = $pdo->query("SELECT * FROM projects");
+    $projects = [];
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $project = new self($row['projectId'], $row['projectName'], $row['bufferDays']);
+        $project->setCreationTime($row['creationTime']);
+        $project->setStartDate($row['startDate']);
+        $project->setEndDate($row['endDate']);
+        $project->setBufferedDate($row['bufferedDate']);
+        $projects[] = $project;
+    }
+
+    return $projects;
+}
+
 }
 
