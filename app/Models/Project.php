@@ -109,6 +109,7 @@ class project
     ])) {
         $this->projectId = (int)$pdo->lastInsertId();
 
+        //fetching again to get dates and times from database
         $fresh = self::selectById($pdo, $this->projectId);
         if ($fresh) {
             $this->creationTime = $fresh->getCreationTime();
