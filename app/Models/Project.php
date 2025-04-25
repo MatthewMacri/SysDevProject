@@ -99,19 +99,30 @@ class project
     public function create(PDO $pdo): bool
 {
     $stmt = $pdo->prepare("
-        INSERT INTO projects (projectName, creationTime, startDate, endDate, bufferDays, bufferedDate) 
-        VALUES (:projectName, :creationTime, :startDate, :endDate, :bufferDays, :bufferedDate)
+        INSERT INTO projects (projectName, bufferDays) 
+        VALUES (:projectName, :bufferDays)
     ");
 
-    return $stmt->execute([
+    if ($stmt->execute([
         ':projectName' => $this->projectName,
-        ':creationTime' => $this->creationTime,
-        ':startDate' => $this->startDate,
-        ':endDate' => $this->endDate,
-        ':bufferDays' => $this->bufferDays,
-        ':bufferedDate' => $this->bufferedDate
-    ]);
+        ':bufferDays' => $this->bufferDays
+    ])) {
+        $this->projectId = (int)$pdo->lastInsertId();
+
+        $fresh = self::selectById($pdo, $this->projectId);
+        if ($fresh) {
+            $this->creationTime = $fresh->getCreationTime();
+            $this->startDate = $fresh->getStartDate();
+            $this->endDate = $fresh->getEndDate();
+            $this->bufferedDate = $fresh->getBufferedDate();
+        }
+
+        return true;
+    }
+
+    return false;
 }
+
 
 public function update(PDO $pdo, int $id): bool
 {
