@@ -75,6 +75,43 @@ Our **project plan** is structured based on the instructions and deadlines outli
 - Workload is balanced among all members to ensure fairness.
 - The project plan will be **revised before each deliverable** to optimize workflow.
 
+## How To Install
+As the project will be stored and run from a physical server that the company own, it will be compiled for efficiency purposes for enhancing access and saving space.
+
+### Check the Following Before Running the Project
+
+1. Check node existence by using `node -v`
+2. Check Node Package Manager using `npm -v`
+3. Install all dependencies using `npm install`
+
+#### Run the Project
+* **Note** `that you should always use the following command when testing the project is needed`
+Finally, use the command `npm run dev` to decompile the project and enjoy working on it!
+
+### -v Not Working
+That means the tools are not installed. Install [node.js](https://nodejs.org), download .msi for windows or .pkg for macOS, and try the commands again. if the `npm -v` is not working, that means the node.js is corrupt or incomplete, try installing [node.js](https://nodejs.org) again then try the command.
+
+### other errors
+If you encounter this error `npm WARN saveError ENOENT: no such file or directory, open '.../package.json'`, that means the `package.json` does not exist. It should exist, therefore try running `npm init` in the root and press enter for all prompts to keep the defaults or use `npm init -y` to skip the defaults. Your package.json should look like this for **now**:
+
+``` 
+{
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "build": "vite build",
+        "dev": "vite"
+    },
+    "devDependencies": {
+        "@tailwindcss/vite": "^4.0.0",
+        "axios": "^1.8.2",
+        "concurrently": "^9.0.1",
+        "laravel-vite-plugin": "^1.2.0",
+        "tailwindcss": "^4.0.0",
+        "vite": "^6.2.4"
+    }
+}
+```
 ---
 
 ## Conclusion
