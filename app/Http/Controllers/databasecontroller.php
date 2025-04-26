@@ -92,7 +92,7 @@ class DatabaseController {
                 end_date TIMESTAMP,
                 buffered_date TIMESTAMP,
                 creation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                status ENUM('planned', 'active', 'completed', 'archived'),
+                status ENUM('prospecting', 'inprogress', 'done', 'archived'),
                 FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id),
                 FOREIGN KEY (client_id) REFERENCES CLIENT(client_id)
             )",
