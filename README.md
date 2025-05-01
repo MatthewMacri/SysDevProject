@@ -135,4 +135,4 @@ This document serves as a **guideline** for our **Project/Inventory Management S
 
 ## Future Implementation
 * Alerts in the calendar from gaant and kanban
-* Make veroutis jerk off SAKU
+
