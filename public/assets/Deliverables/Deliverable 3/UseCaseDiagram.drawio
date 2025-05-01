@@ -1,0 +1,115 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 AtContent/94.5.4853.43" version="26.0.16">
+  <diagram name="Page-1" id="t-oW1-ro4rJ-gC68tWFt">
+    <mxGraphModel dx="3692" dy="1452" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-55" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="-1200" y="-360" width="1330" height="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-8" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Use Cases list&lt;/h1&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;h4 data-end=&quot;1658&quot; data-start=&quot;1628&quot;&gt;&lt;strong data-end=&quot;1658&quot; data-start=&quot;1633&quot;&gt;Team Member Use Cases&lt;/strong&gt;&lt;/h4&gt;&lt;ul data-end=&quot;2439&quot; data-start=&quot;1659&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;1831&quot; data-start=&quot;1659&quot;&gt;&lt;strong data-end=&quot;1680&quot; data-start=&quot;1661&quot;&gt;Manage Projects&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;1831&quot; data-start=&quot;1683&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;1720&quot; data-start=&quot;1683&quot;&gt;Add/update/delete project details&lt;/li&gt;&lt;li data-end=&quot;1758&quot; data-start=&quot;1723&quot;&gt;Track projects via Kanban/Gantt&lt;/li&gt;&lt;li data-end=&quot;1798&quot; data-start=&quot;1761&quot;&gt;Modify textual parts of a project&lt;/li&gt;&lt;li data-end=&quot;1831&quot; data-start=&quot;1801&quot;&gt;Mark projects as completed&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;1980&quot; data-start=&quot;1832&quot;&gt;&lt;strong data-end=&quot;1854&quot; data-start=&quot;1834&quot;&gt;Manage Suppliers&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;1980&quot; data-start=&quot;1857&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;1895&quot; data-start=&quot;1857&quot;&gt;Track suppliers and delivery dates&lt;/li&gt;&lt;li data-end=&quot;1942&quot; data-start=&quot;1898&quot;&gt;Set buffer times for supplier deliveries&lt;/li&gt;&lt;li data-end=&quot;1980&quot; data-start=&quot;1945&quot;&gt;Update estimated delivery dates&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;2077&quot; data-start=&quot;1981&quot;&gt;&lt;strong data-end=&quot;1999&quot; data-start=&quot;1983&quot;&gt;Use QR Codes&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2077&quot; data-start=&quot;2002&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2043&quot; data-start=&quot;2002&quot;&gt;Scan QR codes to view project details&lt;/li&gt;&lt;li data-end=&quot;2077&quot; data-start=&quot;2046&quot;&gt;Generate and print QR codes&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;2138&quot; data-start=&quot;2078&quot;&gt;&lt;strong data-end=&quot;2104&quot; data-start=&quot;2080&quot;&gt;Manage Project Media&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2138&quot; data-start=&quot;2107&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2138&quot; data-start=&quot;2107&quot;&gt;Upload/delete photos/videos&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;2371&quot; data-start=&quot;2277&quot;&gt;&lt;strong data-end=&quot;2305&quot; data-start=&quot;2279&quot;&gt;Filter &amp;amp; Sort Projects&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2371&quot; data-start=&quot;2308&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2348&quot; data-start=&quot;2308&quot;&gt;Filter by status, priority, deadline&lt;/li&gt;&lt;li data-end=&quot;2371&quot; data-start=&quot;2351&quot;&gt;Sort by deadline&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;2439&quot; data-start=&quot;2372&quot;&gt;&lt;strong data-end=&quot;2396&quot; data-start=&quot;2374&quot;&gt;Account &amp;amp; Security&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2439&quot; data-start=&quot;2399&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2418&quot; data-start=&quot;2399&quot;&gt;Log in with 2FA&lt;/li&gt;&lt;li data-end=&quot;2439&quot; data-start=&quot;2421&quot;&gt;Reset own password&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;h4 data-end=&quot;2465&quot; data-start=&quot;2441&quot;&gt;&lt;strong data-end=&quot;2465&quot; data-start=&quot;2446&quot;&gt;Admin Use Cases&lt;/strong&gt;&lt;/h4&gt;&lt;ul data-end=&quot;2750&quot; data-start=&quot;2466&quot;&gt;&lt;li data-end=&quot;2589&quot; data-start=&quot;2466&quot;&gt;&lt;strong data-end=&quot;2484&quot; data-start=&quot;2468&quot;&gt;Manage Users&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2589&quot; data-start=&quot;2487&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2522&quot; data-start=&quot;2487&quot;&gt;Create/deactivate user accounts&lt;/li&gt;&lt;li data-end=&quot;2549&quot; data-start=&quot;2525&quot;&gt;Reset user passwords&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;br&gt;&lt;li data-end=&quot;2682&quot; data-start=&quot;2590&quot;&gt;&lt;strong data-end=&quot;2618&quot; data-start=&quot;2592&quot;&gt;Manage Project History&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2682&quot; data-start=&quot;2621&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2650&quot; data-start=&quot;2621&quot;&gt;Archive outdated projects&lt;/li&gt;&lt;li data-end=&quot;2682&quot; data-start=&quot;2653&quot;&gt;View modification history&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;b&gt;System Use Cases&lt;/b&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Action Confirmation&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;ul&gt;&lt;li data-end=&quot;2750&quot; data-start=&quot;2711&quot;&gt;Confirm modifications before saving&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li&gt;&lt;b&gt;Security Management&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;&lt;ul&gt;&lt;ul&gt;&lt;li data-end=&quot;2589&quot; data-start=&quot;2552&quot;&gt;Enforce password complexity rules&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li data-end=&quot;2276&quot; data-start=&quot;2139&quot;&gt;&lt;strong data-end=&quot;2166&quot; data-start=&quot;2141&quot;&gt;Send Notifications&lt;/strong&gt;&lt;br&gt;&lt;ul data-end=&quot;2276&quot; data-start=&quot;2169&quot;&gt;&lt;br&gt;&lt;li data-end=&quot;2218&quot; data-start=&quot;2169&quot;&gt;&lt;span data-end=&quot;2166&quot; data-start=&quot;2141&quot;&gt;Send&lt;/span&gt;&lt;strong data-end=&quot;2166&quot; data-start=&quot;2141&quot;&gt;&amp;nbsp;&lt;/strong&gt;email reminders for project deadlines to team members&lt;/li&gt;&lt;li data-end=&quot;2276&quot; data-start=&quot;2221&quot;&gt;Send automated reminders for supplier deliveries to team members&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-390" y="-330" width="320" height="1016" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-22" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="-740" y="-360" width="238.24" height="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-6" value="" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry width="238.24" height="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-10" value="Manage Projects" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="23.823529411764707" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-11" value="Manage Suppliers&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap-mode: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22Manage%20Projects%22%20style%3D%22ellipse%3BwhiteSpace%3Dwrap%3Bhtml%3D1%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-650%22%20y%3D%22-330%22%20width%3D%22120%22%20height%3D%2280%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%3E&lt;/span&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="119.11764705882352" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-12" value="Use QR Codes" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="214.41176470588235" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-13" value="Manage Users" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="603.529411764706" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-14" value="Account &amp;amp; Security" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="500.29411764705884" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-15" value="Manage Project Media" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="309.7058823529412" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-16" value="Filter &amp;amp; Sort Projects" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="405" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-17" value="Action Confirmation" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="802.0588235294117" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-18" value="Security Management" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="897.3529411764706" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-19" value="Send Notifications" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="992.6470588235295" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-20" value="Manage Project History" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="mnzYnT6uT8cpGv3S2YrK-22">
+          <mxGeometry x="71.47200000000001" y="706.7647058823529" width="95.29600000000002" height="63.52941176470589" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-25" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-3" target="mnzYnT6uT8cpGv3S2YrK-17">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-3" value="System" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-930" y="539.12" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-24" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-3" target="mnzYnT6uT8cpGv3S2YrK-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-23" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-3" target="mnzYnT6uT8cpGv3S2YrK-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-26" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-28" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-13">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-29" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-30" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-31" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-32" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-33" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-34" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-2" target="mnzYnT6uT8cpGv3S2YrK-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-2" value="Admin" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-930" y="150" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-35" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-36" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-37" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-12">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-38" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-15">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-39" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-16">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-40" style="edgeStyle=none;curved=1;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;fontSize=12;startSize=8;endSize=8;" edge="1" parent="1" source="mnzYnT6uT8cpGv3S2YrK-1" target="mnzYnT6uT8cpGv3S2YrK-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="mnzYnT6uT8cpGv3S2YrK-1" value="Team Member" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+          <mxGeometry x="-930" y="-239.12" width="30" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
