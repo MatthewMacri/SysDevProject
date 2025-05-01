@@ -1,170 +1,393 @@
 /* Reset and common styling */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #fff;
-    color: #333;
-  }
-  
-  /* Example lighter gradient at top */
-  .top-gradient {
-    width: 100%;
-    height: 50px;
-    background: linear-gradient(to bottom, #f9a97a 0%, #ffd7b5 50%, #fff 100%);
-  }
-  
-  .header {
-    text-align: center;
-    padding: 15px 0;
-  }
-  .header img {
-    max-width: 300px;
-    height: auto;
-  }
-  
-  /* Main login container */
-  .login-container {
-    max-width: 350px;
-    margin: 20px auto;
-    padding: 15px;
-  }
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-  }
-  .form-group label {
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.9rem;
-  }
-  .login-container input[type="text"],
-  .login-container input[type="password"] {
-    padding: 10px 12px;
-    background-color: #f3f3f3;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    outline: none;
-  }
-  .login-container input[type="text"]:focus,
-  .login-container input[type="password"]:focus {
-    border-color: #999;
-  }
-  
-  /* Login button */
-  .login-button {
-    margin-top: 10px;
-    padding: 12px 0;
-    background-color: #f68a30;
-    color: #fff;
-    border: none;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-    width: 100%;
-    transition: background-color 0.3s;
-  }
-  .login-button:hover {
-    background-color: #e66700;
-  }
-  
-  /* Forgot password link */
-  .forgot-password {
-    margin-top: 10px;
-    text-align: left;
-  }
-  .forgot-password a {
-    text-decoration: none;
-    color: #000;
-    font-size: 0.9rem;
-  }
-  .forgot-password a:hover {
-    text-decoration: underline;
-  }
-  
-/* --- Modal / Popup styling --- */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Top gradient header bar */
+.top-gradient {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, #f9a97a 0%, #ffd7b5 50%, #fff 100%);
+}
+
+.header {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.header img {
+  max-width: 300px;
+  height: auto;
+}
+
+/* Login form layout */
+.login-container {
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  padding: 10px 12px;
+  background-color: #f3f3f3;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.login-container input[type="text"]:focus,
+.login-container input[type="password"]:focus {
+  border-color: #999;
+}
+
+/* Login button */
+.login-button {
+  margin-top: 10px;
+  padding: 12px 0;
+  background-color: #f68a30;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #e66700;
+}
+
+/* Forgot password link */
+.forgot-password {
+  margin-top: 10px;
+  text-align: left;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #000;
+  font-size: 0.9rem;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Popup Modal Styling ---------- */
+
+/* Overlay background for popup */
 .modal-container {
-    /* Hidden by default; use JavaScript to set display: flex when needed */
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  
-  /* Increase modal width: using !important forces this rule */
-  .modal {
-    background: #fff;
-    width: 800px !important;      /* Force the width to 800px */
-    max-width: 800px !important;  /* Ensure it does not shrink below this on larger screens */
-    border-radius: 8px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  justify-content: center;
+  align-items: center; /* this vertically centers it */
+}
+
+
+/* Inner modal box */
+.confirm-content {
+  position: relative;
+  width: 720px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 30px 40px 100px; /* more top & bottom padding */
+  text-align: center;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* center input/button properly */
+}
+
+
+/* Modal input */
+.popup-input {
+  margin: 20px 0;
+  padding: 10px;
+  width: 80%; /* wider input */
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+/* Button container */
+.confirm-buttons {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 20px;
+  left: 0;
+  width: 100%;
+  padding: 0 40px;
+  box-sizing: border-box;
+}
+
+/* Modal buttons */
+.btn {
+  width: 246px;
+  height: 40px;
+  background-color: #f58220;
+  border: 1px solid #999;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e67300;
+}
+
+@media (max-width: 768px) {
+  .confirm-content {
+    width: 90%;
     padding: 20px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
-  
-  .modal p {
-    margin-bottom: 15px;
-    line-height: 1.4;
-  }
-  
-  /* Updated inner text field with a darker grey background */
-  .modal input[type="text"] {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid #ccc;
-    background-color: #e0e0e0;  /* Darker grey */
-    border-radius: 8px;
-    margin-bottom: 20px;
-    outline: none;
-    font-size: 1rem;
-    color: #666;
-  }
-  
-  /* Button group container: spans full width and pushes buttons to far edges */
-  .button-group {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;  /* Cancel to far left, Confirm to far right */
-  }
-  
-  /* Modal buttons styling */
-  .modal-button {
-    padding: 10px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 10px;
-    border: 1.5px solid #000;
-    background-color: #f68a30;
-    color: #fff;
-    cursor: pointer;
-    min-width: 120px;
-    box-shadow: none;
-    transition: background-color 0.3s, transform 0.1s;
-  }
-  .modal-button:hover {
-    background-color: #e66700;
-    transform: scale(1.02);
-  }
-  
-  .modal-button.cancel {
-    background-color: #f68a30;
-  }
-  .modal-button.cancel:hover {
-    background-color: #e66700;
-  }
-  
-  
-  
-  
+}
+
+.small-popup {
+  max-width: 350px;
+  padding: 25px 30px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+}
+
+.small-popup h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.small-popup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.small-popup .form-group {
+  margin-bottom: 15px;
+}
+
+.small-popup input.popup-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.small-popup .confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.small-popup .btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.small-popup .btn:hover {
+  background-color: #0056b3;
+}
+
+.modal-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+  justify-content: center;
+  align-items: center;
+}
+
+.confirm-content.small-popup {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 25px 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  font-family: Arial, sans-serif;
+  max-width: 350px;
+  text-align: center;
+}
+
+.confirm-content.small-popup h3 {
+  margin-top: 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.confirm-content.small-popup p {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.confirm-content.small-popup .form-group {
+  margin-bottom: 15px;
+}
+
+.confirm-content.small-popup input.popup-input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.confirm-content.small-popup .confirm-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.confirm-content.small-popup .btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.confirm-content.small-popup .btn:hover {
+  background-color: #0056b3;
+}
+
+/* --- Modern EuroGears 2FA Modal --- */
+#twofaModal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+}
+
+#twofaModal .confirm-content {
+  background: #ffffff;
+  padding: 30px 32px;
+  border-radius: 12px;
+  width: 340px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+}
+
+#twofaModal h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f58220;
+  margin-bottom: 10px;
+}
+
+#twofaModal p {
+  font-size: 13.5px;
+  color: #555;
+  margin: 10px 0;
+}
+
+#qrcode {
+  margin: 20px auto;
+  width: 160px;
+  height: 160px;
+}
+
+#twofaCode {
+  width: 100%;
+  padding: 10px;
+  margin: 20px 0;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  text-align: center;
+  outline: none;
+}
+
+#twofaCode:focus {
+  border-color: #f58220;
+}
+
+.confirm-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.confirm-buttons .btn {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#cancel2faBtn {
+  background-color: #ddd;
+  color: #333;
+}
+
+#cancel2faBtn:hover {
+  background-color: #c4c4c4;
+}
+
+#confirm2faBtn {
+  background-color: #f58220;
+  color: white;
+}
+
+#confirm2faBtn:hover {
+  background-color: #e26c00;
+}
