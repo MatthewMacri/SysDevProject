@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const twofaModal = document.getElementById("twofaModal");
   const cancel2faBtn = document.getElementById("cancel2faBtn");
   const confirm2faBtn = document.getElementById("confirm2faBtn");
+  let twofaSecret = ""; // Store the secret here
 
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -20,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
       // Show the 2FA modal
       twofaModal.style.display = "flex";
 
-      // Fetch QR code from backend
+      // Fetch QR code and secret from backend
       const qrCodeContainer = document.getElementById("qrcode");
       qrCodeContainer.innerHTML = "";
 
@@ -28,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(res => res.json())
         .then(data => {
           qrCodeContainer.innerHTML = `<img src="${data.qr}" alt="Scan QR code" />`;
+          twofaSecret = data.secret; // Store the secret for verification
         })
         .catch(err => {
           console.error("QR code fetch failed", err);
@@ -46,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fetch("http://localhost:3000/2fa/verify", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ token: twofaCode }),
+      body: JSON.stringify({ token: twofaCode, secret: twofaSecret }),
     })
       .then(res => {
         if (res.ok) {
