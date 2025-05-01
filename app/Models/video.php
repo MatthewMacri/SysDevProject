@@ -3,10 +3,10 @@
 namespace App\Models;
 
 
-require_once (dirname(__DIR__) . '/controller/databasecontroller.php');
+require_once (dirname(__DIR__) . '/controller/app/databasecontroller.php');
 
 
-use Controller\DatabaseController;
+use Controllers\DatabaseController;
 
 
 
@@ -20,14 +20,8 @@ class Video {
 
     private DatabaseController $db;
 
-    public function __construct(?int $videoId,?int $projectId,?string $videoUrl,?string $format,?int $duration,?string $uploadTime,DatabaseController $db) 
+    public function __construct(DatabaseController $db) 
     {
-        $this->videoId = $videoId;
-        $this->projectId = $projectId;
-        $this->videoUrl = $videoUrl;
-        $this->format = $format;
-        $this->duration = $duration;
-        $this->uploadTime = $uploadTime;
         $this->db = $db;
     }
 
@@ -88,7 +82,7 @@ class Video {
                 'duration' => $this->duration,
                 'upload_time' => $this->uploadTime,
             ]);
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo "Error saving video: " . $e->getMessage();
             return false;
         }
@@ -106,7 +100,7 @@ class Video {
                 'upload_time' => $this->uploadTime,
                 'video_id' => $this->videoId
             ]);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo "Error updating video: " . $e->getMessage();
         }
     }
@@ -116,34 +110,59 @@ class Video {
         try {
             $sql = "DELETE FROM video WHERE video_id = :video_id";
             $this->db->runQuery($sql, ['video_id' => $this->videoId]);
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             echo "Error deleting video: " . $e->getMessage();
         }
     }
 
-    public static function findByProjectId(int $projectId): array {
+    public function getAll(): array {
         try {
-            $sql = "SELECT * FROM video WHERE project_id = :project_id";
-            $result = $db->runQuery($sql, ['project_id' => $projectId]);
+            $sql = "SELECT * FROM video";
+            $result = $this->db->runQuery($sql);
     
             $videos = [];
     
             foreach ($result as $row) {
-                $videos[] = new Video(
-                    $row['video_id'],
-                    $row['project_id'],
-                    $row['video_url'],
-                    $row['format'],
-                    $row['duration'],
-                    $row['upload_time'],
-                    $db
-                );
+                $video = new Video($this->db);
+                $video->setVideoId($row['video_id']);
+                $video->setProjectId($row['project_id']);
+                $video->setVideoUrl($row['video_url']);
+                $video->setFormat($row['format']);
+                $video->setDuration($row['duration']);
+                $video->setUploadTime($row['upload_time']);
+                $videos[] = $video;
             }
     
             return $videos;
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
+            echo "Error fetching videos: " . $e->getMessage();
+            return [];
+        }
+    }    
+
+    public function findByProjectId(int $projectId): array {
+        try {
+            $sql = "SELECT * FROM video WHERE project_id = :project_id";
+            $result = $this->db->runQuery($sql, ['project_id' => $projectId]);
+    
+            $videos = [];
+    
+            foreach ($result as $row) {
+                $video = new Video($this->db);
+                $video->setVideoId($row['video_id']);
+                $video->setProjectId($row['project_id']);
+                $video->setVideoUrl($row['video_url']);
+                $video->setFormat($row['format']);
+                $video->setDuration($row['duration']);
+                $video->setUploadTime($row['upload_time']);
+                $videos[] = $video;
+            }
+    
+            return $videos;
+        } catch (\PDOException $e) {
             echo "Error fetching videos: " . $e->getMessage();
             return [];
         }
     }
+    
 }

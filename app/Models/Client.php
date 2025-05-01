@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use PDO;
 
 class client
 {
@@ -106,5 +107,75 @@ class client
     {
         $this->clientPhoneNumber = $clientPhoneNumber;
     }
+    
+    public function create(PDO $pdo): bool
+{
+    $stmt = $pdo->prepare("
+        INSERT INTO clients (clientName, companyName, clientEmail, clientPhoneNumber)
+        VALUES (:clientName, :companyName, :clientEmail, :clientPhoneNumber)
+    ");
+
+    if ($stmt->execute([
+        ':clientName' => $this->clientName,
+        ':companyName' => $this->companyName,
+        ':clientEmail' => $this->clientEmail,
+        ':clientPhoneNumber' => $this->clientPhoneNumber
+    ])) {
+        $this->clientID = (int)$pdo->lastInsertId();
+        return true;
+    }
+    return false;
+}
+
+public function update(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("
+        UPDATE clients 
+        SET clientName = :clientName, companyName = :companyName, 
+            clientEmail = :clientEmail, clientPhoneNumber = :clientPhoneNumber
+        WHERE clientID = :id
+    ");
+
+    return $stmt->execute([
+        ':id' => $id,
+        ':clientName' => $this->clientName,
+        ':companyName' => $this->companyName,
+        ':clientEmail' => $this->clientEmail,
+        ':clientPhoneNumber' => $this->clientPhoneNumber
+    ]);
+}
+
+public function delete(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("DELETE FROM clients WHERE clientID = :id");
+    return $stmt->execute([':id' => $id]);
+}
+
+public static function selectById(PDO $pdo, int $id): ?self
+{
+    $stmt = $pdo->prepare("SELECT * FROM clients WHERE clientID = :id");
+    $stmt->execute([':id' => $id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        $client = new self($data['clientName'], $data['companyName'], $data['clientEmail'], $data['clientPhoneNumber']);
+        $client->setClientID($data['clientID']);
+        return $client;
+    }
+    return null;
+}
+
+public static function selectAll(PDO $pdo): array
+{
+    $stmt = $pdo->query("SELECT * FROM clients");
+    $clients = [];
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $client = new self($row['clientName'], $row['companyName'], $row['clientEmail'], $row['clientPhoneNumber']);
+        $client->setClientID($row['clientID']);
+        $clients[] = $client;
+    }
+    return $clients;
+}
 
 }

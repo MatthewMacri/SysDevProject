@@ -3,6 +3,8 @@
 
 namespace App\Models;
 
+use PDO;
+
 class User_orig{
 
     //ORM in Laravel may require ID
@@ -21,8 +23,8 @@ class User_orig{
         $this->lastName = $lastName;
         $this->email = $email;
         $this->password = $password;
-        $this->isDeactivated = $isDeactivated;
-        $this->$isAdmin = $isAdmin;
+        $this->isDeactivated = (bool)$isDeactivated;
+        $this->$isAdmin = (bool)$isAdmin;
     }
 
     /**
@@ -153,6 +155,97 @@ class User_orig{
         $this->isAdmin = $isAdmin;
     }
 
+    public function create(PDO $pdo): bool
+{
+    $stmt = $pdo->prepare("
+        INSERT INTO users (userName, firstName, lastName, email, password, isDeactivated, isAdmin)
+        VALUES (:userName, :firstName, :lastName, :email, :password, :isDeactivated, :isAdmin)
+    ");
+
+    if ($stmt->execute([
+        ':userName' => $this->userName,
+        ':firstName' => $this->firstName,
+        ':lastName' => $this->lastName,
+        ':email' => $this->email,
+        ':password' => $this->password,
+        ':isDeactivated' => (int)$this->isDeactivated,
+        ':isAdmin' => (int)$this->isAdmin
+    ])) {
+        $this->userID = (int)$pdo->lastInsertId();
+        return true;
+    }
+    return false;
+}
+
+public function update(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("
+        UPDATE users
+        SET userName = :userName, firstName = :firstName, lastName = :lastName,
+            email = :email, password = :password, isDeactivated = :isDeactivated, isAdmin = :isAdmin
+        WHERE userID = :id
+    ");
+    return $stmt->execute([
+        ':id' => $id,
+        ':userName' => $this->userName,
+        ':firstName' => $this->firstName,
+        ':lastName' => $this->lastName,
+        ':email' => $this->email,
+        ':password' => $this->password,
+        ':isDeactivated' => $this->isDeactivated,
+        ':isAdmin' => $this->isAdmin
+    ]);
+}
+
+public function delete(PDO $pdo, int $id): bool
+{
+    $stmt = $pdo->prepare("DELETE FROM users WHERE userID = :id");
+    return $stmt->execute([':id' => $id]);
+}
+
+public static function selectById(PDO $pdo, int $id): ?self
+{
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE userID = :id");
+    $stmt->execute([':id' => $id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        $user = new self(
+            $data['userID'],
+            $data['firstName'],
+            $data['lastName'],
+            $data['email'],
+            $data['password'],
+            (bool)$data['isDeactivated'],
+            (bool)$data['isAdmin']
+        );
+        $user->setUserName($data['userName']);
+        return $user;
+    }
+    return null;
+}
+
+public static function selectAll(PDO $pdo): array
+{
+    $stmt = $pdo->query("SELECT * FROM users");
+    $users = [];
+
+    while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $user = new self(
+            $row['userID'],
+            $row['firstName'],
+            $row['lastName'],
+            $row['email'],
+            $row['password'],
+            (bool)$row['isDeactivated'],
+            (bool)$row['isAdmin']
+        );
+        $user->setUserName($row['userName']);
+        $user->setUserID($row['userID']);
+        $users[] = $user;
+    }
+    return $users;
+}
 
 }
 ?>
