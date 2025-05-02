@@ -1,52 +1,49 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const speakeasy = require("speakeasy");
-const qrcode = require("qrcode");
-const cors = require("cors");
+import express from 'express';
+import cors from 'cors';
+import speakeasy from 'speakeasy';
+import qrcode from 'qrcode';
 
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
+// Middleware
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
-let userSecret = null; // In real apps, store this in a database per user
+// Temporary in-memory store (replace with DB in production)
+let currentSecret = null;
 
-// 1. Generate TOTP Secret and QR Code
-app.get("/2fa/setup", (req, res) => {
-  const secret = speakeasy.generateSecret({
-    name: "TexasGears",
-    issuer: "TexasGears Inc.",
-  });
+// Route to generate QR code and secret
+app.get('/2fa/setup', (req, res) => {
+  currentSecret = speakeasy.generateSecret({ name: 'Texas Gears App' });
 
-  userSecret = secret.base32; // Store securely in real apps
-
-  qrcode.toDataURL(secret.otpauth_url, (err, data_url) => {
+  qrcode.toDataURL(currentSecret.otpauth_url, (err, data_url) => {
     if (err) {
-      return res.status(500).send("Failed to generate QR");
+      return res.status(500).json({ error: 'Failed to generate QR code' });
     }
-    res.json({ qr: data_url, secret: secret.base32 });
+    res.json({ qr: data_url, secret: currentSecret.base32 });
   });
 });
 
-// 2. Verify TOTP Code
-app.post("/2fa/verify", (req, res) => {
+// Route to verify 2FA code
+app.post('/2fa/verify', (req, res) => {
   const { token } = req.body;
 
   const verified = speakeasy.totp.verify({
-    secret: userSecret,
-    encoding: "base32",
-    token,
-    window: 1,
+    secret: currentSecret?.base32,
+    encoding: 'base32',
+    token: token,
+    window: 1, // allows slight clock drift
   });
 
   if (verified) {
-    res.sendStatus(200); // Login success
+    res.status(200).send('2FA Verified');
   } else {
-    res.status(401).send("Invalid token");
+    res.status(401).send('Invalid 2FA code');
   }
 });
 
-app.listen(port, () => {
-  console.log(`2FA backend running at http://localhost:${port}`);
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
 });
