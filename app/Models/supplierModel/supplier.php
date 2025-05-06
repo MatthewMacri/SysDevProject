@@ -11,6 +11,26 @@ class Supplier {
         $this->db = $db;
     }
 
+    public function update($id, $data) {
+        $stmt = $this->db->prepare("
+            UPDATE supplier
+            SET supplier_name = ?, company_name = ?, supplier_email = ?, supplier_phone_number = ?
+            WHERE supplier_id = ?
+        ");
+        return $stmt->execute([
+            $data['supplier_name'],
+            $data['company_name'],
+            $data['supplier_email'],
+            $data['supplier_phone_number'],
+            $id
+        ]);
+    }
+    
+    public function delete($id) {
+        $stmt = $this->db->prepare("DELETE FROM supplier WHERE supplier_id = ?");
+        return $stmt->execute([$id]);
+    }    
+
     public function getAll() {
         $stmt = $this->db->query("SELECT * FROM supplier");
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
