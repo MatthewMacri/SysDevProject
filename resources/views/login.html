@@ -49,23 +49,29 @@
     </div>
   </div>
 
-  <!-- 2FA Modal -->
-  <div id="twofaModal" class="modal-container" style="display: none;">
-    <div class="confirm-content small-popup">
-      <h3>Two-Factor Authentication</h3>
-      <p>Scan the QR code below with your authenticator app.</p>
-      <div id="qrcode"></div>
-      <p>After scanning, enter the 6-digit code from your app.</p>
-      <div class="form-group">
-        <label for="twofaCode">2FA Code</label>
-        <input type="text" id="twofaCode" class="popup-input" />
-      </div>
-      <div class="confirm-buttons">
-        <button class="btn" id="cancel2faBtn">Cancel</button>
-        <button class="btn" id="confirm2faBtn">Confirm</button>
-      </div>
+<!-- 2FA Modal -->
+<div id="twofaModal" class="modal-container" style="display: none;">
+  <div class="confirm-content small-popup">
+    <h3>Two-Factor Authentication</h3>
+    <p>Scan the QR code below with your authenticator app.</p>
+    
+    <div style="display: flex; justify-content: center; margin: 10px 0;">
+      <div id="qrcode" style="width: 160px; height: 160px;"></div>
+    </div>
+
+    <p style="margin: 10px 0 15px;">After scanning, enter the 6-digit code from your app.</p>
+
+    <div class="form-group">
+      <label for="twofaCode">2FA Code</label>
+      <input type="text" id="twofaCode" class="popup-input" />
+    </div>
+
+    <div class="confirm-buttons">
+      <button class="btn" id="cancel2faBtn">Cancel</button>
+      <button class="btn" id="confirm2faBtn">Confirm</button>
     </div>
   </div>
+</div>
 
   <script src="../js/login.js"></script>
 </body>
