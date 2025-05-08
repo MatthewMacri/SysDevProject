@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    fetch("/SysDevProject/login.php", {
+    fetch("../../login.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),

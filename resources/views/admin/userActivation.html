@@ -5,8 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Activation</title>
   <link rel="stylesheet" href="../../css/userActivation.css" />
+  <link rel="stylesheet" href="../../css/navbar.css" />
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
+
+  <!-- Navbar -->
+  <div w3-include-html="../navbar.html"></div>
+
+  <!-- Content -->
   <div class="form-container">
     <div class="form-box">
       <label for="username">Username</label>
@@ -21,6 +28,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Confirmation Modals -->
   <div id="confirmBox" class="hidden-overlay">
     <div class="confirm-content">
       <p>You are activating user <span id="activateUserID"></span><br>Confirm to Proceed</p>
@@ -40,7 +49,11 @@
       </div>
     </div>
   </div>
-  
+
+  <!-- Scripts -->
   <script src="../../js/userActivation.js"></script>
+  <script>
+    w3IncludeHTML();
+  </script>
 </body>
 </html>
