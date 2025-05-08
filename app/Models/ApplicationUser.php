@@ -3,9 +3,10 @@
 
 namespace App\Models;
 
+use Controllers\DatabaseController;
 use PDO;
 
-class User_orig{
+class ApplicationUser{
 
     //ORM in Laravel may require ID
     private $userID;
@@ -15,16 +16,12 @@ class User_orig{
     private $email;
     private $password;
     private $isDeactivated;
-    private $isAdmin;
+    private $secret;
 
-    function __construct($userID, $firstName, $lastName, $email, $password, $isDeactivated, $isAdmin){
-        //Let DB auto assign ID (insert method in controller returns ID from DB
-        $this->firstName = $firstName;
-        $this->lastName = $lastName;
-        $this->email = $email;
-        $this->password = $password;
-        $this->isDeactivated = (bool)$isDeactivated;
-        $this->$isAdmin = (bool)$isAdmin;
+    private DatabaseController $db;
+
+    function __construct($db){
+        $this->db = $db;
     }
 
     /**
@@ -139,27 +136,23 @@ class User_orig{
         $this->isDeactivated = $isDeactivated;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getIsAdmin()
-    {
-        return $this->isAdmin;
+    public function setSecret($secret) {
+        $this->secret = $secret;
+    }
+    
+    public function getSecret() {
+        return $this->secret;
     }
 
-    /**
-     * @param mixed $isAdmin
-     */
-    public function setIsAdmin($isAdmin)
-    {
-        $this->isAdmin = $isAdmin;
+    public function getdb() {
+        return $this->db;
     }
 
-    public function create(PDO $pdo): bool
+    public function create(): bool
 {
-    $stmt = $pdo->prepare("
-        INSERT INTO users (userName, firstName, lastName, email, password, isDeactivated, isAdmin)
-        VALUES (:userName, :firstName, :lastName, :email, :password, :isDeactivated, :isAdmin)
+    $stmt = $this->db->getConnection()->prepare("
+        INSERT INTO users (userName, firstName, lastName, email, password, isDeactivated, secret)
+        VALUES (:userName, :firstName, :lastName, :email, :password, :isDeactivated, :secret)
     ");
 
     if ($stmt->execute([
@@ -169,20 +162,20 @@ class User_orig{
         ':email' => $this->email,
         ':password' => $this->password,
         ':isDeactivated' => (int)$this->isDeactivated,
-        ':isAdmin' => (int)$this->isAdmin
+        ':secret' => $this->secret
     ])) {
-        $this->userID = (int)$pdo->lastInsertId();
+        $this->userID = (int)$this->db->getConnection()->lastInsertId();
         return true;
     }
     return false;
 }
 
-public function update(PDO $pdo, int $id): bool
+public function update(int $id): bool
 {
-    $stmt = $pdo->prepare("
+    $stmt = $this->db->getConnection()->prepare("
         UPDATE users
         SET userName = :userName, firstName = :firstName, lastName = :lastName,
-            email = :email, password = :password, isDeactivated = :isDeactivated, isAdmin = :isAdmin
+            email = :email, password = :password, isDeactivated = :isDeactivated, secret = :secret
         WHERE userID = :id
     ");
     return $stmt->execute([
@@ -193,14 +186,25 @@ public function update(PDO $pdo, int $id): bool
         ':email' => $this->email,
         ':password' => $this->password,
         ':isDeactivated' => $this->isDeactivated,
-        ':isAdmin' => $this->isAdmin
+        ':secret' => $this->secret
     ]);
 }
 
-public function delete(PDO $pdo, int $id): bool
+public function delete(int $id): bool
 {
-    $stmt = $pdo->prepare("DELETE FROM users WHERE userID = :id");
+    $stmt = $this->db->getConnection()->prepare("DELETE FROM users WHERE userID = :id");
     return $stmt->execute([':id' => $id]);
+}
+
+public function updateStatusByUsername(): bool
+{
+    $stmt = $this->db->getConnection()->prepare("
+        UPDATE users SET isDeactivated = :isDeactivated WHERE userName = :username
+    ");
+    return $stmt->execute([
+        ':isDeactivated' => (int)$this->isDeactivated,
+        ':username' => $this->userName
+    ]);
 }
 
 public static function selectById(PDO $pdo, int $id): ?self
@@ -217,7 +221,7 @@ public static function selectById(PDO $pdo, int $id): ?self
             $data['email'],
             $data['password'],
             (bool)$data['isDeactivated'],
-            (bool)$data['isAdmin']
+            $data['secret']
         );
         $user->setUserName($data['userName']);
         return $user;
@@ -238,7 +242,7 @@ public static function selectAll(PDO $pdo): array
             $row['email'],
             $row['password'],
             (bool)$row['isDeactivated'],
-            (bool)$row['isAdmin']
+            $row['secret']
         );
         $user->setUserName($row['userName']);
         $user->setUserID($row['userID']);
@@ -246,6 +250,29 @@ public static function selectAll(PDO $pdo): array
     }
     return $users;
 }
+
+public static function selectByUsername(PDO $pdo, string $username): ?self
+{
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE userName = :username");
+    $stmt->execute([':username' => $username]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($data) {
+        $user = new self($pdo);
+        $user->setUserID($data['userID']);
+        $user->setUserName($data['userName']);
+        $user->setFirstName($data['firstName']);
+        $user->setLastName($data['lastName']);
+        $user->setEmail($data['email']);
+        $user->setPassword($data['password']);
+        $user->setIsDeactivated((bool)$data['isDeactivated']);
+        $user->setSecret($data['secret']);
+        return $user;
+    }
+
+    return null;
+}
+
 
 }
 ?>
