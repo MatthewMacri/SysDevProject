@@ -174,9 +174,13 @@ input, textarea, button {
     cursor: pointer;
 }
 
-.form-actions button {
-    width: 80px;
+.form-button.create-button,
+.form-button.cancel-button {
+  width: 180px; /* Adjust as needed */
+  height: 45px;
+  font-size: 15px;
 }
+
 
 .form-actions {
     display: flex;
