@@ -6,11 +6,11 @@
   <title>User Activation</title>
   <link rel="stylesheet" href="../../css/userActivation.css" />
   <link rel="stylesheet" href="../../css/navbar.css" />
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
 
-  <!-- Navbar -->
+  <!-- Include shared navbar -->
   <div w3-include-html="../navbar.html"></div>
 
   <!-- Content -->
@@ -51,9 +51,18 @@
   </div>
 
   <!-- Scripts -->
-  <script src="../../js/userActivation.js"></script>
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
-    w3IncludeHTML();
+    w3IncludeHTML(() => {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.href = "../login.html";
+        });
+      }
+    });
   </script>
+  <script src="../../js/userActivation.js"></script>
 </body>
 </html>
