@@ -1,4 +1,4 @@
-fetch('../../jsonData/projects.json')
+fetch('../jsonData/projects.json')
       .then(res => res.json())
       .then(data => {
         const project = data[2]; 
