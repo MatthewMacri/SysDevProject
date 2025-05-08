@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         if (data.success) {
           // ✅ Successful login → redirect
-          window.location.href = "/resources/views/home.php";
+          window.location.href = "/SysDevProject/resources/views/home.php";
         } else {
           throw new Error("2FA code incorrect");
         }
