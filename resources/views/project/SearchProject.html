@@ -11,11 +11,11 @@
   
   <div class="navbar">
     <div class="nav-left">
-      <a href="#" class="active">Home</a>
+      <a href="../home.html" class="active">Home</a>
       <a href="SearchProject.html">Project Search</a>
       <a href="history.html">Project History</a>
       <a href="CreateProjectView.html">Create Project</a>
-      <a href="#">Status Overview</a>
+      <a href="../statusOverview.html">Status Overview</a>
     </div>
 
     <a class="logo-container" href="#"><img src="/SysDevProject/public/images/logo/New%20TGE%20Logo%202025.png" alt="Logo" class="logo"></a>
@@ -99,5 +99,16 @@
 
   </main>
   <script src="../../js/searchProject.js"></script>
+  <script>
+    w3IncludeHTML(() => {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.href = "../views/login.html";
+        });
+      }
+    });
+  </script>
 </body>
 </html>

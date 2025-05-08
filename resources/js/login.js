@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    fetch("../../login.php", {
+    fetch( ("../../login.php"), {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, password }),
+      credentials: "include"
     })
       .then((res) => {
         if (!res.ok) throw new Error("Login failed");
@@ -46,10 +47,11 @@ document.addEventListener("DOMContentLoaded", () => {
   confirm2faBtn.addEventListener("click", () => {
     const twofaCode = document.getElementById("twofaCode").value.trim();
 
-    fetch("/SysDevProject/verify.php", {
+    fetch("../../verify.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token: twofaCode, secret: twofaSecret }),
+      credentials: "include"
     })
       .then((res) => {
         if (!res.ok) throw new Error("2FA failed");
@@ -58,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .then((data) => {
         if (data.success) {
           // ✅ Successful login → redirect
-          window.location.href = "/SysDevProject/resources/views/home.php";
+          window.location.href = "../views/home.php";
         } else {
           throw new Error("2FA code incorrect");
         }
