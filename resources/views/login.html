@@ -5,9 +5,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Login - Texas Gears Engineering</title>
-    <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+  <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
 
-  <link rel="stylesheet" href="../css/login.css">
+  <link rel="stylesheet" href="../../resources/css/login.css">
 </head>
 <body>
 
@@ -56,10 +56,8 @@
   <div class="confirm-content small-popup">
     <h3>Two-Factor Authentication</h3>
     <p>Scan the QR code below with your authenticator app.</p>
-    
-    <div style="display: flex; justify-content: center; margin: 10px 0;">
-      <div id="qrcode" style="width: 160px; height: 160px;"></div>
-    </div>
+
+    <div class="qrcode" id="qrcode"></div>
 
     <p style="margin: 10px 0 15px;">After scanning, enter the 6-digit code from your app.</p>
 
@@ -75,5 +73,6 @@
   </div>
 </div>
   <script src="../js/login.js"></script>
+  <link rel="stylesheet" href="../../resources/css/login.css">
 </body>
 </html>

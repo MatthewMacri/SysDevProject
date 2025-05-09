@@ -1,10 +1,13 @@
+<style>
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/css/navbar.css'; ?>
+</style>
 <!-- resources/views/navbar.html -->
 <div class="navbar">
   <div class="nav-left">
     <a href="/SysDevProject/resources/views/home.php" class="active">Home</a>
     <a href="/SysDevProject/resources/views/project/SearchProject.html">Project Search</a>
     <a href="/SysDevProject/resources/views/project/history.html">Project History</a>
-    <a href="/SysDevProject/resources/views/project/CreateProjectView.html">Create Project</a>
+    <a href="/SysDevProject/resources/views/project/CreateProjectView.php">Create Project</a>
     <a href="/SysDevProject/resources/views/statusOverview.html">Status Overview</a>
   </div>
 

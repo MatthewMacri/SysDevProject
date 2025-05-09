@@ -10,7 +10,7 @@
         "laravel/framework": "^12.0",
         "laravel/tinker": "^2.10.1",
         "phpgangsta/googleauthenticator": "*",
-        "sonata-project/google-authenticator": "*"
+        "sonata-project/google-authenticator": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
