@@ -1,3 +1,6 @@
+<style>
+  <?php include $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/css/navbar.css'; ?>
+</style>
 <!-- resources/views/navbar.html -->
 <div class="navbar">
   <div class="nav-left">

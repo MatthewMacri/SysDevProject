@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Edit Admin</title>
-  <link rel="stylesheet" href="../../../css/home.css">
-  <link rel="stylesheet" href="../../../css/navbar.css">
-  <link rel="stylesheet" href="../../../css/form.css">
+  <link rel="stylesheet" href="../../css/home.css">
+  <link rel="stylesheet" href="../../css/form.css">
   <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
 
-<div w3-include-html="../../../views/navbar.html"></div>
+<div w3-include-html="../../components/navbar.php"></div>
 
 <section class="section">
   <h2>Edit Admin</h2>

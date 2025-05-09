@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>All Suppliers</title>
-  <link rel="stylesheet" href="../../../css/home.css">
-  <link rel="stylesheet" href="../../../css/navbar.css">
+  <link rel="stylesheet" href="../../css/home.css">
   <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
 
 <!-- Navbar -->
-<div w3-include-html="../../../views/navbar.html"></div>
+<div w3-include-html="../../components/navbar.php"></div>
 
 <section class="section">
   <h2>All Suppliers</h2>

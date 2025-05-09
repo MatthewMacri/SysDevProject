@@ -9,7 +9,7 @@
 
 <body>
   <!-- Load Navbar -->
-  <div w3-include-html="resources/views/navbar.html"></div>
+  <div w3-include-html="resources/components/navbar.php"></div>
 
   <!-- Main Content -->
   <section class="section">

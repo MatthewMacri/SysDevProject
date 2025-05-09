@@ -13,7 +13,6 @@ if (!isset($_SESSION['admin_id'])) {
   <title>Texas Gears Dashboard</title>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -35,7 +34,7 @@ if (!isset($_SESSION['admin_id'])) {
 <body>
 
   <!-- Navbar include (file must be in the same folder) -->
-  <div w3-include-html="navbar.html"></div>
+  <div w3-include-html="../components/navbar.php"></div>
 
   <!-- Page Content -->
   <section class="section">
