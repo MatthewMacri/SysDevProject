@@ -37,7 +37,8 @@ class AuthController {
             <a href='http://localhost/SysDevProject/resources/views/resetPassword.php?token=$token'>Reset Password</a>";
 
         if ($mail->send()) {
-            echo "Reset link sent!";
+            header("Location: ../../resources/views/login.html?reset=sent");
+            exit;
         } else {
             echo "Failed to send email: " . $mail->ErrorInfo;
         }
