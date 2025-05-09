@@ -25,11 +25,33 @@
     </ul>
   </section>
 
-  <!-- Scripts -->
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <!-- Logout Support Script -->
   <script>
-    w3IncludeHTML();
+    w3IncludeHTML(function () {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          fetch("/SysDevProject/logout.php", {
+            method: "POST",
+            credentials: "include"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/SysDevProject/resources/views/login.html";
+            } else {
+              alert("Logout failed");
+            }
+          })
+          .catch(err => {
+            console.error("Logout error:", err);
+            alert("Logout request failed.");
+          });
+        });
+      }
+    });
   </script>
-</body>
 
+</body>
 </html>

@@ -1,59 +1,94 @@
-<h2>Upload YouTube Video</h2>
-<form method="post" action="?controller=video&action=upload">
-    <input type="text" name="project_id" placeholder="Project ID" required><br>
-    <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
-    <input type="text" name="format" value="youtube" readonly><br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Upload YouTube Video</title>
+  <link rel="stylesheet" href="../../css/form.css">
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+</head>
+<body>
 
-    <!-- Automatically filled with video duration in seconds -->
-    <input type="hidden" id="duration" name="duration">
+  <!-- Shared Navbar Include -->
+  <div w3-include-html="../../components/navbar.php"></div>
 
-    <button type="submit">Upload</button>
-</form>
+  <section class="section">
+    <h2>Upload YouTube Video</h2>
+    <form method="post" action="?controller=video&action=upload">
+        <input type="text" name="project_id" placeholder="Project ID" required><br>
+        <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
+        <input type="text" name="format" value="youtube" readonly><br>
 
-<!-- Hidden YouTube player -->
-<div id="player" style="width:0; height:0;"></div>
+        <!-- Automatically filled with video duration in seconds -->
+        <input type="hidden" id="duration" name="duration">
 
-<!-- the  YouTube IFrame Player API which is used to get duration-->
-<script src="https://www.youtube.com/iframe_api"></script>
+        <button type="submit">Upload</button>
+    </form>
+  </section>
 
-<script>
+  <!-- Hidden YouTube player -->
+  <div id="player" style="width:0; height:0;"></div>
+
+  <!-- YouTube IFrame API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script>
     let player;
 
-    // Triggered when YouTube IFrame API is ready
     function onYouTubeIframeAPIReady() {
+      const urlInput = document.getElementById('video_url');
+      urlInput.addEventListener('blur', function () {
+        const url = this.value.trim();
+        const videoId = extractVideoId(url);
+        if (!videoId) return;
 
-        //get the youtibe video url
-        const urlInput = document.getElementById('video_url');
+        if (player) player.destroy();
 
-        //when the user entered the url fully 
-        urlInput.addEventListener('blur', function () {
-            const url = this.value.trim();
-            const videoId = extractVideoId(url);
-
-
-            // Remove the old player
-            if (player) player.destroy();
-
-            // Create new hidden player to load metadata
-            player = new YT.Player('player', {
-                height: '0',
-                width: '0',
-                videoId: videoId,
-                events: {
-                    'onReady': (event) => {
-                        //this gets the duration of the youtube video and sets it to duration
-                        const duration = event.target.getDuration();
-                        document.getElementById('duration').value = duration;
-                    }
-                }
-            });
+        player = new YT.Player('player', {
+          height: '0',
+          width: '0',
+          videoId: videoId,
+          events: {
+            'onReady': (event) => {
+              const duration = event.target.getDuration();
+              document.getElementById('duration').value = duration;
+            }
+          }
         });
+      });
     }
 
-    // gets the video id which is used in the youtube player 
     function extractVideoId(url) {
-        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
-        // retruns olny the id of the video and not teh whole url
-        return match[1];
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : null;
     }
-</script>
+  </script>
+
+  <!-- Full Logout Script -->
+  <script>
+    w3IncludeHTML(function () {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          fetch("/SysDevProject/logout.php", {
+            method: "POST",
+            credentials: "include"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/SysDevProject/resources/views/login.html";
+            } else {
+              alert("Logout failed");
+            }
+          })
+          .catch(err => {
+            console.error("Logout error:", err);
+            alert("Logout request failed.");
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>
