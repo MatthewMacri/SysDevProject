@@ -1,6 +1,8 @@
 <?php
-
-file_put_contents("debug.txt", "LOGIN HIT\n", FILE_APPEND);
+if(session_status()==PHP_SESSION_NONE){
+    session_start();
+}
+    file_put_contents("debug.txt", "LOGIN HIT\n", FILE_APPEND);
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -35,6 +37,9 @@ if (!$user || !$isValid) {
     echo json_encode(["error" => "Invalid username or password"]);
     exit;
 }
+
+$_SESSION['admin_id'] = $user['admin_id'];
+session_write_close();
 
 $g = new PHPGangsta_GoogleAuthenticator();
 $secret = $user['twofa_secret'] ?: $g->createSecret();

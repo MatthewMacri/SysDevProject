@@ -1,76 +1,43 @@
+/* Universal font and reset */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
+  font-family: Arial, sans-serif;
   background-color: #ffffff;
 }
 
+/* Section container */
 .section {
   padding: 40px 60px;
+  max-width: 1000px;
+  margin: auto;
 }
 
+/* Headings */
 h2 {
   color: #F68A30;
   margin-bottom: 20px;
 }
 
+/* Kanban and Gantt areas */
+#kanban,
+#gantt {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
 #kanban {
   display: flex;
   justify-content: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.kanban-item:hover {
-  cursor: default !important;
 }
 
 #gantt {
   height: 500px;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.project-card {
-  background-color: #f8f8f8f8;
-  border: 1px solid #d9d9d9d9;
-  border-radius: 10px;
-  padding: 16px 24px;
-  margin: 12px 0;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-  position: relative;
-}
-
-.project-card span {
-  display: inline-block;
-  font-weight: bold;
-  color: #333;
-}
-
-.project-card .serial {
-  width: 30%;
-}
-
-.project-card .title {
-  width: 40%;
-}
-
-.project-card .status {
-  width: 30%;
-  text-align: right;
-  float: right;
-  color: #F68A30;
-}
-
-.project-card .desc {
-  font-size: 14px;
-  color: #777;
-  margin-top: 5px;
-}
-
+/* Section headers */
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -83,6 +50,7 @@ h2 {
   color: #F68A30;
 }
 
+/* View button (reused style) */
 .view-button {
   display: flex;
   align-items: center;
@@ -91,17 +59,91 @@ h2 {
   color: white;
   text-decoration: none;
   padding: 10px 16px;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s;
 }
 
 .view-button:hover {
-  background-color: #d67220;
+  background-color: #e66700;
 }
 
 .view-button img {
   width: 20px;
   height: 20px;
+}
+
+/* Project card */
+.project-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.project-card .serial,
+.project-card .title,
+.project-card .status {
+  font-weight: bold;
+}
+
+.project-card .title {
+  font-size: 16px;
+}
+
+.project-card .status {
+  float: right;
+  text-align: right;
+  color: #F68A30;
+}
+
+.project-card .desc {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Button row and layout */
+.button-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.left-buttons {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 50px;
+}
+
+.right-button {
+  margin-left: auto;
+}
+
+/* Shared button styles */
+.orange-button,
+.action-button {
+  background-color: #F68A30;
+  color: white;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 120px;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.orange-button:hover,
+.action-button:hover {
+  background-color: #e66700;
 }

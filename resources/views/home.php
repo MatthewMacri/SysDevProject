@@ -15,13 +15,13 @@ if (!isset($_SESSION['admin_id'])) {
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/home.css">
-
-  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx-gantt.min.css">
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx.light.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.css">
 
+  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx-gantt.min.js"></script>
@@ -34,10 +34,10 @@ if (!isset($_SESSION['admin_id'])) {
 </head>
 <body>
 
-  <!-- Navbar include -->
+  <!-- Navbar include (file must be in the same folder) -->
   <div w3-include-html="navbar.html"></div>
 
-  <!-- Content -->
+  <!-- Page Content -->
   <section class="section">
     <div class="section-header">
       <h2>Kanban Overview</h2>
@@ -63,9 +63,9 @@ if (!isset($_SESSION['admin_id'])) {
     <div id="recent-projects-container"></div>
   </section>
 
-  <!-- Load the navbar -->
+  <!-- Execute navbar include and bind logout -->
   <script>
-    w3IncludeHTML(() => {
+    w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");
       if (logoutBtn) {
         logoutBtn.addEventListener("click", () => {

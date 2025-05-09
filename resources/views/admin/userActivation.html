@@ -4,9 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>User Activation</title>
+    <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+
   <link rel="stylesheet" href="../../css/userActivation.css" />
+  <link rel="stylesheet" href="../../css/navbar.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+
+  <!-- Include shared navbar -->
+  <div w3-include-html="../navbar.html"></div>
+
+  <!-- Content -->
   <div class="form-container">
     <div class="form-box">
       <label for="username">Username</label>
@@ -21,6 +30,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Confirmation Modals -->
   <div id="confirmBox" class="hidden-overlay">
     <div class="confirm-content">
       <p>You are activating user <span id="activateUserID"></span><br>Confirm to Proceed</p>
@@ -40,7 +51,20 @@
       </div>
     </div>
   </div>
-  
+
+  <!-- Scripts -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <script>
+    w3IncludeHTML(() => {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+          window.location.href = "../login.html";
+        });
+      }
+    });
+  </script>
   <script src="../../js/userActivation.js"></script>
 </body>
 </html>

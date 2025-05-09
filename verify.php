@@ -1,10 +1,14 @@
 <?php 
 
 require 'vendor/autoload.php';
-session_start();
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 
 $data = json_decode(file_get_contents("php://input"), true);
 $token = $data['token'];
+
 
 // ✅ Use the session to identify the logged-in admin
 if (!isset($_SESSION['admin_id'])) {
@@ -30,6 +34,8 @@ if (!$user || empty($user['twofa_secret'])) {
 $secret = $user['twofa_secret'];
 $g = new PHPGangsta_GoogleAuthenticator();
 $isValid = $g->verifyCode($secret, $token, 2); // 2 = time window tolerance
+
+
 
 if ($isValid) {
     echo json_encode(["success" => true]);
