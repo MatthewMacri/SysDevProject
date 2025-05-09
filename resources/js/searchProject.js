@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
       const resultsContainer = document.getElementById('results');
       resultsContainer.innerHTML = ""; // Clear previous results
   
-      fetch('../../jsonData/projects.json')
+      fetch('../../app/Http/Controllers/projectcontroller.php')
         .then(res => res.json())
         .then(data => {
           const matches = data.filter(project => project.serialNumber.toLowerCase() === serial);

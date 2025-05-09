@@ -116,3 +116,61 @@ If you encounter this error `npm WARN saveError ENOENT: no such file or director
 
 ## Conclusion
 This document serves as a **guideline** for our **Project/Inventory Management System**. With clear team roles, structured communication, and a well-defined plan, we aim for successful project completion while maintaining efficiency and teamwork.
+
+### TO DO
+* INCLUDE THE NAV BAR IN ALL OF THE VIEWS 
+* Creating the CRUDs functions
+* Connect views with crud functions
+* Transfer all HTML files to PHP 
+* Connecting the views together (FULL USER JOURNEY)
+* Create the server connection 
+* Log in (remember me button on the log in, remembers for a certain amount of time) & Log out  
+* 2FA (Google 2FA)
+* Set up .env and exclude it in the .gitignore
+* Export as PDF and QR code api 
+* Authorization and Authentication
+* SQL Injection prevention
+* Custom Errors 
+* Code annotation and unite testing
+
+## Future Implementation
+* Alerts in the calendar from gaant and kanban
+
+
+# SysDevProject – Project & Inventory Management System
+
+This project is a **Project & Inventory Management System** built for mechanical engineering companies like Texas Gears Engineering. It streamlines internal operations such as inventory control, project tracking, user access, and 2FA-secured login.
+
+---
+
+## 🚀 Features
+
+- User login with 2FA authentication
+- QR code-based setup using Google Authenticator
+- Project and inventory management interfaces
+- Admin and user roles
+- Responsive front-end using TailwindCSS + Vite
+- Backend API using Node.js + Express
+
+---
+
+## 🛠 Technologies Used
+
+- **Frontend**: HTML, TailwindCSS, Vite
+- **Backend**: Node.js, Express.js
+- **2FA**: Speakeasy, QRCode
+- **Security**: CORS, Environment Separation
+- **Package Manager**: NPM
+
+---
+
+## 📦 Installation Instructions
+
+Follow these steps to get the project running locally.
+
+### ✅ 1. Clone the Repository
+
+```bash
+git clone https://github.com/MatthewMacri/SysDevProject.git
+cd SysDevProject
+

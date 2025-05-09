@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Project Details</title>
+    <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+
   <link rel="stylesheet" href="../../css/deleteProject.css" />
   <link rel="stylesheet" href="../../css/navbar.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -11,36 +13,7 @@
 </head>
 <body>
   
-  <div class="navbar">
-    <div class="nav-left">
-      <a href="#" class="active">Home</a>
-      <a href="SearchProject.html">Project Search</a>
-      <a href="history.html">Project History</a>
-      <a href="CreateProjectView.html">Create Project</a>
-      <a href="#">Status Overview</a>
-    </div>
-
-    <a class="logo-container" href="#"><img src="../../../public/logo/New TGE Logo 2025.png" alt="Logo" class="logo"></a>
-
-    <div class="nav-right">
-      <div class="search-box">
-        <input type="text" placeholder="Search">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-      <button class="logout-btn">Logout</button>
-      <div class="dropdown">
-        <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
-        <div class="dropdown-content">
-          <a href="#">Manage</a>
-          <a href="#">Create</a>
-          <a href="deleteProject.html">Delete</a>
-          <a href="#">User Status</a>
-          <a href="archive.html">Project Archive</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
+  <div w3-include-html="../navbar.html"></div>
 
   <main>
     <div class="project-header">
@@ -110,7 +83,18 @@
       </div>
     </div>
   </div>
-
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
+<script>
+  w3IncludeHTML(() => {
+    const logoutBtn = document.querySelector(".logout-btn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        window.location.href = "../login.html";
+      });
+    }
+  });
+</script>
   <script src="../../js/deleteproject.js"></script>
 </body>
 </html>

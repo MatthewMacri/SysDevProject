@@ -20,14 +20,8 @@ class Video {
 
     private DatabaseController $db;
 
-    public function __construct(?int $videoId,?int $projectId,?string $videoUrl,?string $format,?int $duration,?string $uploadTime,DatabaseController $db) 
+    public function __construct(DatabaseController $db) 
     {
-        $this->videoId = $videoId;
-        $this->projectId = $projectId;
-        $this->videoUrl = $videoUrl;
-        $this->format = $format;
-        $this->duration = $duration;
-        $this->uploadTime = $uploadTime;
         $this->db = $db;
     }
 
@@ -121,6 +115,31 @@ class Video {
         }
     }
 
+    public function getAll(): array {
+        try {
+            $sql = "SELECT * FROM video";
+            $result = $this->db->runQuery($sql);
+    
+            $videos = [];
+    
+            foreach ($result as $row) {
+                $video = new Video($this->db);
+                $video->setVideoId($row['video_id']);
+                $video->setProjectId($row['project_id']);
+                $video->setVideoUrl($row['video_url']);
+                $video->setFormat($row['format']);
+                $video->setDuration($row['duration']);
+                $video->setUploadTime($row['upload_time']);
+                $videos[] = $video;
+            }
+    
+            return $videos;
+        } catch (\PDOException $e) {
+            echo "Error fetching videos: " . $e->getMessage();
+            return [];
+        }
+    }    
+
     public function findByProjectId(int $projectId): array {
         try {
             $sql = "SELECT * FROM video WHERE project_id = :project_id";
@@ -129,15 +148,14 @@ class Video {
             $videos = [];
     
             foreach ($result as $row) {
-                $videos[] = new Video(
-                    $row['video_id'],
-                    $row['project_id'],
-                    $row['video_url'],
-                    $row['format'],
-                    $row['duration'],
-                    $row['upload_time'],
-                    $this->db
-                );
+                $video = new Video($this->db);
+                $video->setVideoId($row['video_id']);
+                $video->setProjectId($row['project_id']);
+                $video->setVideoUrl($row['video_url']);
+                $video->setFormat($row['format']);
+                $video->setDuration($row['duration']);
+                $video->setUploadTime($row['upload_time']);
+                $videos[] = $video;
             }
     
             return $videos;
@@ -146,4 +164,5 @@ class Video {
             return [];
         }
     }
+    
 }
