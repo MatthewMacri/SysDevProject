@@ -328,9 +328,16 @@ body {
   align-items: center;
 }
 
-#qrcode {
-  display: block;
+.qrcode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   margin: 20px auto; /* Ensures space above and below */
+  width: 160px;
+  height: 160px;
+}
+
+.qrcode-img {
   width: 160px;
   height: 160px;
 }
