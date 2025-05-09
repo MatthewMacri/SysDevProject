@@ -13,7 +13,6 @@ if (!isset($_SESSION['admin_id'])) {
   <title>Texas Gears Dashboard</title>
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="../css/navbar.css">
   <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -35,7 +34,7 @@ if (!isset($_SESSION['admin_id'])) {
 <body>
 
   <!-- Navbar include (file must be in the same folder) -->
-  <div w3-include-html="navbar.html"></div>
+  <div w3-include-html="../components/navbar.php"></div>
 
   <!-- Page Content -->
   <section class="section">
@@ -63,18 +62,32 @@ if (!isset($_SESSION['admin_id'])) {
     <div id="recent-projects-container"></div>
   </section>
 
-  <!-- Execute navbar include and bind logout -->
-  <script>
-    w3IncludeHTML(function () {
-      const logoutBtn = document.querySelector(".logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          window.location.href = "../views/login.html";
+<script>
+  w3IncludeHTML(function () {
+    const logoutBtn = document.querySelector(".logout-btn");
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        fetch("/SysDevProject/logout.php", {
+          method: "POST",
+          credentials: "include"
+        })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+            window.location.href = "/SysDevProject/resources/views/login.html";
+          } else {
+            alert("Logout failed");
+          }
+        })
+        .catch(err => {
+          console.error("Logout error:", err);
+          alert("Logout request failed.");
         });
-      }
-    });
-  </script>
+      });
+    }
+  });
+</script>
 
 </body>
 </html>

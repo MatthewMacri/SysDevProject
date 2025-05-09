@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
       })
       .then((data) => {
         if (data.success && data.qr && data.secret) {
-          qrCodeContainer.innerHTML = `<img src="${data.qr}" alt="QR Code" />`;
+          qrCodeContainer.innerHTML = `<img class="qrcode-img" src="${data.qr}" alt="QR Code" />`;
           twofaSecret = data.secret;
           twofaModal.style.display = "flex";
         } else {
