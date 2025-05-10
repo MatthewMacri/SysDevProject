@@ -146,12 +146,10 @@ body {
 .confirm-buttons {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 20px;
-  left: 0;
   width: 100%;
-  padding: 0 40px;
+  padding: 0 10px;
   box-sizing: border-box;
+  margin-top: 20px; /* optional: spacing from the input */
 }
 
 /* Modal buttons */
@@ -302,7 +300,7 @@ body {
   background-color: #0056b3;
 }
 
-/* --- Modern EuroGears 2FA Modal --- */
+/* --- Modern 2FA Modal (CLEAN) --- */
 #twofaModal {
   display: none;
   position: fixed;
@@ -313,31 +311,33 @@ body {
   align-items: center;
 }
 
+#twofaModal.show {
+  display: flex !important; /* Toggle this with JS */
+}
+
 #twofaModal .confirm-content {
   background: #ffffff;
-  padding: 30px 32px;
+  padding: 30px;
   border-radius: 12px;
-  width: 340px;
+  width: 360px;
   max-width: 90%;
   text-align: center;
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-#twofaModal h3 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #f58220;
-  margin-bottom: 10px;
+.qrcode {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px auto; /* Ensures space above and below */
+  width: 160px;
+  height: 160px;
 }
 
-#twofaModal p {
-  font-size: 13.5px;
-  color: #555;
-  margin: 10px 0;
-}
-
-#qrcode {
-  margin: 20px auto;
+.qrcode-img {
   width: 160px;
   height: 160px;
 }
@@ -345,33 +345,27 @@ body {
 #twofaCode {
   width: 100%;
   padding: 10px;
-  margin: 20px 0;
+  margin: 15px 0;
   font-size: 16px;
   border-radius: 6px;
   border: 1px solid #ccc;
   text-align: center;
-  outline: none;
-}
-
-#twofaCode:focus {
-  border-color: #f58220;
 }
 
 .confirm-buttons {
   display: flex;
   gap: 10px;
-  margin-top: 10px;
+  width: 100%;
 }
 
 .confirm-buttons .btn {
   flex: 1;
-  padding: 10px 0;
+  padding: 10px;
   font-size: 14px;
   font-weight: bold;
   border: none;
   border-radius: 6px;
   cursor: pointer;
-  transition: 0.2s;
 }
 
 #cancel2faBtn {
@@ -380,7 +374,7 @@ body {
 }
 
 #cancel2faBtn:hover {
-  background-color: #c4c4c4;
+  background-color: #bbb;
 }
 
 #confirm2faBtn {
@@ -390,4 +384,17 @@ body {
 
 #confirm2faBtn:hover {
   background-color: #e26c00;
+}
+
+#twofaModal .confirm-content p {
+  margin: 10px 0 0;
+  padding: 0;
+  line-height: 1.4;
+}
+
+#qrcode {
+  display: block;
+  margin: 20px auto 10px; /* top, auto (center), bottom spacing */
+  width: 160px;
+  height: 160px;
 }

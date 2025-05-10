@@ -3,62 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <title>Admin Archive Project</title>
-  <link rel="stylesheet" href="../../css/achive.css" />
-  <link rel="stylesheet" href="../../css/navbar.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
+  <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="../../css/achive.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
-  <div class="navbar">
-    <div class="nav-left">
-      <a href="#" class="active">Home</a>
-      <a href="SearchProject.html">Project Search</a>
-      <a href="history.html">Project History</a>
-      <a href="CreateProjectView.html">Create Project</a>
-      <a href="#">Status Overview</a>
-    </div>
 
-    <a class="logo-container" href="#"><img src="../../../public/logo/New TGE Logo 2025.png" alt="Logo" class="logo"></a>
-
-    <div class="nav-right">
-      <div class="search-box">
-        <input type="text" placeholder="Search">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
-      </div>
-      <button class="logout-btn">Logout</button>
-      <div class="dropdown">
-        <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
-        <div class="dropdown-content">
-          <a href="#">Manage</a>
-          <a href="#">Create</a>
-          <a href="deleteProject.html">Delete</a>
-          <a href="#">User Status</a>
-          <a href="archive.html">Project Archive</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Navbar Include -->
+  <div w3-include-html="../../components/navbar.php"></div>
 
   <main>
     <div class="archive-form">
       <label for="serialInput" class="FormTitle">Project Serial Number<span class="required">*</span></label>
-      
       <div class="form-content">
-        <input type="text" id="serialInput" required/>
+        <input type="text" id="serialInput" required />
         <button class="orange-btn">Archive Project</button>
       </div>
     </div>
-    <p class="required-note"><span class="required" style="margin-left: 130px;">*</span> Required field</p>
+    <p class="required-note">
+      <span class="required" style="margin-left: 130px;">*</span> Required field
+    </p>
 
     <div class="archive-list">
       <h3>List of archived projects</h3>
 
+      <!-- Sample archived project cards -->
       <div class="project-card">
         <div>
-            <div class="project-header">
-                <p class="serial">Project Serial Number</p>
-                <div class="status">Project Status</div>
-            </div>
+          <div class="project-header">
+            <p class="serial">Project Serial Number</p>
+            <div class="status">Project Status</div>
+          </div>
           <p class="title">Example Project Title</p>
           <p class="desc">Very Brief Description</p>
         </div>
@@ -68,39 +47,38 @@
         </div>
       </div>
 
-      <div class="project-card">
-        <div>
-            <div class="project-header">
-                <p class="serial">Project Serial Number</p>
-                <div class="status">Project Status</div>
-            </div>
-          <p class="title">Example Project Title</p>
-          <p class="desc">Very Brief Description</p>
-        </div>
-        <div class="card-buttons">
-          <button class="orange-btn small">History</button>
-          <button class="orange-btn small">Unarchive</button>
-        </div>
-      </div>
-
-      <div class="project-card">
-        <div>
-            <div class="project-header">
-                <p class="serial">Project Serial Number</p>
-                <div class="status">Project Status</div>
-            </div>
-          <p class="title">Example Project Title</p>
-          <p class="desc">Very Brief Description</p>
-        </div>
-        <div class="card-buttons">
-          <button class="orange-btn small">History</button>
-          <button class="orange-btn small">Unarchive</button>
-        </div>
-      </div>
-
+      <!-- Duplicate more as needed -->
     </div>
   </main>
+
+  <!-- Full Logout Script -->
+  <script>
+    w3IncludeHTML(function () {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          fetch("/SysDevProject/logout.php", {
+            method: "POST",
+            credentials: "include"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/SysDevProject/resources/views/login.html";
+            } else {
+              alert("Logout failed");
+            }
+          })
+          .catch(err => {
+            console.error("Logout error:", err);
+            alert("Logout request failed.");
+          });
+        });
+      }
+    });
+  </script>
+
   <script src="../../js/achive.js"></script>
 </body>
-
 </html>

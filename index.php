@@ -4,7 +4,13 @@ use App\Models\Database;
 
 $db = new Database();
 
-$controller = $_GET['controller'] ?? 'home';
+// 🔧 Redirect to login.html if no controller is provided
+if (!isset($_GET['controller'])) {
+    header('Location: resources/views/login.html');
+    exit;
+}
+
+$controller = $_GET['controller'];
 $action = $_GET['action'] ?? 'index';
 
 switch ($controller) {

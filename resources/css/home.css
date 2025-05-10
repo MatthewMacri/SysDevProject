@@ -1,76 +1,45 @@
+/* Universal font and reset */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
+  font-family: Arial, sans-serif;
   background-color: #ffffff;
 }
 
+/* Section container */
 .section {
   padding: 40px 60px;
+  max-width: 1000px;
+  margin: auto;
 }
 
+/* Headings */
 h2 {
   color: #F68A30;
   margin-bottom: 20px;
 }
 
+/* Kanban and Gantt areas */
+#kanban,
+#gantt {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
 #kanban {
   display: flex;
   justify-content: center;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.kanban-item:hover {
-  cursor: default !important;
+  overflow-x: auto;
+  background-color: #F8F8F8;
 }
 
 #gantt {
   height: 500px;
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.project-card {
-  background-color: #f8f8f8f8;
-  border: 1px solid #d9d9d9d9;
-  border-radius: 10px;
-  padding: 16px 24px;
-  margin: 12px 0;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
-  position: relative;
-}
-
-.project-card span {
-  display: inline-block;
-  font-weight: bold;
-  color: #333;
-}
-
-.project-card .serial {
-  width: 30%;
-}
-
-.project-card .title {
-  width: 40%;
-}
-
-.project-card .status {
-  width: 30%;
-  text-align: right;
-  float: right;
-  color: #F68A30;
-}
-
-.project-card .desc {
-  font-size: 14px;
-  color: #777;
-  margin-top: 5px;
-}
-
+/* Section headers */
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -83,6 +52,7 @@ h2 {
   color: #F68A30;
 }
 
+/* View button (reused style) */
 .view-button {
   display: flex;
   align-items: center;
@@ -91,17 +61,230 @@ h2 {
   color: white;
   text-decoration: none;
   padding: 10px 16px;
-  border-radius: 12px;
+  border-radius: 6px;
   font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  font-size: 14px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   transition: background-color 0.2s;
 }
 
 .view-button:hover {
-  background-color: #d67220;
+  background-color: #e66700;
 }
 
 .view-button img {
   width: 20px;
   height: 20px;
+}
+
+/* Kanban header layout with View button */
+.kanban-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.kanban-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+.kanban-filter {
+  font-size: 14px;
+  padding: 8px 12px;
+  width: 250px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  margin-right: auto;
+  margin-left: 20px;
+}
+
+/* Project card */
+.project-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05);
+}
+
+.project-card .serial,
+.project-card .title,
+.project-card .status {
+  font-weight: bold;
+}
+
+.project-card .title {
+  font-size: 16px;
+}
+
+.project-card .status {
+  float: right;
+  text-align: right;
+  color: #F68A30;
+}
+
+.project-card .desc {
+  font-size: 14px;
+  color: #777;
+  margin-top: 5px;
+}
+
+/* Button row and layout */
+.button-row {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.left-buttons {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 50px;
+}
+
+.right-button {
+  margin-left: auto;
+}
+
+/* Shared button styles */
+.orange-button,
+.action-button {
+  background-color: #F68A30;
+  color: white;
+  border: 1px solid #000000;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  width: 120px;
+  text-align: center;
+  transition: background-color 0.2s;
+}
+
+.orange-button:hover,
+.action-button:hover {
+  background-color: #e66700;
+}
+
+/* Kanban container */
+#kanban {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  overflow-x: auto;
+  background-color: #FFF5ED;
+  border-radius: 8px;
+}
+
+/* Board columns */
+.kanban-column {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  width: 300px;
+  padding: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+/* Column header */
+.kanban-column .kanban-title-board {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #333;
+  text-align: center;
+}
+
+.kanban-item {
+  position: relative;
+  background: linear-gradient(135deg, #fffdfb, #fff1e6);
+  border: 1px solid #f0c197;
+  border-left: 6px solid #F68A30;
+  border-radius: 8px;
+  padding: 10px 35px 10px 12px; /* make space for icon */
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+  transition: transform 0.1s ease, box-shadow 0.2s ease;
+}
+
+.task-delete {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+  color: #888;
+  padding: 0;
+  line-height: 1;
+}
+
+.task-delete:hover {
+  color: #e74c3c;
+}
+
+/* Footer controls */
+.kanban-footer {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.new-task-input {
+  flex: 1;
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.add-task-btn {
+  width: 26px;
+  height: 26px;
+  background-color: #F68A30;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.add-task-btn i {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.add-task-btn:hover {
+  background-color: #e27a22;
+  transform: scale(1.05);
+}
+
+/* Optional: scrollbar style for overflow */
+#kanban::-webkit-scrollbar {
+  height: 8px;
+}
+#kanban::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }

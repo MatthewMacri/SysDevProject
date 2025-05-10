@@ -1,41 +1,81 @@
-<h2>All Uploaded YouTube Videos</h2>
-<ul id="video-list">
-    <?php foreach ($videos as $index => $video): ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>All Uploaded YouTube Videos</title>
+  <link rel="stylesheet" href="../../css/home.css">
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+</head>
+<body>
+
+  <!-- Shared Navbar Include -->
+  <div w3-include-html="../../components/navbar.php"></div>
+
+  <section class="section">
+    <h2>All Uploaded YouTube Videos</h2>
+    <ul id="video-list">
+      <?php foreach ($videos as $index => $video): ?>
         <li>
-            <!-- the videos will be put her in the player -->
-            <div id="player-<?= $index ?>" data-url="<?= htmlspecialchars($video->getVideoUrl()) ?>"></div>
-
-            Uploaded: <?= htmlspecialchars($video->getUploadTime()) ?><br>
-
-            <a href="?controller=video&action=delete&id=<?= $video->getVideoId() ?>"
-               onclick="return confirm('Delete this video?')">Delete</a>
+          <!-- YouTube player will be loaded here -->
+          <div id="player-<?= $index ?>" data-url="<?= htmlspecialchars($video->getVideoUrl()) ?>"></div>
+          Uploaded: <?= htmlspecialchars($video->getUploadTime()) ?><br>
+          <a href="?controller=video&action=delete&id=<?= $video->getVideoId() ?>"
+             onclick="return confirm('Delete this video?')">Delete</a>
         </li>
-    <?php endforeach; ?>
-</ul>
+      <?php endforeach; ?>
+    </ul>
+  </section>
 
-<!-- using YouTube IFrame Player API to play videos -->
-<script src="https://www.youtube.com/iframe_api"></script>
+  <!-- YouTube IFrame Player API -->
+  <script src="https://www.youtube.com/iframe_api"></script>
 
-<script>
-    // gets the video id which is used in the youtube player 
+  <script>
     function extractVideoId(url) {
-        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
-        // retruns olny the id of the video and not teh whole url
-        return match[1];
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
+      return match ? match[1] : null;
     }
 
-    // when the YouTube API when it's ready it dose the following
     function onYouTubeIframeAPIReady() {
-        document.querySelectorAll('[id^="player-"]').forEach(el => {
-            //gets the url of the video and get the video id based on it
-            const videoUrl = el.getAttribute('data-url');
-            const videoId = extractVideoId(videoUrl);
+      document.querySelectorAll('[id^="player-"]').forEach(el => {
+        const videoUrl = el.getAttribute('data-url');
+        const videoId = extractVideoId(videoUrl);
+        if (!videoId) return;
 
-            // makes a new youtube player which will play teh given video
-            new YT.Player(el.id, {
-                width: '200',
-                videoId: videoId
-            });
+        new YT.Player(el.id, {
+          width: '200',
+          videoId: videoId
         });
+      });
     }
-</script>
+  </script>
+
+  <!-- Full Logout Script -->
+  <script>
+    w3IncludeHTML(function () {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          fetch("/SysDevProject/logout.php", {
+            method: "POST",
+            credentials: "include"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/SysDevProject/resources/views/login.html";
+            } else {
+              alert("Logout failed");
+            }
+          })
+          .catch(err => {
+            console.error("Logout error:", err);
+            alert("Logout request failed.");
+          });
+        });
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -6,7 +6,6 @@ body {
     color: #333;
 }
 
-
 main {
     padding: 50px;
 }
@@ -36,14 +35,12 @@ label {
     margin-bottom: 5px;
 }
 
-input, textarea, button {
+input, textarea {
     width: calc(100% - 10px);
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
-
-
 
 .form-actions {
     display: flex;
@@ -90,7 +87,6 @@ input, textarea, button {
 .date-picker-container:last-child {
     margin-right: 0px; 
 }
-
 
 .date-picker-container button {
     background-color: #F8F8F8;
@@ -149,8 +145,6 @@ input, textarea, button {
     justify-content: space-around;
 }
 
-
-
 .media-label {
     font-size: 16px;
     margin-bottom: 12px;
@@ -174,9 +168,13 @@ input, textarea, button {
     cursor: pointer;
 }
 
-.form-actions button {
-    width: 80px;
+.form-button.create-button,
+.form-button.cancel-button {
+  width: 180px; /* Adjust as needed */
+  height: 45px;
+  font-size: 15px;
 }
+
 
 .form-actions {
     display: flex;
@@ -206,30 +204,30 @@ input, textarea, button {
     justify-content: center;
     align-items: center;
     z-index: 999;
-  }
-  
-  .popup-box {
-    background-color: white;
-    padding: 30px 40px;
-    border-radius: 10px;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .popup-buttons {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .orange-btn.small {
-    background-color: #f68a30;
-    border: 1px solid black;
-    color: white;
-    padding: 6px 18px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 13px;
-    width: 100px;
-  }
+}
+
+.popup-box {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-buttons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orange-btn.small {
+  background-color: #f68a30;
+  border: 1px solid black;
+  color: white;
+  padding: 6px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  width: 100px;
+}
