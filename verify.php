@@ -1,28 +1,33 @@
-<?php 
-
+<?php
 require 'vendor/autoload.php';
-if(session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
 $data = json_decode(file_get_contents("php://input"), true);
-$token = $data['token'];
+$token = $data['token'] ?? '';
 
+if (empty($token)) {
+    http_response_code(400);
+    echo json_encode(["error" => "Token not provided"]);
+    exit;
+}
 
-// ✅ Use the session to identify the logged-in admin
-if (!isset($_SESSION['admin_id'])) {
+if (!isset($_SESSION['role']) || !isset($_SESSION['id'])) {
     http_response_code(403);
     echo json_encode(["error" => "Not authenticated"]);
     exit;
 }
 
-// Fetch the admin's stored 2FA secret
+$table = $_SESSION['role'] === 'admin' ? 'admin' : 'user';
+$idField = $table === 'admin' ? 'admin_id' : 'user_id';
+$id = $_SESSION['id'];
+
 $db = new PDO("sqlite:database/Datab.db");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$stmt = $db->prepare("SELECT twofa_secret FROM admin WHERE admin_id = ?");
-$stmt->execute([$_SESSION['admin_id']]);
+$stmt = $db->prepare("SELECT twofa_secret FROM $table WHERE $idField = ?");
+$stmt->execute([$id]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$user || empty($user['twofa_secret'])) {
@@ -35,10 +40,8 @@ $secret = $user['twofa_secret'];
 $g = new PHPGangsta_GoogleAuthenticator();
 $isValid = $g->verifyCode($secret, $token, 2); // 2 = time window tolerance
 
-
-
 if ($isValid) {
-    echo json_encode(["success" => true]);
+    echo json_encode(["success" => true, "role" => $table]);
 } else {
     http_response_code(401);
     echo json_encode(["error" => "Invalid 2FA code"]);
