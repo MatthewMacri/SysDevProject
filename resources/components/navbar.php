@@ -8,7 +8,7 @@
     <a href="/SysDevProject/resources/views/project/SearchProject.html">Project Search</a>
     <a href="/SysDevProject/resources/views/project/history.html">Project History</a>
     <a href="/SysDevProject/resources/views/project/CreateProjectView.php">Create Project</a>
-    <a href="/SysDevProject/resources/views/statusOverview.html">Status Overview</a>
+    <a href="/SysDevProject/resources/views/statusOverview.php">Status Overview</a>
   </div>
 
   <a class="logo-container" href="#">

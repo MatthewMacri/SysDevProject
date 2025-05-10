@@ -4,7 +4,7 @@
   gap: 20px;
   padding: 20px;
   overflow-x: auto;
-  background-color: #fff1e6; /* ✅ changed from blue to orange */
+  background-color: #fff1e6; 
   border-radius: 10px;
   width: 100%;
   max-width: 100%;
