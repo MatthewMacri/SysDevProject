@@ -155,3 +155,34 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     .catch(err => console.error("Failed to load Gantt data:", err));
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  fetch("../api/get_recent_projects.php")
+    .then(res => res.json())
+    .then(projects => {
+      const container = document.getElementById('recent-projects-container');
+      if (!container) return;
+
+      if (projects.length === 0 || projects.error) {
+        container.innerHTML = "<p>No recent projects found.</p>";
+        return;
+      }
+
+      projects.forEach(project => {
+        const card = document.createElement("div");
+        card.className = "project-card";
+
+        card.innerHTML = `
+          <span class="serial">${project.serial_number}</span>
+          <span class="title">${project.project_name}</span>
+          <span class="status">${project.status}</span>
+          <p class="desc">${project.project_description}</p>
+        `;
+
+        container.appendChild(card);
+      });
+    })
+    .catch(err => {
+      console.error("Failed to load recent projects:", err);
+    });
+});
