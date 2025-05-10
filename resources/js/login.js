@@ -71,3 +71,46 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const forgotLink = document.querySelector(".forgot-password a");
+  const forgotModal = document.getElementById("forgotPasswordModal");
+  const cancelBtn = document.getElementById("cancelForgotBtn");
+  const confirmBtn = document.getElementById("confirmForgotBtn");
+  const usernameInput = document.getElementById("forgotUsername");
+
+  // Open modal
+  forgotLink.addEventListener("click", (e) => {
+    e.preventDefault();
+    forgotModal.style.display = "flex";
+  });
+
+  // Close modal
+  cancelBtn.addEventListener("click", () => {
+    forgotModal.style.display = "none";
+  });
+
+  // Submit reset request
+  confirmBtn.addEventListener("click", () => {
+    const username = usernameInput.value.trim();
+    if (!username) return alert("Please enter your username.");
+
+    fetch("/SysDevProject/api/request_password_reset.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert("Reset request sent to admin.");
+          forgotModal.style.display = "none";
+        } else {
+          alert(data.message || "Failed to send request.");
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("Something went wrong.");
+      });
+  });
+});
