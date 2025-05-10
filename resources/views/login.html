@@ -31,25 +31,25 @@
     </form>
 
     <div class="forgot-password">
-      <a href="#" id="forgotPasswordLink">Forgot password?</a>
+      <a href="/SysDevProject/resources/views/forgotPassword.php">Forgot password?</a>
     </div>
   </div>
 
-  <!-- Forgot Password Modal -->
-  <div id="modalContainer" class="modal-container" style="display: none;">
-    <div class="confirm-content small-popup">
-      <h3>Password Reset</h3>
-      <p>Please enter your username to request a password reset.</p>
-      <div class="form-group">
-        <label for="forgotUsername">Username</label>
-        <input type="text" id="forgotUsername" class="popup-input" />
-      </div>
-      <div class="confirm-buttons">
-        <button class="btn" id="cancelBtn">Cancel</button>
-        <button class="btn" id="confirmBtn">Confirm</button>
-      </div>
+<!-- Forgot Password Modal (Styled) -->
+<div id="forgotPasswordModal" class="modal-container" style="display: none;">
+  <div class="confirm-content small-popup">
+    <p>Forgetting your password as a user will send an email to the admin to change your password. Would you like to continue?</p>
+    
+    <div class="form-group">
+      <input type="text" id="forgotUsername" class="popup-input" placeholder="Enter your username and confirm" />
+    </div>
+
+    <div class="confirm-buttons">
+      <button class="btn" id="cancelForgotBtn" style="background-color: #f58220; color: white;">Cancel</button>
+      <button class="btn" id="confirmForgotBtn" style="background-color: #f58220; color: white;">Confirm</button>
     </div>
   </div>
+</div>
 
 <!-- 2FA Modal -->
 <div id="twofaModal" class="modal-container" style="display: none;">
