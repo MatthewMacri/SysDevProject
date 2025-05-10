@@ -1,3 +1,8 @@
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 <style>
   <?php include $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/css/navbar.css'; ?>
 </style>
@@ -24,11 +29,16 @@
     <div class="dropdown">
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
-        <a href="/SysDevProject/resources/views/admin/adminChangePassword.html">Manage</a>
-        <a href="/SysDevProject/resources/views/admin/createUser.html">Create</a>
-        <a href="/SysDevProject/resources/views/project/deleteProject.html">Delete</a>
-        <a href="/SysDevProject/resources/views/admin/userActivation.html">User Status</a>
-        <a href="/SysDevProject/resources/views/project/archive.html">Project Archive</a>
+        <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.html">Manage</a>
+          <a href="/SysDevProject/resources/views/admin/createUser.html">Create</a>
+          <a href="/SysDevProject/resources/views/project/deleteProject.html">Delete</a>
+          <a href="/SysDevProject/resources/views/admin/userActivation.html">User Status</a>
+          <a href="/SysDevProject/resources/views/project/archive.html">Project Archive</a>
+        <?php else: ?>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.html">Manage</a>
+          <a href="/SysDevProject/resources/views/project/archive.html">Project Archive</a>
+        <?php endif; ?>
       </div>
     </div>
   </div>
