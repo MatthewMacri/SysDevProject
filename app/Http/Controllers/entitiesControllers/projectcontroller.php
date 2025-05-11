@@ -4,6 +4,8 @@ namespace Controllers;
 require_once 'databasecontroller.php';
 
 use Controllers\DatabaseController;
+use APP\Models\Project;
+use Illuminate\Http\Request;
 
 header('Content-Type: application/json');
 $method = $_SERVER['REQUEST_METHOD'];
@@ -12,9 +14,7 @@ $db = DatabaseController::getInstance()->getConnection();
 
 switch ($method) {
     case 'GET':
-        $stmt = $db->prepare("SELECT * FROM project");
-        $stmt->execute();
-        echo json_encode($stmt->fetchAll(\PDO::FETCH_ASSOC));
+        ProjectController::searchProject();
         break;
 
     case 'POST':
@@ -30,4 +30,23 @@ switch ($method) {
         break;
 
     // Add PUT and DELETE logic here
+}
+
+class ProjectController {
+    private static $db;
+
+    public static function getDB() {
+        if(self::$db === null) {
+            self::$db = DatabaseController::getInstance()->getConnection();
+        }
+        return self::$db;
+    }
+    public static function searchProject(Request $request) {
+        // Pass form inputs to model
+        $projects = Project::searchWithFilters($request->all());
+
+        // Render Blade view
+        return view('project.search', compact('projects'));
+    }
+
 }

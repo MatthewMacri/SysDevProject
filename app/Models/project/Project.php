@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class project
+use Illuminate\Database\Eloquent\Model;
+
+class Project extends Model
 {
     private ?int $projectId;
     private string $projectName;
@@ -126,7 +128,7 @@ class project
 }
 
 
-public function update(\PDO $pdo, int $id): bool
+public function updateProject(\PDO $pdo, int $id): bool
 {
     $stmt = $pdo->prepare("
         UPDATE projects 
@@ -146,7 +148,7 @@ public function update(\PDO $pdo, int $id): bool
     ]);
 }
 
-public function delete(\PDO $pdo, int $id): bool
+public function deleteProject(\PDO $pdo, int $id): bool
 {
     $stmt = $pdo->prepare("DELETE FROM projects WHERE projectId = :id");
     return $stmt->execute([':id' => $id]);
@@ -185,6 +187,33 @@ public static function selectAll(\PDO $pdo): array
     }
 
     return $projects;
+}
+
+public static function searchWithFilters(array $filters)
+{
+    $query = self::query();
+
+    if (!empty($filters['serialNumber'])) {
+        $query->where('serialNumber', 'like', '%' . $filters['serialNumber'] . '%');
+    }
+
+    if (!empty($filters['projectTitle'])) {
+        $query->where('title', 'like', '%' . $filters['projectTitle'] . '%');
+    }
+
+    if (!empty($filters['projectStatus'])) {
+        $query->where('status', 'like', '%' . $filters['projectStatus'] . '%');
+    }
+
+    if (!empty($filters['supplierName'])) {
+        $query->where('supplierName', 'like', '%' . $filters['supplierName'] . '%');
+    }
+
+    if (!empty($filters['clientName'])) {
+        $query->where('clientName', 'like', '%' . $filters['clientName'] . '%');
+    }
+
+    return $query->get();
 }
 
 }
