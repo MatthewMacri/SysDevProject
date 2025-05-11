@@ -25,7 +25,9 @@ if (session_status() == PHP_SESSION_NONE) {
       <input type="text" placeholder="Search">
       <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
-    <button class="logout-btn">Logout</button>
+<a href="/SysDevProject/logout.php">
+  <button class="logout-btn">Logout</button>
+</a>
     <div class="dropdown">
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
