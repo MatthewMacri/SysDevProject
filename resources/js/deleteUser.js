@@ -1,16 +1,32 @@
+// Show the confirmation box with username
 function showDeleteConfirmBox() {
-  const username = document.getElementById("username").value || "unknown";
-  document.getElementById("deleteUserID").textContent = username;
-  document.getElementById("deleteConfirmBox").style.display = "flex";
+  const usernameInput = document.getElementById("username");
+  const display = document.getElementById("deleteUserID");
+  const popup = document.getElementById("deleteConfirmBox");
+
+  const username = usernameInput ? usernameInput.value.trim() || "unknown" : "unknown";
+  if (display && popup) {
+    display.textContent = username;
+    popup.style.display = "flex";
+  } else {
+    console.warn("Delete popup or user ID display not found.");
+  }
 }
 
+// Hide the confirmation popup
 function hideDeleteConfirmBox() {
-  document.getElementById("deleteConfirmBox").style.display = "none";
+  const popup = document.getElementById("deleteConfirmBox");
+  if (popup) popup.style.display = "none";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   const deleteButton = document.querySelector(".deleteButton");
   const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+
+  if (!deleteButton || !confirmDeleteBtn) {
+    console.warn("Delete buttons not found.");
+    return;
+  }
 
   deleteButton.addEventListener("click", (e) => {
     e.preventDefault();
@@ -18,22 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   confirmDeleteBtn.addEventListener("click", () => {
-    const username = document.getElementById("username").value.trim();
-    const adminPassword = document.getElementById("admin-password").value.trim();
+    const username = document.getElementById("username")?.value.trim();
+    const adminPassword = document.getElementById("admin-password")?.value.trim();
 
     if (!username || !adminPassword) {
       alert("Please enter both username and admin password.");
       return;
     }
 
+    // Perform delete via fetch
     fetch("../../deleteUser.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, adminPassword }),
-      credentials: "include"
+      credentials: "include",
+      body: JSON.stringify({ username, adminPassword })
     })
       .then((res) => {
-        if (!res.ok) throw new Error("Deletion failed");
+        if (!res.ok) throw new Error("Server returned an error");
         return res.json();
       })
       .then((data) => {
@@ -41,11 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
           alert("User deleted successfully.");
           hideDeleteConfirmBox();
         } else {
-          alert("Error: " + data.error);
+          alert("Error: " + (data.error || "Unknown error"));
         }
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Deletion error:", err);
         alert("An error occurred while deleting the user.");
       });
   });

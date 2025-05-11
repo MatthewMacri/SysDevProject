@@ -20,16 +20,16 @@ class Admin {
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
-    public function addAdmin($data) {
-        $stmt = $this->db->prepare("INSERT INTO admin (admin_name, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([
-            $data['admin_name'],
-            $data['first_name'],
-            $data['last_name'],
-            $data['email'],
-            password_hash($data['password'], PASSWORD_DEFAULT)
-        ]);
-    }
+    public function addAdmin($postData) {
+    $stmt = $this->db->prepare("INSERT INTO admin (admin_name, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt->execute([
+        $postData['admin_name'],
+        $postData['first_name'],
+        $postData['last_name'],
+        $postData['email'],
+        $postData['password'] // This will now be the encrypted password
+    ]);
+}
 
     public function updateAdmin($id, $data) {
         $stmt = $this->db->prepare("UPDATE admin SET admin_name = ?, first_name = ?, last_name = ?, email = ?, password = ? WHERE admin_id = ?");

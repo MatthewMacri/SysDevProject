@@ -1,7 +1,13 @@
+<!-- Admin List Title -->
 <h2>Admin List</h2>
+
+<!-- Link to create a new admin -->
 <a href="?controller=admin&action=create">Add Admin</a>
+
+<!-- Display list of all admins -->
 <ul>
     <?php foreach ($admins as $admin): ?>
-        <li><?= htmlspecialchars($admin['admin_name']) ?> (<?= $admin['email'] ?>)</li>
+        <!-- Display each admin's username and email -->
+        <li><?= htmlspecialchars($admin['admin_name']) ?> (<?= htmlspecialchars($admin['email']) ?>)</li>
     <?php endforeach; ?>
 </ul>
