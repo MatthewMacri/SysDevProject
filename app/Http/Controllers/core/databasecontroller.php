@@ -129,6 +129,13 @@ class DatabaseController {
                 FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id),
                 FOREIGN KEY (project_id) REFERENCES Project(project_id)
             )",
+
+            //Reset password table for storing tokens and expiries
+             "CREATE TABLE IF NOT EXISTS password_resets (
+                email VARCHAR(255) NOT NULL,
+                token VARCHAR(255) NOT NULL,
+                expires_at INTEGER NOT NULL
+            )",
         ];
     
         foreach ($queries as $query) {
@@ -161,5 +168,27 @@ class DatabaseController {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
         return false;
+    }
+
+    public function saveResetToken(string $email, string $token, int $expiresAt): bool
+    {
+        $sql = "INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)";
+        $stmt = $this->connection->prepare($sql);
+        return $stmt->execute([$email, $token, $expiresAt]);
+    }
+
+    public function getResetToken(string $token): ?array
+    {
+        $sql = "SELECT * FROM password_resets WHERE token = ?";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([$token]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result ?: null;
+    }
+
+    public function deleteResetToken(string $token): void
+    {
+        $stmt = $this->connection->prepare("DELETE FROM password_resets WHERE token = ?");
+        $stmt->execute([$token]);
     }
 }

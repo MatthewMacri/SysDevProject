@@ -269,3 +269,127 @@ Input password: 12
 Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
 password_verify result: true
 LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+password_verify result: true
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
+LOGIN HIT
+User result: {"admin_id":1,"admin_name":"admin","first_name":"System","last_name":"Admin","email":"admin@example.com","password":"$2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u","twofa_secret":"H5HOHBTDFSZSJETP","role":"admin"}
+Input password: 12
+Stored hash: $2y$10$XblEfn5Cs6VZkojV7OU9KeMb1XSaH49bVPidhU.JkRECT.lFBg76u
+password_verify result: true
