@@ -4,12 +4,14 @@
   <meta charset="UTF-8">
   <title>All Uploaded YouTube Videos</title>
   <link rel="stylesheet" href="../../css/home.css">
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
 
   <!-- Shared Navbar Include -->
-  <div w3-include-html="../../components/navbar.php"></div>
+  <?php 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  require BASE_PATH . '/resources/components/navbar.php';
+  ?>
 
   <section class="section">
     <h2>All Uploaded YouTube Videos</h2>
