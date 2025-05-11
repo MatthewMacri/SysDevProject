@@ -3,13 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <title>Admin List</title>
-  <link rel="stylesheet" href="resources/css/listAdmins.css">
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <link rel="stylesheet" href="../../css/listAdmins.css">
 </head>
 
 <body>
   <!-- Load Navbar -->
-  <div w3-include-html="resources/components/navbar.php"></div>
+  <?php 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  require BASE_PATH . '/resources/components/navbar.php';
+  ?>
 
   <!-- Main Content -->
   <section class="section">
@@ -26,6 +28,7 @@
   </section>
 
   <!-- Logout Support Script -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");
