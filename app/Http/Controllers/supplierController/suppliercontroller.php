@@ -1,6 +1,8 @@
 <?php
 
-require_once 'app/Models/supplierModel/supplier.php';
+namespace Controllers;
+
+require_once 'app/Models/projectAssociatesControllers/supplier.php';
 use App\Models\Supplier;
 
 class SupplierController {

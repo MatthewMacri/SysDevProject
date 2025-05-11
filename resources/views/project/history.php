@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>All Uploaded Videos</title>
-  <link rel="stylesheet" href="../../css/home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>History of Project</title>
+
+  <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+
+  <link rel="stylesheet" href="../../css/history.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
 </head>
 <body>
+  <h1>{{ $message }}</h1>
 
   <!-- Shared Navbar Include -->
   <?php 
@@ -13,25 +20,22 @@
   require BASE_PATH . '/resources/components/navbar.php';
   ?>
 
-  <section class="section">
-    <h2>All Uploaded Videos</h2>
-    <a href="?controller=video&action=uploadForm">Upload New Video</a>
-    <ul>
-      <?php foreach ($videos as $video): ?>
-        <li>
-          <video height="200" controls>
-            <source src="<?= htmlspecialchars($video->getVideoUrl()) ?>" type="video/<?= htmlspecialchars($video->getFormat()) ?>">
-            Your browser does not support the video tag.
-          </video>
-          <br>
-          Duration: <?= $video->getDuration() ?> seconds | Uploaded: <?= $video->getUploadTime() ?>
-          <a href="?controller=video&action=delete&id=<?= $video->getVideoId() ?>" onclick="return confirm('Delete this video?')">Delete</a>
-        </li>
-      <?php endforeach; ?>
-    </ul>
-  </section>
+  <main>
+    <div class="search-section">
+      <label for="serialInput" style="text-align: start;">Project Serial Number<span class="required" style="margin-left: 4px;">*</span></label>
+      <input type="text" id="serialInput" />
+      <button class="orange-button" id="searchBtn">History of Project</button>
+    </div>
+    <p class="required-note"><span class="required">*</span> Required field</p>
+
+    <div class="history-box" id="historyResults">
+    </div>
+  </main>
+
+  <script src="../../js/history.js"></script>
 
   <!-- Full Logout Script -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");
@@ -58,6 +62,5 @@
       }
     });
   </script>
-
 </body>
 </html>

@@ -14,28 +14,30 @@ if (!isset($_SESSION['role'])) {
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="../css/home.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx.light.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.css">
-  <link rel="stylesheet" href="../css/kanban.css">
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx-gantt.min.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/kanban.css">
 
 
   <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx-gantt.min.js"></script>
   <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx.all.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
 
   <!-- Project Scripts -->
-  <script src="../js/home.js"></script>
+  <script src="../../js/home.js"></script>
 </head>
 <body>
 
   <!-- Navbar include (file must be in the same folder) -->
-  <div w3-include-html="../components/navbar.php"></div>
+  <?php 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  require BASE_PATH . '/resources/components/navbar.php';
+  ?>
 
   <!-- Page Content -->
 <section class="section kanban-header">
