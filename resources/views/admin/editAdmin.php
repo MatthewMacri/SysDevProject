@@ -5,11 +5,13 @@
   <title>Edit Admin</title>
   <link rel="stylesheet" href="../../css/home.css">
   <link rel="stylesheet" href="../../css/form.css">
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
 </head>
 <body>
 
-<div w3-include-html="../../components/navbar.php"></div>
+<?php 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  require BASE_PATH . '/resources/components/navbar.php';
+  ?>
 
 <section class="section">
   <h2>Edit Admin</h2>
@@ -24,6 +26,7 @@
 </section>
 
 <!-- Full Logout Support -->
+<script src="https://www.w3schools.com/lib/w3data.js"></script>
 <script>
   w3IncludeHTML(function () {
     const logoutBtn = document.querySelector(".logout-btn");

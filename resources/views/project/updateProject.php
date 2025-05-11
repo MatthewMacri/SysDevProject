@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Project Details</title>
+  <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+
+  <link rel="stylesheet" href="../../css/updateProject.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Shared Navbar Include -->
+  <?php 
+  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  require BASE_PATH . '/resources/components/navbar.php';
+  ?>
+
+  <main>
+    <form class="project-form" method="PUT">
+      <div class="project-header">
+        <div>
+          <input id="projectTitle" class="input-title" />
+          <p class="project-id" id="projectSerial"></p>
+        </div>
+        <input id="projectStatus" class="input-status" />
+      </div>
+      
+      <h4>Project Description:</h4>
+      <div class="project-description">
+        <textarea id="projectDescription" class="input-textarea"></textarea>
+      </div>
+
+      <div class="gray-box">
+        <label>Client Details:</label>
+        <textarea id="clientDetails" class="input-textarea"></textarea>
+
+        <label>Supplier Info:</label>
+        <textarea id="supplierInfo" class="input-textarea"></textarea>
+
+        <label>Supplier Date:</label>
+        <input type="date" id="supplierDate" class="input-date" />
+
+        <label>Client Date:</label>
+        <input type="date" id="clientDate" class="input-date" />
+
+        <label>Buffer Days (Slack Time):</label>
+        <input type="number" id="bufferDays" class="input-number" />
+      </div>
+
+      <div class="media-section">
+        <button class="media-button">
+          Project Media <i class="fas fa-image"></i>
+        </button>
+        <button class="media-button">
+          KanBan Board <i class="fas fa-table-columns"></i>
+        </button>
+        <button class="media-button">
+          Gantt Chart <i class="fas fa-chart-bar"></i>
+        </button>
+      </div>
+
+      <div class="form-actions">
+        <button class="form-button cancel-button">Cancel</button>
+        <button type="submit" class="form-button confirm-Confirm">Confirm</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Confirmation Modal -->
+  <div id="confirmationPopup" class="popup-overlay">
+    <div class="popup-box">
+      <p>You are Updating a project. Please make sure the information provided is correct.</p>
+      <div class="popup-buttons">
+        <button id="cancelPopup" class="orange-btn small">Cancel</button>
+        <button id="confirmPopup" class="orange-btn small">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+   <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <script src="../../js/updateProject.js"></script>
+  <script>
+    w3IncludeHTML(function () {
+      const logoutBtn = document.querySelector(".logout-btn");
+      if (logoutBtn) {
+        logoutBtn.addEventListener("click", () => {
+          fetch("/SysDevProject/logout.php", {
+            method: "POST",
+            credentials: "include"
+          })
+          .then(res => res.json())
+          .then(data => {
+            if (data.success) {
+              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+              window.location.href = "/SysDevProject/resources/views/login.html";
+            } else {
+              alert("Logout failed");
+            }
+          })
+          .catch(err => {
+            console.error("Logout error:", err);
+            alert("Logout request failed.");
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
