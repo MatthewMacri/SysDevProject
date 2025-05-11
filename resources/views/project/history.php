@@ -12,8 +12,6 @@
   
 </head>
 <body>
-  <h1>{{ $message }}</h1>
-
   <!-- Shared Navbar Include -->
   <?php 
   require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';

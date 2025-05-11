@@ -17,7 +17,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <a href="/SysDevProject/resources/views/project/searchProject.php">Project Search</a>
     <a href="/SysDevProject/resources/views/project/history.php">Project History</a>
     <a href="/SysDevProject/resources/views/project/createProjectView.php">Create Project</a>
-    <a href="/SysDevProject/resources/views/statusOverview.php">Status Overview</a>
+    <a href="/SysDevProject/resources/views/other/statusOverview.php">Status Overview</a>
   </div>
 
   <a class="logo-container" href="#">
