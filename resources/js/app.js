@@ -1,7 +1,5 @@
-export default {
-  build: {
-    rollupOptions: {
-      input: 'resources/js/app.js' // Ensure this is the correct path
-    }
-  }
-}
+// Import your app's dependencies and styles
+import 'bootstrap';
+
+// You can add other custom JavaScript code here
+console.log('App Loaded Successfully!');

@@ -8,4 +8,9 @@ export default defineConfig({
       refresh: true,
     }),
   ],
+  build: {
+    rollupOptions: {
+      input: 'resources/js/app.js', // Make sure this is correctly pointing to the entry JS file
+    },
+  },
 });
