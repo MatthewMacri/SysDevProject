@@ -115,6 +115,7 @@ class project
             $this->creationTime = $fresh->getCreationTime();
             $this->startDate = $fresh->getStartDate();
             $this->endDate = $fresh->getEndDate();
+            //TODO: revise if buffered date should be calculated here or in database
             $this->bufferedDate = $fresh->getBufferedDate();
         }
 
@@ -151,7 +152,7 @@ public function delete(PDO $pdo, int $id): bool
     return $stmt->execute([':id' => $id]);
 }
 
-public static function selectById(PDO $pdo, int $id): ?self
+public static function selectByID(PDO $pdo, int $id): ?self
 {
     $stmt = $pdo->prepare("SELECT * FROM projects WHERE projectId = :id");
     $stmt->execute([':id' => $id]);

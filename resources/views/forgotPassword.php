@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Forgot Password</title>
-  <link rel="stylesheet" href="../../resources/css/login.css">
   <style>
     body {
       margin: 0;

@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
   <meta charset="UTF-8">
   <title>Reset Password</title>
-  <link rel="stylesheet" href="../../resources/css/login.css">
+  <link rel="stylesheet" href="../../resources/css/resetPassword.css">
 </head>
 <body>
   <div class="login-container">
