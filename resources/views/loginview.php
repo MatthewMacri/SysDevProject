@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="../../css/login.css">
 </head>
 <body>
-  <?php include '../../html/login/login.html'; ?>
-  <script src="../../js/login.js"></script>
+  <?php include '../../resources/views/login.html'; ?>
+  <script src="../../resources/js/login.js"></script>
 </body>
 </html>
