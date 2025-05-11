@@ -1,8 +1,10 @@
 <?php
-if(session_status()==PHP_SESSION_NONE){
+if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-    file_put_contents("debug.txt", "LOGIN HIT\n", FILE_APPEND);
+
+file_put_contents("debug.txt", "LOGIN HIT\n", FILE_APPEND);
+
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Content-Type");
 header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
@@ -21,9 +23,20 @@ $password = $data['password'];
 $db = new PDO("sqlite:database/Datab.db");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+$role = null;
+
 $stmt = $db->prepare("SELECT * FROM admin WHERE admin_name = ?");
 $stmt->execute([$username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+    $role = 'admin';
+} else {
+    $role = 'user';
+    $stmt = $db->prepare("SELECT * FROM user WHERE user_name = ?");
+    $stmt->execute([$username]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 file_put_contents("debug.txt", "User result: " . json_encode($user) . "\n", FILE_APPEND);
 file_put_contents("debug.txt", "Input password: $password\n", FILE_APPEND);
@@ -38,15 +51,28 @@ if (!$user || !$isValid) {
     exit;
 }
 
-$_SESSION['admin_id'] = $user['admin_id'];
+if ($role == 'admin') {
+    $_SESSION['role'] = 'admin';
+    $_SESSION['admin_id'] = $user['admin_id'];
+    $_SESSION['id'] = $user['admin_id'];
+    $idField = 'admin_id';
+    $table = 'admin';
+} else {
+    $_SESSION['role'] = 'user';
+    $_SESSION['user_id'] = $user['user_id'];
+    $_SESSION['id'] = $user['user_id']; 
+    $idField = 'user_id';
+    $table = 'user';
+}
+
 session_write_close();
 
 $g = new PHPGangsta_GoogleAuthenticator();
 $secret = $user['twofa_secret'] ?: $g->createSecret();
 
 if (!$user['twofa_secret']) {
-    $update = $db->prepare("UPDATE admin SET twofa_secret = ? WHERE admin_id = ?");
-    $update->execute([$secret, $user['admin_id']]);
+    $update = $db->prepare("UPDATE $table SET twofa_secret = ? WHERE $idField = ?");
+    $update->execute([$secret, $user[$idField]]);
 }
 
 $qr = $g->getQRCodeGoogleUrl($username, $secret, 'TexasGearsApp');
@@ -54,6 +80,5 @@ echo json_encode([
     "success" => true,
     "qr" => $qr,
     "secret" => $secret
-  ]);
-  
+]);
 
