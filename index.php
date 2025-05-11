@@ -17,6 +17,10 @@ $controller = $_GET['controller'];
 $action = $_GET['action'] ?? 'index';
 
 switch ($controller) {
+    case 'project':
+        require_once 'app/Http/Controllers/entitiesControllers/projectcontroller.php';
+        $obj = new \App\Http\Controllers\entitiesControllers\ProjectController();
+        break;
     case 'admin':
         require_once 'app/Http/Controllers/entitiesControllers/admincontroller.php';
         $obj = new AdminController($db->connect());

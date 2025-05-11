@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Controllers\ProjectController;
+use App\Http\Controllers\entitiesControllers\ProjectController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sysdevproject/project/search', [ProjectController::class, 'search'])->name('projects.search');
+Route::get('/project/search', [ProjectController::class, 'search'])->name('projects.search');
