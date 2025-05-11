@@ -3,6 +3,7 @@ require 'vendor/autoload.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Controllers\DatabaseController;
 
 class AuthController {
 
@@ -10,22 +11,29 @@ class AuthController {
         $email = $_POST['email'] ?? '';
         if (!$email) return;
 
+        $db = DatabaseController::getInstance();
+        $pdo = $db->getConnection();
+
+        // Verify that the email exists in either Users or Admins
+        $stmt = $pdo->prepare("SELECT email FROM Users WHERE email = ? UNION SELECT email FROM Admins WHERE email = ?");
+        $stmt->execute([$email, $email]);
+        if (!$stmt->fetch()) {
+            die("Email not found.");
+        }
+
         $token = bin2hex(random_bytes(32));
         $expires = time() + 1800;
 
-        $pdo = new PDO('sqlite:database/Datab.db');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-        $stmt = $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)");
-        $stmt->execute([$email, $token, $expires]);
+        // Save token in DB using a helper (or raw query)
+        $db->saveResetToken($email, $token, $expires);
 
         // Send email using PHPMailer
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = 'smtp.example.com';         // ⚠️ Replace with real SMTP server
+        $mail->Host = 'smtp.example.com';         // ⚠️ Change this
         $mail->SMTPAuth = true;
-        $mail->Username = 'you@example.com';      // ⚠️ Replace with real email
-        $mail->Password = 'yourpassword';         // ⚠️ Replace with real password
+        $mail->Username = 'you@example.com';      // ⚠️ Change this
+        $mail->Password = 'yourpassword';         // ⚠️ Change this
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -48,8 +56,8 @@ class AuthController {
         $token = $_POST['token'] ?? '';
         $password = $_POST['password'] ?? '';
 
-        $pdo = new PDO('sqlite:database/Datab.db');
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db = DatabaseController::getInstance();
+        $pdo = $db->getConnection();
 
         $stmt = $pdo->prepare("SELECT email FROM password_resets WHERE token = ? AND expires_at >= ?");
         $stmt->execute([$token, time()]);
@@ -61,17 +69,18 @@ class AuthController {
 
         $hashed = password_hash($password, PASSWORD_DEFAULT);
 
-        // Try admin table first
-        $admin = $pdo->prepare("UPDATE admin SET password = ? WHERE email = ?");
+        // Try updating in Admins
+        $admin = $pdo->prepare("UPDATE Admins SET password = ? WHERE email = ?");
         $admin->execute([$hashed, $row['email']]);
 
         if ($admin->rowCount() === 0) {
-            // Try user table
-            $user = $pdo->prepare("UPDATE user SET password = ? WHERE email = ?");
+            // Fallback to Users
+            $user = $pdo->prepare("UPDATE Users SET password = ? WHERE email = ?");
             $user->execute([$hashed, $row['email']]);
         }
 
-        $pdo->prepare("DELETE FROM password_resets WHERE token = ?")->execute([$token]);
+        // Delete token after use
+        $db->deleteResetToken($token);
 
         echo "Password updated successfully.";
     }
