@@ -115,6 +115,7 @@ class project
             $this->creationTime = $fresh->getCreationTime();
             $this->startDate = $fresh->getStartDate();
             $this->endDate = $fresh->getEndDate();
+            //TODO: revise if buffered date should be calculated here or in database
             $this->bufferedDate = $fresh->getBufferedDate();
         }
 
