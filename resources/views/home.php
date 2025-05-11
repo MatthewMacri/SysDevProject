@@ -31,7 +31,7 @@ if (session_status() == PHP_SESSION_NONE) {
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
 
   <!-- Project Scripts -->
-  <script src="../../js/home.js"></script>
+  <script src="/SysDevProject/resources/js/home.js"></script>
 </head>
 <body>
 

@@ -1,4 +1,11 @@
 <?php
+if (!class_exists('SQLite3')) {
+    http_response_code(500);
+    echo json_encode([
+        'error' => 'SQLite3 extension is not enabled. Please enable it in your php.ini file: remove the semicolon (;) from extension=sqlite3'
+    ]);
+    exit;
+}
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
