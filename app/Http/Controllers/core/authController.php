@@ -13,34 +13,33 @@ class AuthController {
     public function sendResetLink() {
         $email = $_POST['email'] ?? '';
         if (!$email) {
-            die("No email provided.");
+            echo "❌ No email provided.";
+            return;
         }
 
-        // Generate secure token
+        // Generate token
         $token = bin2hex(random_bytes(32));
-        $expires = time() + 1800; // valid for 30 minutes
+        $expires = time() + 1800;
 
-        // Get DB connection
+        // Get DB instance
+        require_once __DIR__ . '/databaseController.php'; // if needed
         $db = DatabaseController::getInstance();
         $pdo = $db->getConnection();
 
-        // Delete previous tokens for this email
+        // Save token
         $pdo->prepare("DELETE FROM password_resets WHERE email = ?")->execute([$email]);
-
-        // Insert new token
         $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)")
             ->execute([$email, $token, $expires]);
 
-        // Build reset link
-        $resetLink = "http://localhost/SysDevProject/resources/views/resetPassword.php?token=$token";
-
         // Send email
-        $mail = new PHPMailer();
+        $resetLink = "http://localhost:8000/resources/views/resetPassword.php?token=$token";
+
+        $mail = new PHPMailer(true);
         $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';              // Use your actual SMTP server
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
-        $mail->Username = 'tgearspassreset@gmail.com';     // Use your Gmail
-        $mail->Password = 'ugog hhvj lmcw xqcb';       // Use your Gmail app password
+        $mail->Username = 'youremail@gmail.com';
+        $mail->Password = 'your_app_password';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
@@ -48,15 +47,12 @@ class AuthController {
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'Reset Your Password';
-        $mail->Body = "Hi,<br><br>We received a password reset request for your account.<br>
-            Click the link below to set a new password:<br><br>
-            <a href='$resetLink'>$resetLink</a><br><br>
-            If you didn’t request this, ignore this email.<br><br>Thanks!";
+        $mail->Body = "Click here to reset your password: <a href='$resetLink'>$resetLink</a>";
 
         if ($mail->send()) {
-            echo "✅ Email sent successfully to $email";
+            echo "✅ Reset link sent to $email";
         } else {
-            echo "❌ Failed: " . $mail->ErrorInfo;
+            echo "❌ Failed to send: " . $mail->ErrorInfo;
         }
     }
 

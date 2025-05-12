@@ -15,11 +15,77 @@
   <main>
 
     <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
+
+    use Controllers\DatabaseController;
+
+
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/config/config.php';
+    require_once '../../components/navbar.php';
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      
+    require_once __DIR__ . '../../../../app/Http/Controllers/core/databasecontroller.php';
+    $db = DatabaseController::getInstance();
+    $pdo = $db->getConnection();
+
+    // Collect values
+    $projectTitle = $_POST['project-title'];
+    $serialNumber = $_POST['project-serial-number'];
+    $description = $_POST['project-description'];
+    $startDate = $_POST['project-start-date'];
+    $endDate = $_POST['project-End-date'];
+
+    // Client
+    $clientName = $_POST['client-name'];
+    $clientCompany = $_POST['client-company'];
+    $clientEmail = $_POST['client-email'];
+    $clientPhone = $_POST['client-phone'];
+
+    // Supplier
+    $supplierName = $_POST['supplier-name'];
+    $supplierCompany = $_POST['supplier-company'];
+    $supplierEmail = $_POST['supplier-email'];
+    $supplierPhone = $_POST['supplier-phone'];
+
+    try {
+        // Insert client
+        $stmt = $pdo->prepare("INSERT INTO Client (client_name, company_name, email, client_phone_number) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$clientName, $clientCompany, $clientEmail, $clientPhone]);
+        $clientId = $pdo->lastInsertId();
+
+        // Insert supplier
+        $stmt = $pdo->prepare("INSERT INTO Supplier (supplier_name, company_name, email, supplier_phone_number) VALUES (?, ?, ?, ?)");
+        $stmt->execute([$supplierName, $supplierCompany, $supplierEmail, $supplierPhone]);
+        $supplierId = $pdo->lastInsertId();
+
+        // Insert project
+        $stmt = $pdo->prepare("INSERT INTO Project (
+            serial_number, supplier_id, client_id, project_name, project_description, 
+            start_date, end_date, buffered_date, buffer_days, status
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+        $stmt->execute([
+            $serialNumber,
+            $supplierId,
+            $clientId,
+            $projectTitle,
+            $description,
+            $startDate,
+            $endDate,
+            $endDate,      // buffered_date same as end_date initially
+            0,             // buffer_days
+            'prospecting'  // status
+        ]);
+
+        echo "<p style='color:green; text-align:center;'>✅ Project created successfully.</p>";
+    } catch (PDOException $e) {
+        echo "<p style='color:red; text-align:center;'>❌ Failed: " . $e->getMessage() . "</p>";
+    }
+}
+?>
     ?>
 
-    <form class="project-form" method="POST">
+    <form class="project-form" method="POST" action="">
       <div class="form-section">
         <div class="form-group">
           <label for="project-title">Project Title<span class="required">*</span></label>
