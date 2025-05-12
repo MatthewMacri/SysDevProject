@@ -21,17 +21,10 @@ class DatabaseController
      * @param string $databasePath Path to the SQLite database.
      */
     // Private constructor to prevent direct instantiation
-    private function __construct(string $databasePath = __DIR__ . 'database.sqlite')
+    private function __construct(string $databasePath = DB_PATH)
     {
-        self::$databasePath = BASE_PATH . '/database/Datab.db';
         try {
-            if (!file_exists(self::$databasePath)) {
-                die("❌ SQLite file not found at: " . self::$databasePath);
-            }
-            // echo "✅ SQLite file found at: " . self::$databasePath . "<br>";
-            flush();
-            // Initialize PDO connection to SQLite database
-            $this->connection = new PDO("sqlite:" . self::$databasePath);
+            $this->connection = new PDO("sqlite:" . $databasePath);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
@@ -45,10 +38,10 @@ class DatabaseController
      * @param string $databasePath Path to the SQLite database (default is 'database.sqlite').
      * @return self The singleton instance of DatabaseController.
      */
-    public static function getInstance(string $databasePath = 'database.sqlite'): self
+    public static function getInstance(string $databasePath = DB_PATH): self
     {
         if (self::$instance === null) {
-            self::$instance = new self();
+            self::$instance = new self($databasePath);
         }
         return self::$instance;
     }
