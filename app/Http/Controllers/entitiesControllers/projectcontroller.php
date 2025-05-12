@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\entitiesControllers;
 
-require_once dirname(__DIR__) . '/core/databasecontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/databaseController.php';
+require_once BASE_PATH . '/app/Models/Project.php';
 
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 use App\Models\Project;
 use App\Models\Client;
 use App\Models\Supplier;
@@ -81,12 +82,12 @@ class ProjectController
     public function searchJson()
     {
         // Enable error reporting for debugging purposes
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        // ini_set('display_errors', 1);
+        // ini_set('display_startup_errors', 1);
+        // error_reporting(E_ALL);
 
         // Set the response content type to JSON
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
 
         // Get the filters from the request
         $filters = $_GET;

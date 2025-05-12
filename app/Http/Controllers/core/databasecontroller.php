@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\core;
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
 

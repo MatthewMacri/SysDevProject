@@ -9,7 +9,6 @@ use Controllers\PhotoController;
 // Create a new database instance
 $db = new Database();
 
-// 🔧 If no controller is provided in the URL, redirect to the login page
 if (!isset($_GET['controller'])) {
     header('Location: resources/views/login/loginview.php');
     exit;

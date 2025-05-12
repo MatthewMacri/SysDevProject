@@ -2,13 +2,11 @@
 
 namespace App\Models;
 
-require_once dirname(__DIR__) . '/core/databasecontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/SysDevProject/app/Http/Controllers/core/databasecontroller.php';
 
-use Controllers\DatabaseController;
+use  App\Http\Controllers\core\DatabaseController;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Project extends Model
+class Project
 {
     // Class properties to hold project details
     private ?string $serialNumber = null;
@@ -30,7 +28,7 @@ class Project extends Model
      * @param string $projectName Name of the project
      * @param int $bufferDays Number of buffer days for the project
      */
-    public function __construct()
+    public function __construct(int $projectId, String $projectName, int $bufferDays)
     {
 
     }
@@ -296,8 +294,8 @@ class Project extends Model
                 c.client_name,
                 s.supplier_name
             FROM Project p
-            JOIN Client c ON p.client_id = c.client_id
-            JOIN Supplier s ON p.supplier_id = s.supplier_id
+            LEFT JOIN Client c ON p.client_id = c.client_id
+            LEFT JOIN Supplier s ON p.supplier_id = s.supplier_id
             WHERE 1=1
         ";
 
