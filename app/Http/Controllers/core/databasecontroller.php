@@ -2,13 +2,17 @@
 
 namespace Controllers;
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+
 use PDO;
 use PDOException;
 
-class DatabaseController {
+class DatabaseController
+{
     // Singleton instance of DatabaseController
     private static ?DatabaseController $instance = null;
     private PDO $connection;
+    private static String $databasePath;
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -16,13 +20,18 @@ class DatabaseController {
      * 
      * @param string $databasePath Path to the SQLite database.
      */
-    private function __construct(string $databasePath = __DIR__ . '/../../../../database/Data.db')
+    private function __construct()
     {
+        self::$databasePath = BASE_PATH . '/database/Datab.db';
         try {
+            if (!file_exists(self::$databasePath)) {
+                die("❌ SQLite file not found at: " . self::$databasePath);
+            }
+            echo "✅ SQLite file found at: " . self::$databasePath . "<br>";
+            flush();
             // Initialize PDO connection to SQLite database
-            $this->connection = new PDO("sqlite:" . $databasePath);
+            $this->connection = new PDO("sqlite:" . self::$databasePath);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $this->getInstance()->init();  // Initialize the database schema
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
@@ -38,7 +47,7 @@ class DatabaseController {
     public static function getInstance(string $databasePath = 'database.sqlite'): self
     {
         if (self::$instance === null) {
-            self::$instance = new self($databasePath);
+            self::$instance = new self();
         }
         return self::$instance;
     }
@@ -56,9 +65,10 @@ class DatabaseController {
     /**
      * Initializes the database schema, creating tables if they do not exist.
      */
-    public function init(): void {
+    public function init(): void
+    {
         $pdo = $this->getConnection();
-    
+
         // Array of SQL queries to create tables
         $queries = [
             // Users Table
@@ -104,7 +114,6 @@ class DatabaseController {
             "CREATE TABLE IF NOT EXISTS Project (
                 project_id INT PRIMARY KEY AUTO_INCREMENT,
                 serial_number VARCHAR(255),
-                supplier_id INT,
                 client_id INT,
                 project_name VARCHAR(255),
                 project_description VARCHAR(255),
@@ -113,8 +122,7 @@ class DatabaseController {
                 end_date TIMESTAMP,
                 buffered_date TIMESTAMP,
                 creation_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                status ENUM('prospecting', 'inprogress', 'done', 'archived'),
-                FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id),
+                status ENUM('prospecting', 'inprogress', 'hold, 'completed', 'archived'),
                 FOREIGN KEY (client_id) REFERENCES CLIENT(client_id)
             )",
 
@@ -158,7 +166,7 @@ class DatabaseController {
                 expires_at INTEGER NOT NULL
             )",
         ];
-    
+
         // Execute all the queries to create tables
         foreach ($queries as $query) {
             $pdo->exec($query);

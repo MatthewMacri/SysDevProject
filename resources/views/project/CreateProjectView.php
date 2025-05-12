@@ -22,7 +22,7 @@
     ?>
 
     <!-- Project creation form -->
-    <form class="project-form" method="POST">
+    <form class="project-form" method="POST" action="../../../index.php?controller=project&action=formSubmission">
       
       <!-- Project information -->
       <div class="form-section">
@@ -87,19 +87,19 @@
           <h2>Supplier Details</h2>
           <div class="form-group">
             <label for="supplier-name">Supplier Name<span class="required">*</span></label>
-            <input type="text" id="supplier-name" name="supplier-name" required>
+            <input type="text" id="supplier-name" name="supplier-name[]" required>
           </div>
           <div class="form-group">
             <label for="supplier-company">Company Name<span class="required">*</span></label>
-            <input type="text" id="supplier-company" name="supplier-company" required>
+            <input type="text" id="supplier-company" name="supplier-company[]" required>
           </div>
           <div class="form-group">
             <label for="supplier-email">Email<span class="required">*</span></label>
-            <input type="email" id="supplier-email" name="supplier-email" required>
+            <input type="email" id="supplier-email" name="supplier-email[]" required>
           </div>
           <div class="form-group">
             <label for="supplier-phone">Phone Number<span class="required">*</span></label>
-            <input type="tel" id="supplier-phone" name="supplier-phone" required>
+            <input type="tel" id="supplier-phone" name="supplier-phone[]" required>
           </div>
         </div>
       </div>
@@ -137,7 +137,7 @@
       <!-- Action Buttons -->
       <div class="form-actions">
         <button type="button" class="form-button cancel-button">Cancel</button>
-        <button type="submit" class="form-button create-button">Create</button>
+        <button type="button" id="openConfirmation" class="form-button create-button">Create</button>
       </div>
     </form>
   </main>

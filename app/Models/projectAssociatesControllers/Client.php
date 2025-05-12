@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use Controllers\DatabaseController;
 
 class Client
 {
@@ -12,21 +13,16 @@ class Client
     private $companyName;            // Name of the company the client represents
     private $clientEmail;            // Client's email address
     private $clientPhoneNumber;      // Client's phone number
+    private PDO $db;
 
-    /**
-     * Constructor to initialize the Client object with required fields.
-     * 
-     * @param string $clientName         Client's name
-     * @param string $companyName        Name of the company
-     * @param string $clientEmail        Client's email address
-     * @param string $clientPhoneNumber  Client's phone number
-     */
-    public function __construct($clientName, $companyName, $clientEmail, $clientPhoneNumber)
+    
+    public function __construct(String $clientName, String $companyName, String $clientEmail, String $clientPhoneNumber)
     {
         $this->clientName = $clientName;
         $this->companyName = $companyName;
-        $this->clientEmail = $clientEmail;
+        $this->cliendEmail = $clientEmail;
         $this->clientPhoneNumber = $clientPhoneNumber;
+        $this->db = DatabaseController::getInstance()->getConnection();
     }
 
     // Getter and setter methods
@@ -90,7 +86,7 @@ class Client
     public function create(PDO $pdo): bool
     {
         $stmt = $pdo->prepare("
-            INSERT INTO clients (clientName, companyName, clientEmail, clientPhoneNumber)
+            INSERT INTO clients (client_name, company_name, email, client_phone_number)
             VALUES (:clientName, :companyName, :clientEmail, :clientPhoneNumber)
         ");
 
@@ -118,8 +114,8 @@ class Client
     {
         $stmt = $pdo->prepare("
             UPDATE clients 
-            SET clientName = :clientName, companyName = :companyName, 
-                clientEmail = :clientEmail, clientPhoneNumber = :clientPhoneNumber
+            SET client_name = :clientName, company_name = :companyName, 
+                email = :clientEmail, client_phone_number = :clientPhoneNumber
             WHERE clientID = :id
         ");
 
@@ -184,4 +180,32 @@ class Client
         }
         return $clients;
     }
+
+    public function findOrCreate(array $client): int {
+        // 1. Try to find existing client by name + email
+        $stmt = $this->db->prepare("
+            SELECT client_id FROM Client WHERE client_name = ? AND email = ?
+        ");
+        $stmt->execute([$client['name'], $client['email']]);
+        $existing = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($existing) {
+            return $existing['client_id'];
+        }
+
+        // 2. Insert new client if not found
+        $stmt = $this->db->prepare("
+            INSERT INTO Client (client_name, company_name, email, client_phone_number)
+            VALUES (?, ?, ?, ?)
+        ");
+        $stmt->execute([
+            $client['name'],
+            $client['company'],
+            $client['email'],
+            $client['phone'],
+        ]);
+
+        return (int) $this->db->lastInsertId();
+    }
+
 }

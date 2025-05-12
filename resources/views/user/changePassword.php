@@ -18,7 +18,8 @@
   ?>
 
   <!-- Password Change Form -->
-  <div class="form-container">
+  <div class="form-center-wrapper">
+    <div class="form-container">
     <form id="changePasswordForm" method="POST" action="?controller=user&action=changePassword">
       
       <!-- Old Password -->
@@ -42,6 +43,7 @@
       <!-- Submit triggers JS confirmation -->
       <button type="submit" class="btn">Change Password</button>
     </form>
+  </div>
   </div>
 
   <!-- Password Change Confirmation Popup -->
