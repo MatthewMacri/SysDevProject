@@ -58,3 +58,6 @@ env
 *~
 
 /vendor/
+
+# Ignore .env files
+.env
