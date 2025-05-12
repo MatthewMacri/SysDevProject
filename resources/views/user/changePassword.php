@@ -3,36 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <title>Change Password</title>
+
+  <!-- Favicon and Styles -->
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
   <link rel="stylesheet" href="../../css/userChangePassword.css">
 </head>
+
 <body>
 
-  <!-- Shared Navbar Include -->
+  <!-- Include shared navigation bar -->
   <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+    require BASE_PATH . '/resources/components/navbar.php';
   ?>
 
+  <!-- Password Change Form -->
   <div class="form-container">
     <form id="changePasswordForm" method="POST" action="?controller=user&action=changePassword">
+      
+      <!-- Old Password -->
       <div class="form-group">
         <label for="oldPassword">Old Password</label>
         <input type="password" id="oldPassword" name="oldPassword" required>
       </div>
+
+      <!-- New Password -->
       <div class="form-group">
         <label for="newPassword">New Password</label>
         <input type="password" id="newPassword" name="newPassword" required>
       </div>
+
+      <!-- Confirm New Password -->
       <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="confirmPassword" name="confirmPassword" required>
       </div>
+
+      <!-- Submit triggers JS confirmation -->
       <button type="submit" class="btn">Change Password</button>
     </form>
   </div>
 
-  <!-- Change Password Confirmation Popup -->
+  <!-- Password Change Confirmation Popup -->
   <div id="changePasswordPopup" class="modal-container">
     <div class="confirm-content">
       <p>
@@ -46,10 +58,10 @@
     </div>
   </div>
 
-  <!-- Scripts -->
+  <!-- Script: handles form behavior and popup confirmation -->
   <script src="../../js/userChangePassword.js"></script>
 
-  <!-- Full Logout Script -->
+  <!-- Logout functionality -->
   <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {

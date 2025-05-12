@@ -2,7 +2,7 @@ let supplierCount = 1;
 const maxSuppliers = 5;
 
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Form Confirmation Modal Logic ---
+  // FORM CONFIRMATION POPUP LOGIC
   const form = document.querySelector('.project-form');
   const popup = document.getElementById('confirmationPopup');
   const cancelBtn = document.getElementById('cancelPopup');
@@ -10,23 +10,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (form && popup && cancelBtn && confirmBtn) {
     form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      popup.style.display = 'flex';
+      e.preventDefault(); // Prevent actual submit
+      popup.style.display = 'flex'; // Show confirmation modal
     });
 
     cancelBtn.addEventListener('click', function () {
-      popup.style.display = 'none';
+      popup.style.display = 'none'; // Hide on cancel
     });
 
     confirmBtn.addEventListener('click', function () {
       popup.style.display = 'none';
-      form.submit();
+      form.submit(); // Proceed with submit after confirmation
     });
   } else {
     console.warn("Some form modal elements are missing. Skipping modal setup.");
   }
 
-  // --- Add Supplier Logic ---
+  // ------------------------------
+  // ADD SUPPLIER DYNAMICALLY
+  // ------------------------------
   const supplierButton = document.getElementById('supplierButton');
   const supplierContainer = document.getElementById('supplier-sections');
 
@@ -37,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
 
+      // Create a new supplier input block
       const newSupplier = document.createElement('div');
       newSupplier.classList.add('form-section', 'supplier-details');
       newSupplier.innerHTML = `

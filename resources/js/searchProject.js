@@ -1,17 +1,22 @@
+// Wait for the entire page to load first
 document.addEventListener('DOMContentLoaded', function () {
-  document.querySelector('.project-search-box').addEventListener('submit', function (e) {
-    e.preventDefault();
 
+  // When the search form is submitted
+  document.querySelector('.project-search-box').addEventListener('submit', function (e) {
+    e.preventDefault(); // Stop the form from refreshing the page
+
+    // Get all the input values and clean them up (remove extra spaces)
     const serial = document.getElementById('serialNumber').value.trim();
     const title = document.getElementById('projectTitle').value.trim();
     const status = document.getElementById('projectStatus').value.trim();
     const supplier = document.getElementById('supplierName').value.trim();
     const client = document.getElementById('clientName').value.trim();
 
+    // Select the container where results will show
     const resultsContainer = document.getElementById('results');
-    resultsContainer.innerHTML = ""; // Clear previous results
+    resultsContainer.innerHTML = ""; // Clear anything from a previous search
 
-    // Build URL parameters
+    // Build the URL with parameters based on user input
     const params = new URLSearchParams();
     if (serial) params.append('serialNumber', serial);
     if (title) params.append('projectTitle', title);
@@ -19,18 +24,20 @@ document.addEventListener('DOMContentLoaded', function () {
     if (supplier) params.append('supplierName', supplier);
     if (client) params.append('clientName', client);
 
-    // Fetch from the proper JSON endpoint via index.php router
+    // Send request to the backend PHP (this returns a JSON response)
     fetch(`/SysDevProject/index.php?controller=project&action=searchJson&${params.toString()}`)
       .then(res => {
         if (!res.ok) throw new Error('Failed to fetch project data');
-        return res.json();
+        return res.json(); // Turn the response into JSON
       })
       .then(data => {
+        // If nothing is found, let the user know
         if (!data || data.length === 0) {
           resultsContainer.innerHTML = "<p>No matching projects found.</p>";
           return;
         }
 
+        // Loop through each project and create a card for it
         data.forEach(project => {
           const card = `
             <div class="result-card">
@@ -56,12 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
             </div>
           `;
+
+          // Add the card to the page
           resultsContainer.insertAdjacentHTML('beforeend', card);
         });
       })
       .catch(error => {
+        // Show error if something went wrong with the fetch
         console.error("Error fetching projects:", error);
         resultsContainer.innerHTML = "<p>An error occurred while searching. Check console for details.</p>";
       });
   });
+
 });
