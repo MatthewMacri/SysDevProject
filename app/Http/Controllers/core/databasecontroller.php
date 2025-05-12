@@ -6,6 +6,7 @@ use PDO;
 use PDOException;
 
 class DatabaseController {
+    
     // Singleton instance of DatabaseController
     private static ?DatabaseController $instance = null;
     private PDO $connection;
