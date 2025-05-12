@@ -1,9 +1,10 @@
-<?php
-// Start session and check if user is logged in
-session_start();
-if (!isset($_SESSION['role'])) {
-  header("Location: login.html");
-  exit;
+<?php 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    if (!isset($_SESSION['role'])) {
+      header("Location: ./login/loginview.php");
+      exit;
+    } 
 }
 ?>
 
@@ -31,6 +32,7 @@ if (!isset($_SESSION['role'])) {
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
 
   <!-- Local JavaScript logic for Kanban, Gantt, and Recent Projects -->
+  <!-- Project Scripts -->
   <script src="/SysDevProject/resources/js/home.js"></script>
 </head>
 <body>

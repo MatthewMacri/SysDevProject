@@ -1,7 +1,10 @@
-<?php 
-// Start session if not already started
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+  if (!isset($_SESSION['role'])) {
+    header("Location: ../login/loginview.php");
+    exit;
+  }
 }
 ?>
 
