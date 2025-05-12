@@ -28,7 +28,7 @@ class DatabaseController
             if (!file_exists(self::$databasePath)) {
                 die("❌ SQLite file not found at: " . self::$databasePath);
             }
-            echo "✅ SQLite file found at: " . self::$databasePath . "<br>";
+            // echo "✅ SQLite file found at: " . self::$databasePath . "<br>";
             flush();
             // Initialize PDO connection to SQLite database
             $this->connection = new PDO("sqlite:" . self::$databasePath);
