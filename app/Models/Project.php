@@ -28,7 +28,7 @@ class Project
      * @param string $projectName Name of the project
      * @param int $bufferDays Number of buffer days for the project
      */
-    public function __construct(int $projectId, String $projectName, int $bufferDays)
+    public function __construct()
     {
 
     }
@@ -239,7 +239,7 @@ class Project
 
         if ($data) {
             // Create a new Project object and populate it with the data from the database
-            $project = new self($data['projectId'], $data['projectName'], $data['bufferDays']);
+            $project = new self();
             $project->setCreationTime($data['creationTime']);
             $project->setStartDate($data['startDate']);
             $project->setEndDate($data['endDate']);
@@ -263,7 +263,7 @@ class Project
 
         // Loop through each result and create a Project object
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $project = new self($row['projectId'], $row['projectName'], $row['bufferDays']);
+            $project = new self();
             $project->setCreationTime($row['creationTime']);
             $project->setStartDate($row['startDate']);
             $project->setEndDate($row['endDate']);

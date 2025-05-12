@@ -15,7 +15,7 @@ class SupplierController {
      */
     public function __construct($db) {
         // Instantiate the Supplier model with the database connection
-        $this->model = new Supplier($db);
+        $this->model = new Supplier();
     }
 
     /**

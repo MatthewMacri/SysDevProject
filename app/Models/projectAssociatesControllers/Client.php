@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use PDO;
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 
 class Client
 {
