@@ -9,12 +9,40 @@
 <body>
   <a class="top-left-link" href="login.html">← Back to Login</a>
   <div class="form-container">
-    <form class="form-box" action="../../../app/Http/Controllers/authController.php?action=sendResetLink" method="POST">
-      <h2>Reset Your Password</h2>
-      <label for="email">Email Address</label>
-      <input type="email" name="email" required />
-      <button type="submit">Send Reset Link</button>
-    </form>
-  </div>
+    <form id="reset-form" class="form-box">
+  <h2>Reset Your Password</h2>
+    <label for="email">Email Address</label>
+      <input type="email" name="email" id="email-input" required />
+    <button type="submit">Send Reset Link</button>
+  </form>
+<div id="feedback"></div>
+  <script>
+window.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('reset-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('email-input').value;
+    const feedback = document.getElementById('feedback');
+
+    fetch('/resources/api/send-reset-link.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({ email })
+    })
+    .then(res => res.text())
+    .then(data => {
+      console.log("📩 Server response:", data);
+      feedback.innerHTML = `<p>${data}</p>`;
+    })
+    .catch(err => {
+      console.error("❌ Request failed:", err);
+      feedback.innerHTML = `<p style="color:red;">Request failed.</p>`;
+    });
+  });
+});
+</script>
+
 </body>
 </html>

@@ -18,8 +18,8 @@ if (!isset($_SESSION['role'])) {
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx.light.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.css">
   <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/24.2.6/css/dx-gantt.min.css">
-  <link rel="stylesheet" href="../../css/home.css">
-  <link rel="stylesheet" href="../../css/kanban.css">
+  <link rel="stylesheet" href="../css/home.css">
+  <link rel="stylesheet" href="../css/kanban.css">
 
 
   <!-- Scripts -->
@@ -29,7 +29,7 @@ if (!isset($_SESSION['role'])) {
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
 
   <!-- Project Scripts -->
-  <script src="../../js/home.js"></script>
+  <script src="/SysDevProject/resources/js/home.js"></script>
 </head>
 <body>
 

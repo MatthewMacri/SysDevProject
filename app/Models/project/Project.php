@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Models;
+require_once dirname(__DIR__) . '/core/databasecontroller.php';
 
-class project
+use Controllers\DatabaseController;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Project extends Model
 {
     private ?int $projectId;
     private string $projectName;
@@ -126,7 +131,7 @@ class project
 }
 
 
-public function update(\PDO $pdo, int $id): bool
+public function updateProject(\PDO $pdo, int $id): bool
 {
     $stmt = $pdo->prepare("
         UPDATE projects 
@@ -146,7 +151,7 @@ public function update(\PDO $pdo, int $id): bool
     ]);
 }
 
-public function delete(\PDO $pdo, int $id): bool
+public function deleteProject(\PDO $pdo, int $id): bool
 {
     $stmt = $pdo->prepare("DELETE FROM projects WHERE projectId = :id");
     return $stmt->execute([':id' => $id]);
@@ -185,6 +190,65 @@ public static function selectAll(\PDO $pdo): array
     }
 
     return $projects;
+}
+
+public static function searchWithFilters(array $filters)
+{
+    $pdo = DatabaseController::getInstance()->getConnection();
+
+    $query = "
+        SELECT 
+            p.serial_number,
+            p.project_name,
+            p.project_description,
+            p.status,
+            c.client_name,
+            s.supplier_name
+        FROM Project p
+        JOIN Client c ON p.client_id = c.client_id
+        JOIN Supplier s ON p.supplier_id = s.supplier_id
+        WHERE 1=1
+    ";
+
+    $params = [];
+
+    if (!empty($filters['serialNumber'])) {
+        $query .= " AND p.serial_number LIKE :serialNumber";
+        $params[':serialNumber'] = '%' . $filters['serialNumber'] . '%';
+    }
+
+    if (!empty($filters['projectTitle'])) {
+        $query .= " AND p.project_name LIKE :projectTitle";
+        $params[':projectTitle'] = '%' . $filters['projectTitle'] . '%';
+    }
+
+    if (!empty($filters['projectStatus'])) {
+        $query .= " AND p.status LIKE :projectStatus";
+        $params[':projectStatus'] = '%' . $filters['projectStatus'] . '%';
+    }
+
+    if (!empty($filters['supplierName'])) {
+        $query .= " AND s.supplier_name LIKE :supplierName";
+        $params[':supplierName'] = '%' . $filters['supplierName'] . '%';
+    }
+
+    if (!empty($filters['clientName'])) {
+        $query .= " AND c.client_name LIKE :clientName";
+        $params[':clientName'] = '%' . $filters['clientName'] . '%';
+    }
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute($params);
+
+    // Debug: print query + params to logs or browser
+    file_put_contents( '/SysDevProject/debug.txt', print_r([
+        'query' => $query,
+        'params' => $params
+    ], true), FILE_APPEND);
+
+    error_log("QUERY DEBUG:\n" . print_r(['query' => $query, 'params' => $params], true));
+
+    return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 }
 
 }
