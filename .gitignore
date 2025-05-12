@@ -42,6 +42,9 @@ yarn-error.log
 # Laravel Sail Docker files
 /docker-compose.override.yml
 .env.sail
+.env.example
+.env
+env
 
 # Laravel Valet config (if using Valet)
 /.valet/
