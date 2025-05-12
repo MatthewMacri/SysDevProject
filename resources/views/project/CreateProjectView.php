@@ -56,7 +56,7 @@
         <button type="button" onclick="document.getElementById('project-end-date').showPicker()">
           <div class="date-label">Project End Date<span class="required">*</span></div>
           <i class="fas fa-calendar-alt calendar-icon"></i>
-          <input type="date" id="project-end-date" name="project-end-date" class="hidden-date-input" required />
+          <input type="date" id="project-End-date" name="project-End-date" class="hidden-date-input" required />
         </button>
       </div>
 

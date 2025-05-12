@@ -1,8 +1,8 @@
 <?php
 // Enable all error reporting (useful during development)
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
