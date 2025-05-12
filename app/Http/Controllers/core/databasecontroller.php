@@ -10,7 +10,7 @@ class DatabaseController {
     private PDO $connection;
 
     // Private constructor to prevent direct instantiation
-    private function __construct(string $databasePath = __DIR__ . '/../../../../database/Datab.db')
+    private function __construct(string $databasePath = __DIR__ . 'database.sqlite')
     {
         try {
             $this->connection = new PDO("sqlite:" . $databasePath);

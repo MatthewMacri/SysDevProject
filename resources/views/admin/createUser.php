@@ -10,10 +10,45 @@
 <body>
 
   <!-- Include the shared navbar -->
-  <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
-  ?>
+  <?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+require_once BASE_PATH . '/app/Http/Controllers/core/databaseController.php';
+
+use Controllers\DatabaseController;
+
+
+// DEBUG: Run init() once to ensure tables exist
+$db = DatabaseController::getInstance();
+$db->init(); // ⬅️ remove this after confirming Users table exists
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $db = DatabaseController::getInstance();
+    $pdo = $db->getConnection();
+
+    $first = $_POST['firstName'];
+    $last = $_POST['lastName'];
+    $username = $_POST['username'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $confirm = $_POST['confirmPassword'];
+
+    if ($password !== $confirm) {
+        echo "<p style='color:red; text-align:center;'>❌ Passwords do not match.</p>";
+    } else {
+        $hashed = password_hash($password, PASSWORD_BCRYPT);
+
+        try {
+            $stmt = $pdo->prepare("INSERT INTO Users (user_name, first_name, last_name, email, password, is_deactivated) VALUES (?, ?, ?, ?, ?, 0)");
+            $stmt->execute([$username, $first, $last, $email, $hashed]);
+
+            echo "<p style='color:green; text-align:center;'>✅ User created successfully.</p>";
+        } catch (PDOException $e) {
+            echo "<p style='color:red; text-align:center;'>❌ Failed: " . $e->getMessage() . "</p>";
+        }
+    }
+}
+?>
+
 
   <div class="form-container">
     <h2>Create New User</h2>
