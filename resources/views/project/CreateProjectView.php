@@ -26,6 +26,7 @@
       
     require_once __DIR__ . '../../../../app/Http/Controllers/core/databasecontroller.php';
     $db = DatabaseController::getInstance();
+    $db->init();
     $pdo = $db->getConnection();
 
     // Collect values
@@ -83,7 +84,6 @@
     }
 }
 ?>
-    ?>
 
     <form class="project-form" method="POST" action="">
       <div class="form-section">
@@ -105,7 +105,7 @@
         <button type="button" onclick="document.getElementById('project-start-date').showPicker()">
           <div class="date-label">Project Start Date<span class="required">*</span></div>
           <i class="fas fa-calendar-alt calendar-icon"></i>
-          <input type="date" id="project-start-date" class="hidden-date-input" required />
+          <input type="date" id="project-start-date" name="project-start-date" class="hidden-date-input" required />
         </button>
       </div>
 
@@ -113,7 +113,7 @@
         <button type="button" onclick="document.getElementById('project-End-date').showPicker()">
           <div class="date-label">Project End Date<span class="required">*</span></div>
           <i class="fas fa-calendar-alt calendar-icon"></i>
-          <input type="date" id="project-End-date" class="hidden-date-input" required />
+          <input type="date" id="project-End-date" name="project-End-date" class="hidden-date-input" required />
         </button>
       </div>
 
