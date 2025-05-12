@@ -10,8 +10,7 @@ session_destroy();
 
 // Clear the "auth" cookie by setting its expiration time in the past
 setcookie("auth", "", time() - 3600, "/");
-
-// Redirect the user to the login page after logout
+echo json_encode(["success" => true]);
 header("Location: resources/views/login/loginview.php");
 exit;
 ?>
