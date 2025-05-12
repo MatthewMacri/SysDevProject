@@ -4,37 +4,45 @@
   <meta charset="UTF-8" />
   <title>Admin Archive Project</title>
 
+  <!-- Favicon for branding -->
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
 
-  <!-- Stylesheets -->
+  <!-- Custom and external stylesheets -->
   <link rel="stylesheet" href="../../css/achive.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
 </head>
+
 <body>
 
-  <!-- Navbar Include -->
-<?php 
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
+  <!-- Include shared navigation bar -->
+  <?php 
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+    require BASE_PATH . '/resources/components/navbar.php';
   ?>
 
+  <!-- Main content area -->
   <main>
+    <!-- Archive Project Form -->
     <div class="archive-form">
-      <label for="serialInput" class="FormTitle">Project Serial Number<span class="required">*</span></label>
+      <label for="serialInput" class="FormTitle">
+        Project Serial Number<span class="required">*</span>
+      </label>
       <div class="form-content">
         <input type="text" id="serialInput" required />
         <button class="orange-btn">Archive Project</button>
       </div>
     </div>
+
+    <!-- Required field note -->
     <p class="required-note">
       <span class="required" style="margin-left: 130px;">*</span> Required field
     </p>
 
+    <!-- Archived Projects List -->
     <div class="archive-list">
-      <h3>List of archived projects</h3>
+      <h3>List of Archived Projects</h3>
 
-      <!-- Sample archived project cards -->
+      <!-- Example archived project card -->
       <div class="project-card">
         <div>
           <div class="project-header">
@@ -50,12 +58,12 @@
         </div>
       </div>
 
-      <!-- Duplicate more as needed -->
+      <!-- Additional cards can be dynamically rendered -->
     </div>
   </main>
 
-  <!-- Full Logout Script -->
-   <script src="https://www.w3schools.com/lib/w3data.js"></script>
+  <!-- Logout script using fetch() -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");
@@ -83,6 +91,7 @@
     });
   </script>
 
+  <!-- Archive project JavaScript logic -->
   <script src="../../js/achive.js"></script>
 </body>
 </html>

@@ -1,13 +1,17 @@
+// KANBAN BOARD INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../api/get_kanban_data.php")
     .then(res => res.json())
     .then(data => {
+      // Initialize jKanban with data
       const board = new jKanban({
         element: "#kanban",
         gutter: "15px",
         widthBoard: "250px",
         responsivePercentage: false,
         dragItems: true,
+
+        // Convert each status and its tasks into a board column
         boards: Object.entries(data).map(([status, items]) => ({
           id: status.replace(/\s/g, "_").toLowerCase(),
           title: `${status} (${items.length})`,
@@ -17,23 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
             title: `${item.title} <button class='task-delete' style='float:right;border:none;background:none;cursor:pointer;'>🗑</button>`
           }))
         })),
-        dropEl: function (el, target, source, sibling) {
+
+        // Handle drag-and-drop updates
+        dropEl: function (el, target) {
           const taskId = el.getAttribute("data-eid");
           const newStatus = target.parentElement.querySelector(".kanban-title-board").innerText.split(" (")[0];
 
+          // Send updated status to server
           fetch("../api/update_task_status.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              task_id: taskId,
-              new_status: newStatus
-            })
+            body: JSON.stringify({ task_id: taskId, new_status: newStatus })
           })
             .then(res => res.json())
             .then(response => {
-              if (!response.success) {
-                alert("Failed to update task.");
-              }
+              if (!response.success) alert("Failed to update task.");
             })
             .catch(err => {
               console.error("Update error:", err);
@@ -42,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
+      // Add task creation input after board has rendered
       setTimeout(() => {
         document.querySelectorAll(".kanban-board").forEach(board => {
           const footer = document.createElement("div");
@@ -55,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
           const addBtn = footer.querySelector(".add-task-btn");
           const input = footer.querySelector(".new-task-input");
 
+          // Handle add task button click
           addBtn.addEventListener("click", () => {
             const title = input.value.trim();
             if (!title) return;
@@ -62,6 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const rawStatus = board.querySelector(".kanban-title-board").innerText;
             const status = rawStatus.split(" (")[0];
 
+            // Send new task to server
             fetch("../api/add_task.php", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
@@ -70,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
               .then(res => res.json())
               .then(data => {
                 if (data.success) {
-                  location.reload();
+                  location.reload(); // Reload board to reflect changes
                 } else {
                   alert("Error adding task.");
                 }
@@ -82,6 +87,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Kanban load error:", err));
 });
 
+// TASK DELETION HANDLER
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("task-delete")) {
     const item = e.target.closest(".kanban-item");
@@ -89,6 +95,7 @@ document.addEventListener("click", function (e) {
 
     if (!confirm("Delete this task?")) return;
 
+    // Send deletion request to server
     fetch("../api/delete_task.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -97,7 +104,7 @@ document.addEventListener("click", function (e) {
       .then(res => res.json())
       .then(data => {
         if (data.success) {
-          item.remove();
+          item.remove(); // Remove task from DOM
         } else {
           alert("Failed to delete task.");
         }
@@ -109,6 +116,7 @@ document.addEventListener("click", function (e) {
   }
 });
 
+// FILTER TASKS BY KEYWORD
 document.addEventListener("input", function (e) {
   if (e.target.id === "taskFilter") {
     const search = e.target.value.toLowerCase();
@@ -119,7 +127,7 @@ document.addEventListener("input", function (e) {
   }
 });
 
-// 🔁 Gantt Chart (Dynamic from DB)
+// GANTT CHART INITIALIZATION
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../api/get_gantt_data.php")
     .then(res => res.json())
@@ -156,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Failed to load Gantt data:", err));
 });
 
+//  RECENT PROJECTS DISPLAY
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../api/get_recent_projects.php")
     .then(res => res.json())
@@ -168,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
+      // Render each project card
       projects.forEach(project => {
         const card = document.createElement("div");
         card.className = "project-card";

@@ -1,21 +1,34 @@
 <?php
+// Set content type to JSON for API response
 header('Content-Type: application/json');
 
 try {
-  $db = new PDO("sqlite:C:/xampp/htdocs/SysDevProject/database/Datab.db");
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Connect to the SQLite database
+    $db = new PDO("sqlite:C:/xampp/htdocs/SysDevProject/database/Datab.db");
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $db->prepare("
-    SELECT project_id, serial_number, project_name, project_description, status, creation_time
-    FROM PROJECT
-    ORDER BY datetime(creation_time) DESC
-    LIMIT 5
-  ");
-  $stmt->execute();
-  $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    // Prepare SQL to fetch the 5 most recent projects
+    $stmt = $db->prepare("
+        SELECT 
+            project_id, 
+            serial_number, 
+            project_name, 
+            project_description, 
+            status, 
+            creation_time
+        FROM PROJECT
+        ORDER BY datetime(creation_time) DESC
+        LIMIT 5
+    ");
+    $stmt->execute();
 
-  echo json_encode($projects);
+    // Fetch and return the result as JSON
+    $projects = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($projects);
+
 } catch (PDOException $e) {
-  echo json_encode(["error" => $e->getMessage()]);
+    // Handle and return any database errors
+    echo json_encode([
+        "error" => $e->getMessage()
+    ]);
 }
-?>
