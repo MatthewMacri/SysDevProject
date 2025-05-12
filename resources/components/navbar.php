@@ -1,12 +1,12 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-  if (!isset($_SESSION['role'])) {
-    header("Location: ../login/loginview.php");
-    exit;
-  }
-}
-?>
+// if (session_status() == PHP_SESSION_NONE) {
+//   session_start();
+//   if (!isset($_SESSION['role'])) {
+//     header("Location: ../login/loginview.php");
+//     exit;
+//   }
+// }
+// ?>
 
 <!-- Include external CSS for navbar -->
 <style>
@@ -47,13 +47,13 @@ if (session_status() == PHP_SESSION_NONE) {
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage</a>
-          <a href="/SysDevProject/resources/views/admin/createUser.php">Create</a>
-          <a href="/SysDevProject/resources/views/project/deleteProject.php">Delete</a>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage Password</a>
+          <a href="/SysDevProject/resources/views/admin/createUser.php">Create User</a>
+          <a href="/SysDevProject/resources/views/user/deleteUser.php">Delete User</a>
           <a href="/SysDevProject/resources/views/admin/userActivation.php">User Status</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php else: ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage</a>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage Password</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php endif; ?>
       </div>

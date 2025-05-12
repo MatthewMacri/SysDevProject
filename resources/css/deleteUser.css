@@ -72,34 +72,35 @@ input[type="password"] {
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
   z-index: 999;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .confirm-content {
-  position: relative;
-  width: 720px;
-  height: 50px;
   background-color: #fff;
   border-radius: 8px;
-  padding: 20px 40px 80px;
+  padding: 40px;
   text-align: center;
   font-family: Arial, sans-serif;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 600px;
+  max-width: 90vw;
+
+  /* Remove absolute positioning here */
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
 }
 
 .confirm-buttons {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 20px;
-  left: 0;
   width: 100%;
-  padding: 0 40px;
-  box-sizing: border-box;
+  margin-top: 20px;
+  gap: 20px;
 }
 
 .btn {
@@ -120,4 +121,24 @@ input[type="password"] {
 
 .btn:active {
   background-color: #999;
+}
+
+.hidden-overlay {
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 999;
+
+  /* Center modal using flexbox */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hidden-overlay.show {
+  display: flex; /* ✅ Show the overlay when 'show' class is added */
 }

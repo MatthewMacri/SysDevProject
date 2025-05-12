@@ -4,9 +4,10 @@ namespace Controllers;
 
 use App\Models\ApplicationUser;
 
-require_once 'app/Models/users/ApplicationUser.php';
+require_once dirname(__DIR__, 5) . '/SysDevProject/app/Models/users/ApplicationUser.php';
 
-class Usercontroller {
+class Usercontroller
+{
 
     private $model;
 
@@ -15,7 +16,8 @@ class Usercontroller {
      * 
      * @param object $db Database connection instance
      */
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->model = new ApplicationUser($db);
     }
 
@@ -24,7 +26,8 @@ class Usercontroller {
      * 
      * @return void
      */
-    public function changePasswordForm() {
+    public function changePasswordForm()
+    {
         include 'resources/views/user/changePassword.php';
     }
 
@@ -35,9 +38,10 @@ class Usercontroller {
      * 
      * @return void
      */
-    public function changePassword($postData) {
+    public function changePassword($postData)
+    {
         // Start the session if not already started
-        if(session_status() == PHP_SESSION_NONE) { 
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
@@ -83,5 +87,27 @@ class Usercontroller {
         // Return success message
         echo "Password successfully changed.";
     }
+
+    public function deleteUser($userId)
+    {
+        $result = $this->model->delete($userId);
+
+        if ($result) {
+            echo "✅ User deleted successfully.";
+        } else {
+            echo "❌ Failed to delete user.";
+        }
+    }
+
+    public function deleteUserByUsername($username): array {
+    $pdo = $this->model->getDb()->getConnection();
+    $stmt = $pdo->prepare("DELETE FROM Users WHERE user_name = ?");
+    $success = $stmt->execute([$username]);
+
+    return [
+        'success' => $success,
+        'message' => $success ? "User deleted successfully." : "Failed to delete user."
+    ];
+}
 
 }
