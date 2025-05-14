@@ -34,10 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  deleteButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    showDeleteConfirmBox();
-  });
+deleteButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  if (!username) {
+    alert("Please enter a username.");
+    return;
+  }
+  showDeleteConfirmBox(username);
+});
 
   confirmDeleteBtn.addEventListener("click", () => {
     const username = document.getElementById("username")?.value.trim();
@@ -73,7 +78,3 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   });
 });
-
-
-
-// document.getElementById("deleteConfirmBox").style.display = "flex";

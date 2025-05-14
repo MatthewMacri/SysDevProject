@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -63,7 +64,7 @@ input[type="password"] {
   background-color: #999;
 }
 
-.hidden-overlay {
+.popup-overlay {
   display: none;
   position: fixed;
   top: 0;
@@ -71,74 +72,45 @@ input[type="password"] {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
+  justify-content: center;
+  align-items: center;
   z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-.confirm-content {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 40px;
+.popup-box {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
   text-align: center;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  width: 600px;
-  max-width: 90vw;
-
-  /* Remove absolute positioning here */
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  width: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.confirm-buttons {
+.popup-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.popup-buttons {
   display: flex;
   justify-content: space-between;
-  width: 100%;
-  margin-top: 20px;
-  gap: 20px;
 }
 
-.btn {
-  width: 100px;
-  height: 30px;
-  background-color: #f58220;
-  border: 1px solid #999;
-  border-radius: 4px;
+.orange-btn {
+  background-color: #f68a30;
+  border: 1px solid #000;
   color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #e66700;
-}
-
-.btn:active {
-  background-color: #999;
-}
-
-.hidden-overlay {
-  display: none; /* Hidden by default */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  z-index: 999;
-
-  /* Center modal using flexbox */
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.orange-btn:hover {
+  background-color: #e67e22;
 }
 
 .hidden-overlay.show {
-  display: flex; /* ✅ Show the overlay when 'show' class is added */
+  display: flex;
 }

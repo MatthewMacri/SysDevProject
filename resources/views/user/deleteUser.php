@@ -7,8 +7,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
   require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Models/users/ApplicationUser.php';
   require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/entitiesControllers/Usercontroller.php';
 
-
-
   session_start();
   $db = DatabaseController::getInstance();
   $userController = new Usercontroller($db);
@@ -53,8 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
 <body>
 
   <?php
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+    require BASE_PATH . '/resources/components/navbar.php';
   ?>
 
   <div class="form-container">
@@ -69,54 +67,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
     </div>
   </div>
 
-  <div id="deleteConfirmBox" class="hidden-overlay">
-    <div class="confirm-content">
-      <p>You are deleting user <span id="deleteUserID"></span><br>Confirm to Proceed</p>
-      <div class="confirm-buttons">
-        <button class="btn" onclick="hideDeleteConfirmBox()">Cancel</button>
-        <button class="btn" id="confirmDeleteBtn">Confirm</button>
-      </div>
+<div id="deleteConfirmBox" class="popup-overlay hidden-overlay">
+  <div class="popup-box">
+    <p>You are deleting user <span id="deleteUserID"></span>.<br>Confirm to proceed.</p>
+    <div class="popup-buttons">
+      <button class="orange-btn" onclick="hideDeleteConfirmBox()">Cancel</button>
+      <button class="orange-btn" id="confirmDeleteBtn">Confirm</button>
     </div>
   </div>
+</div>
 
   <script>
     function hideDeleteConfirmBox() {
       document.getElementById("deleteConfirmBox").style.display = "none";
     }
 
-    document.querySelector(".deleteButton").addEventListener("click", () => {
-      const username = document.getElementById("username").value;
-      if (username.trim() === "") return alert("Enter a username");
-
+    function showDeleteConfirmBox(username) {
       document.getElementById("deleteUserID").textContent = username;
-      document.getElementById("deleteConfirmBox").style.display = "block";
-    });
+      document.getElementById("deleteConfirmBox").style.display = "flex";
+    }
 
-    document.getElementById("confirmDeleteBtn").addEventListener("click", () => {
-      const username = document.getElementById("username").value;
-      const adminPassword = document.getElementById("admin-password").value;
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("deleteConfirmBox").style.display = "none"; // Ensure hidden on load
 
-      fetch("", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: new URLSearchParams({
-          username,
-          adminPassword
-        }),
-      })
+      const deleteBtn = document.querySelector(".deleteButton");
+      const confirmBtn = document.getElementById("confirmDeleteBtn");
+
+      deleteBtn.addEventListener("click", () => {
+        const username = document.getElementById("username").value.trim();
+        if (!username) return alert("Enter a username");
+        showDeleteConfirmBox(username);
+      });
+
+      confirmBtn.addEventListener("click", () => {
+        const username = document.getElementById("username").value.trim();
+        const adminPassword = document.getElementById("admin-password").value.trim();
+
+        if (!username || !adminPassword) {
+          alert("Please enter both username and admin password.");
+          return;
+        }
+
+        fetch("", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: new URLSearchParams({ username, adminPassword }),
+        })
         .then(res => res.json())
         .then(data => {
           alert(data.message);
           if (data.success) {
+            hideDeleteConfirmBox();
             location.reload();
           }
         })
-        .catch(err => console.error("Delete failed:", err));
+        .catch(err => {
+          console.error("Delete failed:", err);
+          alert("An error occurred while deleting.");
+        });
+      });
     });
   </script>
 
 </body>
-
 </html>
