@@ -44,9 +44,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       });
 
-      // Add task creation input after board has rendered
+      // Add task creation input ONLY under 'Prospecting'
       setTimeout(() => {
         document.querySelectorAll(".kanban-board").forEach(board => {
+          const titleText = board.querySelector(".kanban-title-board").innerText;
+          const status = titleText.split(" (")[0].trim();
+          if (status.toLowerCase() !== "prospecting") return;
+          
           const footer = document.createElement("div");
           footer.className = "kanban-footer";
           footer.innerHTML = `
@@ -63,14 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
             const title = input.value.trim();
             if (!title) return;
 
-            const rawStatus = board.querySelector(".kanban-title-board").innerText;
-            const status = rawStatus.split(" (")[0];
-
-            // Send new task to server
+            // Send new task to server with "Prospecting" as status
             fetch("../api/add_task.php", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ title, status })
+              body: JSON.stringify({ title, status: "Prospecting" })
             })
               .then(res => res.json())
               .then(data => {
@@ -164,7 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(err => console.error("Failed to load Gantt data:", err));
 });
 
-//  RECENT PROJECTS DISPLAY
+// RECENT PROJECTS DISPLAY
 document.addEventListener("DOMContentLoaded", () => {
   fetch("../api/get_recent_projects.php")
     .then(res => res.json())

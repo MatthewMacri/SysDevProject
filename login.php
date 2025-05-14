@@ -1,8 +1,8 @@
 <?php
 // Enable all error reporting (useful during development)
-error_reporting(E_ALL & ~E_DEPRECATED & ~E_NOTICE);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Start session if not already started
 if (session_status() == PHP_SESSION_NONE) {
@@ -32,12 +32,13 @@ $username = $data['username'];
 $password = $data['password'];
 
 // Connect to the SQLite database
-$db = new PDO("sqlite:database/database.sqlite");$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$db = new PDO("sqlite:database/Datab.db");
+$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $role = null;  // Will hold either 'admin' or 'user'
 
 // First check if the user is an admin
-$stmt = $db->prepare("SELECT * FROM Admins WHERE admin_name = ?");
+$stmt = $db->prepare("SELECT * FROM admin WHERE admin_name = ?");
 $stmt->execute([$username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -46,7 +47,7 @@ if ($user) {
 } else {
     // If not found in admin table, check user table
     $role = 'user';
-    $stmt = $db->prepare("SELECT * FROM Users WHERE user_name = ?");
+    $stmt = $db->prepare("SELECT * FROM user WHERE user_name = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }

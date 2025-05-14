@@ -92,8 +92,15 @@
           <input type="text" id="project-title" name="project-title" required>
         </div>
         <div class="form-group">
-          <label for="project-serial-number">Project Serial Number<span class="required">*</span></label>
-          <input type="text" id="project-serial-number" name="project-serial-number" required>
+          <label for="serial-prefix">Project Serial Number<span class="required">*</span></label>
+          <div style="display: flex; gap: 5px; align-items: center;">
+            <input type="text" id="serial-prefix" name="serial-prefix" maxlength="3" placeholder="SN" required pattern="[A-Za-z]{2,3}" style="width: 50px;" />
+            <span>-</span>
+            <input type="text" id="serial-year" name="serial-year" maxlength="4" placeholder="2023" required pattern="\d{4}" style="width: 70px;" />
+            <span>-</span>
+            <input type="text" id="serial-number" name="serial-number" maxlength="3" placeholder="001" required pattern="\d{3}" style="width: 50px;" />
+          </div>
+        </div>
         </div>
         <div class="form-group">
           <label for="project-description">Project Description<span class="required">*</span></label>
@@ -175,13 +182,12 @@
           </button>
         </div>
 
-        <div class="date-picker-container">
-          <button type="button">
-            <div class="date-label">Add Media</div>
-            <i class="fas fa-plus media-icon"></i>
-          </button>
-        </div>
-
+      <div class="date-picker-container">
+        <button type="button" onclick="window.location.href='/SysDevProject/resources/views/photo/uploadPhoto.php'">
+          <div class="date-label">Add Media</div>
+          <i class="fas fa-plus media-icon"></i>
+        </button>
+      </div>
 
       </div>
       <p class="required-note"><span class="required">*</span> Required field</p>

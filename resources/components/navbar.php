@@ -1,12 +1,6 @@
 <?php
-// if (session_status() == PHP_SESSION_NONE) {
-//   session_start();
-//   if (!isset($_SESSION['role'])) {
-//     header("Location: ../login/loginview.php");
-//     exit;
-//   }
-// }
-// ?>
+session_start();
+?>
 
 <!-- Include external CSS for navbar -->
 <style>
@@ -21,7 +15,10 @@
     <a href="/SysDevProject/resources/views/project/searchProject.php">Project Search</a>
     <a href="/SysDevProject/resources/views/project/history.php">Project History</a>
     <a href="/SysDevProject/resources/views/project/createProjectView.php">Create Project</a>
-    <a href="/SysDevProject/resources/views/other/statusOverview.php">Status Overview</a>
+
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+      <a href="/SysDevProject/resources/views/statusOverview.php">Status Overview</a>
+    <?php endif; ?>
   </div>
 
   <!-- Center Logo -->

@@ -1,13 +1,3 @@
-<?php 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-    if (!isset($_SESSION['role'])) {
-      header("Location: ./login/loginview.php");
-      exit;
-    } 
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,7 +55,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <div class="section-header">
       <h2>Gantt Overview</h2>
       <a href="#kanban" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View
+        <i class="fa-solid fa-table-columns"></i> View Gantt
       </a>
     </div>
     <!-- Div where Gantt chart will load -->
