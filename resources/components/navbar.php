@@ -54,7 +54,7 @@ if (session_status() == PHP_SESSION_NONE) {
           <a href="/SysDevProject/resources/views/admin/userActivation.php">User Status</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php else: ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage Password</a>
+          <a href="/SysDevProject/resources/views/user/changePassword.php">Manage Password</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php endif; ?>
       </div>
