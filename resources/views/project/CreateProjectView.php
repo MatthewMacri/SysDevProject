@@ -5,15 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Create Project</title>
-  <link rel="stylesheet" href="../../css/createProject.css">
   <link rel="stylesheet" href="../../css/navbar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
+  <link rel="stylesheet" href="../../css/createProject.css">
 </head>
 
 <body>
-  <main>
-
     <?php
 
     use Controllers\DatabaseController;
@@ -84,7 +82,7 @@
     }
 }
 ?>
-
+  <main style ="margin: 20px auto; max-width: 1400px; padding: 20px;">
     <form class="project-form" method="POST" action="">
       <div class="form-section">
         <div class="form-group">
@@ -100,7 +98,6 @@
             <span>-</span>
             <input type="text" id="serial-number" name="serial-number" maxlength="3" placeholder="001" required pattern="\d{3}" style="width: 50px;" />
           </div>
-        </div>
         </div>
         <div class="form-group">
           <label for="project-description">Project Description<span class="required">*</span></label>

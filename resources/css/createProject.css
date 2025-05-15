@@ -6,6 +6,7 @@ body {
     color: #333;
 }
 
+
 h2 {
     font-size: 15px;
     font-weight: bold;
@@ -19,7 +20,6 @@ h2 {
     padding-left: 10px;
     padding-right: 20px;
     padding-top: 10px;
-
 }
 
 .form-group {
@@ -166,7 +166,7 @@ input, textarea {
 
 .form-button.create-button,
 .form-button.cancel-button {
-  width: 180px; /* Adjust as needed */
+  width: 180px; 
   height: 45px;
   font-size: 15px;
 }
