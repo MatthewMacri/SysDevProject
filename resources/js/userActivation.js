@@ -1,3 +1,5 @@
+console.log("userActivation.js loaded!");
+
 // Show the activate confirmation popup
 function showConfirmBox() {
   const username = document.getElementById("username").value || "unknown";
@@ -22,21 +24,67 @@ function hideDeactivateConfirmBox() {
   document.getElementById("deactivateConfirmBox").style.display = "none";
 }
 
-// Wait until the page is fully loaded
+
+//add event listender for activating and deactiavting users
 document.addEventListener("DOMContentLoaded", () => {
-  // Get the activate and deactivate buttons
-  const activateButton = document.querySelector(".activateButton");
-  const deactivateButton = document.querySelector(".deactivateButton");
+    const activateButton = document.querySelector(".activateButton");
+    const deactivateButton = document.querySelector(".deactivateButton");
+    const activateConfirm = document.getElementById("confirmActivate");
+    const deactivateConfirm = document.getElementById("confirmDeactivate");
+    const cancelActivate = document.getElementById("cancelActivate");
+    const cancelDeactivate = document.getElementById("cancelDeactivate");
 
-  // When the activate button is clicked, show the confirmation box
-  activateButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    showConfirmBox();
-  });
+    // Show confirmation popups
+    activateButton?.addEventListener("click", (e) => {
+        e.preventDefault();
+        showConfirmBox();
+    });
 
-  // When the deactivate button is clicked, show the confirmation box
-  deactivateButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    showDeactivateConfirmBox();
-  });
+    deactivateButton?.addEventListener("click", (e) => {
+        e.preventDefault();
+        showDeactivateConfirmBox();
+    });
+
+    activateConfirm?.addEventListener("click", () => {
+        updateUserStatus(false); 
+        hideConfirmBox();
+    });
+
+    deactivateConfirm?.addEventListener("click", () => {
+        updateUserStatus(true); 
+        hideDeactivateConfirmBox();
+    });
+
+    cancelActivate?.addEventListener("click", hideConfirmBox);
+    cancelDeactivate?.addEventListener("click", hideDeactivateConfirmBox);
 });
+
+
+
+function updateUserStatus(deactivate) {
+    const username = document.getElementById("username").value.trim();
+    const adminPassword = document.getElementById("admin-password").value.trim();
+
+    if (!username || !adminPassword) {
+        alert("Please enter both the username and admin password.");
+        return;
+    }
+
+  fetch("/SysDevProject/resources/api/userActivation.php", {
+    method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            username,adminPassword, deactivated: deactivate ? 1 : 0 
+        }),
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        if (data.success) {
+            location.reload();
+        }
+    })
+    .catch(() => {
+        alert("Error processing the request.");
+    });
+}
