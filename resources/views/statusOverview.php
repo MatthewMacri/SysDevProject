@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['admin_id'])) {
-  header("Location: login.html");
-  exit;
-}
+
 
 // Connect to SQLite
 $db = new PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/SysDevProject/database/Datab.db");
