@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\mediaControllers;
 
 require_once 'app/Models/mediaModel/photo.php';
 use App\Models\Photo;

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\users;
 
 class Admin {
     private $db;

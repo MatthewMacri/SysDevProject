@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\mediaModels;
 
 require_once (dirname(__DIR__, 2) . 'Http/Controllers/core/databasecontroller.php');
 

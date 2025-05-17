@@ -1,6 +1,6 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\entitiesControllers;
 
 require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
