@@ -10,18 +10,18 @@ class Admin {
     }
 
     public function getAllAdmins() {
-        $stmt = $this->db->query("SELECT * FROM admin");
+        $stmt = $this->db->query("SELECT * FROM admins");
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 
     public function getAdminById($id) {
-        $stmt = $this->db->prepare("SELECT * FROM admin WHERE admin_id = ?");
+        $stmt = $this->db->prepare("SELECT * FROM admins WHERE admin_id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(\PDO::FETCH_ASSOC);
     }
 
     public function addAdmin($postData) {
-    $stmt = $this->db->prepare("INSERT INTO admin (admin_name, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $this->db->prepare("INSERT INTO admins (admin_name, first_name, last_name, email, password) VALUES (?, ?, ?, ?, ?)");
     $stmt->execute([
         $postData['admin_name'],
         $postData['first_name'],
@@ -32,7 +32,7 @@ class Admin {
 }
 
     public function updateAdmin($id, $data) {
-        $stmt = $this->db->prepare("UPDATE admin SET admin_name = ?, first_name = ?, last_name = ?, email = ?, password = ? WHERE admin_id = ?");
+        $stmt = $this->db->prepare("UPDATE admins SET admin_name = ?, first_name = ?, last_name = ?, email = ?, password = ? WHERE admin_id = ?");
         return $stmt->execute([
             $data['admin_name'],
             $data['first_name'],
@@ -44,7 +44,7 @@ class Admin {
     }
 
     public function deleteAdmin($id) {
-        $stmt = $this->db->prepare("DELETE FROM admin WHERE admin_id = ?");
+        $stmt = $this->db->prepare("DELETE FROM admins WHERE admin_id = ?");
         return $stmt->execute([$id]);
     }
 }
