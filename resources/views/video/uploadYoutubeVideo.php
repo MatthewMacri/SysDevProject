@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+  if (!isset($_SESSION['role'])) {
+        header("Location: ../login/loginview.php");
+        exit;
+  } 
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +24,7 @@
   <!-- Shared Navbar -->
   <?php 
     require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
+    // require BASE_PATH . '/resources/components/navbar.php';
   ?>
 
   <!-- Upload YouTube Video Form -->
@@ -23,12 +34,11 @@
       
       <!-- Project ID -->
       <input type="text" name="project_id" placeholder="Project ID" required><br>
-
+      <br>
       <!-- YouTube URL -->
       <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
-
       <!-- Format is always 'youtube' for this form -->
-      <input type="text" name="format" value="youtube" readonly><br>
+      <input type="hidden" name="format" value="youtube" readonly><br>
 
       <!-- Video duration auto-filled via YouTube API -->
       <input type="hidden" id="duration" name="duration">

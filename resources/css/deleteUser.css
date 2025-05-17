@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: Arial, sans-serif;
@@ -63,7 +64,7 @@ input[type="password"] {
   background-color: #999;
 }
 
-.hidden-overlay {
+.popup-overlay {
   display: none;
   position: fixed;
   top: 0;
@@ -71,53 +72,45 @@ input[type="password"] {
   width: 100vw;
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.75);
-  z-index: 999;
   justify-content: center;
   align-items: center;
+  z-index: 999;
 }
 
-.confirm-content {
-  position: relative;
-  width: 720px;
-  height: 50px;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 20px 40px 80px;
+.popup-box {
+  background: white;
+  padding: 30px 40px;
+  border-radius: 10px;
   text-align: center;
-  font-family: Arial, sans-serif;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  width: 500px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 
-.confirm-buttons {
+.popup-box p {
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #333;
+}
+
+.popup-buttons {
   display: flex;
   justify-content: space-between;
-  position: absolute;
-  bottom: 20px;
-  left: 0;
-  width: 100%;
-  padding: 0 40px;
-  box-sizing: border-box;
 }
 
-.btn {
-  width: 100px;
-  height: 30px;
-  background-color: #f58220;
-  border: 1px solid #999;
-  border-radius: 4px;
+.orange-btn {
+  background-color: #f68a30;
+  border: 1px solid #000;
   color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 14px;
-  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #e66700;
+.orange-btn:hover {
+  background-color: #e67e22;
 }
 
-.btn:active {
-  background-color: #999;
+.hidden-overlay.show {
+  display: flex;
 }

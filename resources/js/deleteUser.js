@@ -5,9 +5,15 @@ function showDeleteConfirmBox() {
   const popup = document.getElementById("deleteConfirmBox");
 
   const username = usernameInput ? usernameInput.value.trim() || "unknown" : "unknown";
+
   if (display && popup) {
     display.textContent = username;
-    popup.style.display = "flex";
+
+    // Defer style change to next repaint
+    requestAnimationFrame(() => {
+      popup.offsetHeight;
+      popup.classList.add("show");
+    });
   } else {
     console.warn("Delete popup or user ID display not found.");
   }
@@ -16,7 +22,7 @@ function showDeleteConfirmBox() {
 // Hide the confirmation popup
 function hideDeleteConfirmBox() {
   const popup = document.getElementById("deleteConfirmBox");
-  if (popup) popup.style.display = "none";
+  if (popup) popup.classList.remove("show");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -28,10 +34,15 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  deleteButton.addEventListener("click", (e) => {
-    e.preventDefault();
-    showDeleteConfirmBox();
-  });
+deleteButton.addEventListener("click", (e) => {
+  e.preventDefault();
+  const username = document.getElementById("username").value.trim();
+  if (!username) {
+    alert("Please enter a username.");
+    return;
+  }
+  showDeleteConfirmBox(username);
+});
 
   confirmDeleteBtn.addEventListener("click", () => {
     const username = document.getElementById("username")?.value.trim();

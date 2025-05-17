@@ -2,11 +2,12 @@
 
 namespace Controllers;
 
-require 'vendor/autoload.php';
+require __DIR__ . '/../../../../vendor/autoload.php';
+require_once __DIR__ . '/DatabaseController.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 
 class AuthController {
 
@@ -49,15 +50,42 @@ class AuthController {
         $mail->SMTPAuth = true;
         $mail->Username = 'you@example.com';      // Change to actual email
         $mail->Password = 'yourpassword';         // Change to actual password
+        if (!$email) {
+            echo "❌ No email provided.";
+            return;
+        }
+
+        // Generate token
+        $token = bin2hex(random_bytes(32));
+        $expires = time() + 1800;
+
+        // Get DB instance
+        require_once __DIR__ . '/databaseController.php'; // if needed
+        $db = DatabaseController::getInstance();
+        $pdo = $db->getConnection();
+
+        // Save token
+        $pdo->prepare("DELETE FROM password_resets WHERE email = ?")->execute([$email]);
+        $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)")
+            ->execute([$email, $token, $expires]);
+
+        // Send email
+        $resetLink = "http://localhost:8000/resources/views/resetPassword.php?token=$token";
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'youremail@gmail.com';
+        $mail->Password = 'your_app_password';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('you@example.com', 'Texas Gears');
+        $mail->setFrom('youremail@gmail.com', 'Texas Gears');
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'Reset Your Password';
-        $mail->Body = "Click this link to reset your password: 
-            <a href='http://localhost/SysDevProject/resources/views/password/resetPassword.php?token=$token'>Reset Password</a>";
+        $mail->Body = "Click here to reset your password: <a href='$resetLink'>$resetLink</a>";
 
         // Step 7: Send the email and handle success/failure
         if ($mail->send()) {
@@ -65,6 +93,7 @@ class AuthController {
             exit;
         } else {
             echo "Failed to send email: " . $mail->ErrorInfo;  // Error handling if email fails to send
+            echo "✅ Reset link sent to $email";
         }
     }
 
@@ -104,8 +133,20 @@ class AuthController {
 
         // Step 6: Delete the reset token after use
         $db->deleteResetToken($token);
+        // Remove used token
+        $pdo->prepare("DELETE FROM password_resets WHERE token = ?")->execute([$token]);
 
         // Step 7: Return success message
         echo "Password updated successfully.";
     }
+}
+
+// ✅ ROUTER: handles requests from forms like forgotPassword.php
+$auth = new AuthController();
+$action = $_GET['action'] ?? '';
+
+if ($action === 'sendResetLink') {
+    $auth->sendResetLink();
+} elseif ($action === 'resetPassword') {
+    $auth->resetPassword();
 }

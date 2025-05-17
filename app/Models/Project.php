@@ -2,15 +2,17 @@
 
 namespace App\Models;
 
-require_once dirname(__DIR__) . '/core/databasecontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT']. '/SysDevProject/app/Http/Controllers/core/databasecontroller.php';
 
-use Controllers\DatabaseController;
+use  App\Http\Controllers\core\DatabaseController;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Project extends Model
+class Project
 {
     // Class properties to hold project details
+    private ?string $serialNumber = null;
+    private ?string $description = null;
+    private ?string $status = 'prospecting';
+    private ?int $clientId = null;
     private ?int $projectId;          // ID of the project
     private string $projectName;      // Name of the project
     private ?string $creationTime;   // Creation timestamp of the project
@@ -26,14 +28,52 @@ class Project extends Model
      * @param string $projectName Name of the project
      * @param int $bufferDays Number of buffer days for the project
      */
-    public function __construct(?int $projectId, string $projectName, int $bufferDays)
+    public function __construct()
     {
-        $this->projectId = $projectId;
-        $this->projectName = $projectName;
-        $this->bufferDays = $bufferDays;
+
     }
 
     // Getter and setter methods for class properties
+
+    public function getSerialNumber(): ?string
+    {
+        return $this->serialNumber;
+    }
+
+    public function setSerialNumber(?string $serialNumber): void
+    {
+        $this->serialNumber = $serialNumber;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    public function getStatus(): ?string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?string $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getClientId(): ?int
+    {
+        return $this->clientId;
+    }
+
+    public function setClientId(?int $clientId): void
+    {
+        $this->clientId = $clientId;
+    }
 
     public function getProjectId(): ?int
     {
@@ -115,31 +155,32 @@ class Project extends Model
     {
         // Insert project data into the database
         $stmt = $pdo->prepare("
-            INSERT INTO projects (projectName, bufferDays) 
-            VALUES (:projectName, :bufferDays)
-        ");
+        INSERT INTO Project (
+            serial_number, project_name, project_description, client_id,
+            start_date, end_date, buffer_days, status
+        ) VALUES (
+            :serialNumber, :projectName, :description, :clientId,
+            :startDate, :endDate, :bufferDays, :status
+        )
+    ");
 
-        // Execute the query with project data
-        if ($stmt->execute([
-            ':projectName' => $this->projectName,
-            ':bufferDays' => $this->bufferDays
-        ])) {
-            // After inserting, get the newly inserted project ID
-            $this->projectId = (int)$pdo->lastInsertId();
+    $result = $stmt->execute([
+        ':serialNumber' => $this->serialNumber,
+        ':projectName' => $this->projectName,
+        ':description' => $this->description,
+        ':clientId' => $this->clientId,
+        ':startDate' => $this->startDate,
+        ':endDate' => $this->endDate,
+        ':bufferDays' => $this->bufferDays,
+        ':status' => $this->status
+    ]);
 
-            // Fetch the project from the database to get the additional fields (e.g. dates)
-            $fresh = self::selectById($pdo, $this->projectId);
-            if ($fresh) {
-                $this->creationTime = $fresh->getCreationTime();
-                $this->startDate = $fresh->getStartDate();
-                $this->endDate = $fresh->getEndDate();
-                $this->bufferedDate = $fresh->getBufferedDate();
-            }
+    if ($result) {
+        $this->projectId = (int) $pdo->lastInsertId();
+        return true;
+    }
 
-            return true;
-        }
-
-        return false;
+    return false;
     }
 
     /**
@@ -198,7 +239,7 @@ class Project extends Model
 
         if ($data) {
             // Create a new Project object and populate it with the data from the database
-            $project = new self($data['projectId'], $data['projectName'], $data['bufferDays']);
+            $project = new self();
             $project->setCreationTime($data['creationTime']);
             $project->setStartDate($data['startDate']);
             $project->setEndDate($data['endDate']);
@@ -222,7 +263,7 @@ class Project extends Model
 
         // Loop through each result and create a Project object
         while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-            $project = new self($row['projectId'], $row['projectName'], $row['bufferDays']);
+            $project = new self();
             $project->setCreationTime($row['creationTime']);
             $project->setStartDate($row['startDate']);
             $project->setEndDate($row['endDate']);
@@ -253,8 +294,8 @@ class Project extends Model
                 c.client_name,
                 s.supplier_name
             FROM Project p
-            JOIN Client c ON p.client_id = c.client_id
-            JOIN Supplier s ON p.supplier_id = s.supplier_id
+            LEFT JOIN Client c ON p.client_id = c.client_id
+            LEFT JOIN Supplier s ON p.supplier_id = s.supplier_id
             WHERE 1=1
         ";
 

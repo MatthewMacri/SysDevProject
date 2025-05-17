@@ -9,7 +9,6 @@ use Controllers\PhotoController;
 // Create a new database instance
 $db = new Database();
 
-// 🔧 If no controller is provided in the URL, redirect to the login page
 if (!isset($_GET['controller'])) {
     header('Location: resources/views/login/loginview.php');
     exit;
@@ -19,6 +18,7 @@ if (!isset($_GET['controller'])) {
 $controller = $_GET['controller'];
 $action = $_GET['action'] ?? 'index'; // If no action is given, use 'index' as default
 
+echo "Routing to controller: $controller, action: $action";
 // Load the correct controller based on the URL
 switch ($controller) {
     case 'project':
@@ -56,12 +56,15 @@ if (method_exists($obj, $action)) {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // If it's a POST request, pass POST data to the method
         $obj->$action($_POST);
+        exit;
     } elseif (isset($_GET['id'])) {
         // If an ID is provided in the URL, pass it as a parameter
         $obj->$action($_GET['id']);
+        exit;
     } else {
         // Otherwise, call the method with no parameters
         $obj->$action();
+        exit;
     }
 } else {
     // If the method doesn't exist in the controller
