@@ -47,8 +47,8 @@
         Confirm to Proceed
       </p>
       <div class="confirm-buttons">
-        <button class="btn" onclick="hideConfirmBox()">Cancel</button>
-        <button class="btn">Confirm</button>
+        <button class="btn" id="cancelActivate">Cancel</button>
+        <button class="btn" id="confirmActivate">Confirm</button>
       </div>
     </div>
   </div>
@@ -61,11 +61,14 @@
         Confirm to Proceed
       </p>
       <div class="confirm-buttons">
-        <button class="btn" onclick="hideDeactivateConfirmBox()">Cancel</button>
-        <button class="btn">Confirm</button>
+        <button class="btn" id="cancelDeactivate">Cancel</button>
+        <button class="btn" id="confirmDeactivate">Confirm</button>
       </div>
     </div>
   </div>
+
+  <!-- JavaScript logic for user activation functionality -->
+  <script src="../../js/userActivation.js"></script>
 
   <!-- Include W3Schools library for HTML includes -->
   <script src="https://www.w3schools.com/lib/w3data.js"></script>
@@ -84,8 +87,7 @@
     });
   </script>
 
-  <!-- JavaScript logic for user activation functionality -->
-  <script src="../../js/userActivation.js"></script>
+
 
 </body>
 </html>

@@ -1,11 +1,12 @@
 <?php
+session_start();
 if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-  if (!isset($_SESSION['role'])) {
-    header("Location: ../login/loginview.php");
-    exit;
-  }
+    session_start();
 }
+  if (!isset($_SESSION['role'])) {
+        header("Location: ./login/loginview.php");
+        exit;
+  } 
 ?>
 
 <!-- Include external CSS for navbar -->
@@ -21,7 +22,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <a href="/SysDevProject/resources/views/project/searchProject.php">Project Search</a>
     <a href="/SysDevProject/resources/views/project/history.php">Project History</a>
     <a href="/SysDevProject/resources/views/project/createProjectView.php">Create Project</a>
-    <a href="/SysDevProject/resources/views/other/statusOverview.php">Status Overview</a>
+    <a href="/SysDevProject/resources/views/statusOverview.php">Status Overview</a>
   </div>
 
   <!-- Center Logo -->
@@ -47,13 +48,13 @@ if (session_status() == PHP_SESSION_NONE) {
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage</a>
-          <a href="/SysDevProject/resources/views/admin/createUser.php">Create</a>
-          <a href="/SysDevProject/resources/views/project/deleteProject.php">Delete</a>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage Password</a>
+          <a href="/SysDevProject/resources/views/admin/createUser.php">Create User</a>
+          <a href="/SysDevProject/resources/views/user/deleteUser.php">Delete User</a>
           <a href="/SysDevProject/resources/views/admin/userActivation.php">User Status</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php else: ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage</a>
+          <a href="/SysDevProject/resources/views/user/changePassword.php">Manage Password</a>
           <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
         <?php endif; ?>
       </div>

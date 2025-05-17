@@ -4,7 +4,7 @@ namespace App\Models;
 
 require_once (dirname(__DIR__, 2) . 'Http/Controllers/core/databasecontroller.php');
 
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 
 class Video {
     private ?int $videoId;         // ID of the video

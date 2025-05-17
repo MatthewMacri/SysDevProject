@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers\entitiesControllers;
 
-require_once dirname(__DIR__) . '/core/databasecontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/databaseController.php';
+require_once BASE_PATH . '/app/Models/Project.php';
 
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 use App\Models\Project;
+use App\Models\Client;
+use App\Models\Supplier;
+use App\Models\Photo;
+use App\Models\Video;
 
 class ProjectController
 {
@@ -77,12 +82,12 @@ class ProjectController
     public function searchJson()
     {
         // Enable error reporting for debugging purposes
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
-        error_reporting(E_ALL);
+        // ini_set('display_errors', 1);
+        // ini_set('display_startup_errors', 1);
+        // error_reporting(E_ALL);
 
         // Set the response content type to JSON
-        header('Content-Type: application/json');
+        // header('Content-Type: application/json');
 
         // Get the filters from the request
         $filters = $_GET;
@@ -92,5 +97,59 @@ class ProjectController
 
         // Return the results as a JSON response
         echo json_encode($projects);
+    }
+
+    public function formSubmission($data)
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($data['confirm'])) {
+            $projectTitle = $data['project-title'];
+            $serialNumber = $data['project-serial-number'];
+            $description = $data['project-description'];
+            $startDate = $data['project-start-date'];
+            $endDate = $data['project-end-date'];
+
+            // CLIENT INFO
+            $clientName = $data['client-name'];
+            $clientCompany = $data['client-company'];
+            $clientEmail = $data['client-email'];
+            $clientPhone = $data['client-phone'];
+
+            // SUPPLIER INFO — multiple suppliers may exist
+            $supplierNames = $data['supplier-name'];
+            $supplierCompanies = $data['supplier-company'];
+            $supplierEmails = $data['supplier-email'];
+            $supplierPhones = $data['supplier-phone'];
+
+            $supplierDate = $data['supplier-date'] ?? null;
+
+            // Load all Models and inject into handler
+            $projectModel = new Project();
+            $clientModel = new Client($clientName, $clientCompany, $clientEmail, $clientPhone);
+            $supplierModel = new Supplier();
+
+            include_once BASE_PATH . '/resources/services/projectService.php';
+            $service = new \Services\ProjectService(
+                $projectModel,
+                $clientModel,
+                $supplierModel
+            );
+
+            $service->createFullProject([
+                'title' => $projectTitle,
+                'serial' => $serialNumber,
+                'desc' => $description,
+                'start' => $startDate,
+                'end' => $endDate,
+                'client' => [
+                    'name' => $clientName,
+                    'company' => $clientCompany,
+                    'email' => $clientEmail,
+                    'phone' => $clientPhone,
+                ],
+                'suppliers' => array_map(null, $supplierNames, $supplierCompanies, $supplierEmails, $supplierPhones),
+                'supplier_date' => $supplierDate
+            ]);
+        }
+        exit;
     }
 }
