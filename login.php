@@ -32,13 +32,13 @@ $username = $data['username'];
 $password = $data['password'];
 
 // Connect to the SQLite database
-$db = new PDO("sqlite:database/Datab.db");
+$db = new PDO("sqlite:database/texasgears.db");
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $role = null;  // Will hold either 'admin' or 'user'
 
 // First check if the user is an admin
-$stmt = $db->prepare("SELECT * FROM admin WHERE admin_name = ?");
+$stmt = $db->prepare("SELECT * FROM admins WHERE admin_name = ?");
 $stmt->execute([$username]);
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -47,7 +47,7 @@ if ($user) {
 } else {
     // If not found in admin table, check user table
     $role = 'user';
-    $stmt = $db->prepare("SELECT * FROM user WHERE user_name = ?");
+    $stmt = $db->prepare("SELECT * FROM users WHERE user_name = ?");
     $stmt->execute([$username]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
