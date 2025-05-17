@@ -7,8 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
 use PDO;
 use PDOException;
 
-class DatabaseController
-{
+class DatabaseController {
     // Singleton instance of DatabaseController
     private static ?DatabaseController $instance = null;
     private PDO $connection;
