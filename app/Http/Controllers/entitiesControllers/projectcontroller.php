@@ -42,6 +42,10 @@ class ProjectController
         $projects = Project::searchWithFilters($filters);
 
         // Include the view to display the search results
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
         include resource_path('views/project/SearchProject.php');
     }
 
@@ -130,6 +134,11 @@ class ProjectController
             $clientModel = new Client($clientName, $clientCompany, $clientEmail, $clientPhone);
             $supplierModel = new Supplier();
 
+            if (!function_exists('resource_path')) {
+                require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+                $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+            }
+            
             include_once resource_path('services/projectService.php');
             $service = new \Services\ProjectService(
                 $projectModel,
