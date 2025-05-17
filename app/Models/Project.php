@@ -2,7 +2,10 @@
 
 namespace App\Models;
 
-require_once $_SERVER['DOCUMENT_ROOT']. '/SysDevProject/app/Http/Controllers/core/databasecontroller.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databasecontroller.php');
 
 use  App\Http\Controllers\core\DatabaseController;
 
@@ -193,9 +196,9 @@ class Project
     public function updateProject(\PDO $pdo, int $id): bool
     {
         $stmt = $pdo->prepare("
-            UPDATE projects 
-            SET projectName = :projectName, creationTime = :creationTime, startDate = :startDate, 
-                endDate = :endDate, bufferDays = :bufferDays, bufferedDate = :bufferedDate 
+            UPDATE Project 
+            SET project_name = :projectName, creation_time = :creationTime, start_date = :startDate, 
+                endDate = :end_date, buffer_days = :bufferDays, buffered_date = :bufferedDate 
             WHERE projectId = :id
         ");
 
@@ -220,7 +223,7 @@ class Project
      */
     public function deleteProject(\PDO $pdo, int $id): bool
     {
-        $stmt = $pdo->prepare("DELETE FROM projects WHERE projectId = :id");
+        $stmt = $pdo->prepare("DELETE FROM Project WHERE projectId = :id");
         return $stmt->execute([':id' => $id]);
     }
 
@@ -233,7 +236,7 @@ class Project
      */
     public static function selectById(\PDO $pdo, int $id): ?self
     {
-        $stmt = $pdo->prepare("SELECT * FROM projects WHERE projectId = :id");
+        $stmt = $pdo->prepare("SELECT * FROM Project WHERE projectId = :id");
         $stmt->execute([':id' => $id]);
         $data = $stmt->fetch(\PDO::FETCH_ASSOC);
 
@@ -258,7 +261,7 @@ class Project
      */
     public static function selectAll(\PDO $pdo): array
     {
-        $stmt = $pdo->query("SELECT * FROM projects");
+        $stmt = $pdo->query("SELECT * FROM Project");
         $projects = [];
 
         // Loop through each result and create a Project object
