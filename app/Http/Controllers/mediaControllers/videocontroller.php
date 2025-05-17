@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\mediaControllers;
 
 require_once 'app/Models/mediaModels/video.php';
-
+use App\Models\mediaModels\Video;
 class VideoController {
     private $model;
 
@@ -14,7 +14,7 @@ class VideoController {
      */
     public function __construct($db) {
         // Instantiate the Video model with the database connection
-        $this->model = new \App\Models\Video($db);
+        $this->model = new Video($db);
     }
 
     /**

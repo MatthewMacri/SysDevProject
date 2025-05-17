@@ -7,7 +7,7 @@ $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
 require_once app_path ('Models/users/ApplicationUser.php');
 
-use App\Models\ApplicationUser;
+use App\Models\users\ApplicationUser;
 
 class Usercontroller
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\mediaControllers;
 
 require_once 'app/Models/mediaModel/photo.php';
-use App\Models\Photo;
+use App\Models\mediaModels\Photo;
 
 class PhotoController {
     private $model;

@@ -10,10 +10,11 @@ require_once app_path('Models/project.php');
 
 use App\Http\Controllers\core\DatabaseController;
 use App\Models\Project;
-use App\Models\Client;
-use App\Models\Supplier;
-use App\Models\Photo;
-use App\Models\Video;
+use App\Models\projectAssociatesControllers\Client;
+use App\Models\projectAssociatesControllers\Supplier;
+use Resources\services\ProjectService;
+use App\Models\mediaModels\Photo;
+use App\Models\mediaModels\Video;
 
 class ProjectController
 {
@@ -138,9 +139,9 @@ class ProjectController
                 require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
                 $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
             }
-            
+
             include_once resource_path('services/projectService.php');
-            $service = new \Services\ProjectService(
+            $service = new ProjectService(
                 $projectModel,
                 $clientModel,
                 $supplierModel
