@@ -1,8 +1,10 @@
 <?php
 session_start();
 
+use App\Http\Controllers\core\DatabaseController;
 // Connect to SQLite database
-$db = new PDO("sqlite:../../database/Datab.db");
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Get the submitted email from the form

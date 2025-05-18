@@ -10,7 +10,7 @@ use App\Models\users\Admin;
 class AdminController
 {
     private $model;
-    private $encryptionKey = 'your-secret-encryption-key'; // CHANGE THIS to a secure key
+    private $encryptionKey = '796a3a9391c45035412c62f92e889080';
 
     public function __construct($db)
     {

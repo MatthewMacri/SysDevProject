@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\core;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once config_path('config.php');
 
 use PDO;
 use PDOException;
@@ -21,22 +24,21 @@ class DatabaseController
      * @param string $databasePath Path to the SQLite database.
      */
     // Private constructor to prevent direct instantiation
-    private function __construct(string $databasePath = '')
+    private function __construct()
     {
         if (!function_exists('database_path')) {
             require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
             $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
         }
 
-        if (empty($databasePath)) {
-            $databasePath = database_path('texasgears.db');  // Laravel helper is now available
+        if (empty(self::$databasePath)) {
+            self::$databasePath = database_path('texasgears.db');
         }
-
-        self::$databasePath = $databasePath;
 
         try {
             $this->connection = new PDO("sqlite:" . self::$databasePath);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->init();
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
@@ -49,10 +51,10 @@ class DatabaseController
      * @param string $databasePath Path to the SQLite database (default is 'database.sqlite').
      * @return self The singleton instance of DatabaseController.
      */
-    public static function getInstance(string $databasePath = ''): self
+    public static function getInstance(): self
     {
         if (self::$instance === null) {
-            self::$instance = new self($databasePath);
+            self::$instance = new self();
         }
         return self::$instance;
     }
@@ -84,7 +86,9 @@ class DatabaseController
             last_name VARCHAR(255),
             email VARCHAR(255),
             password VARCHAR(255),
-            is_deactivated BIT
+            is_deactivated BIT,
+            twofa_secret VARCHAR(255),
+            role VARCHAR(10)
         )",
 
             "CREATE TABLE IF NOT EXISTS Admins (
@@ -93,7 +97,9 @@ class DatabaseController
             first_name VARCHAR(255),
             last_name VARCHAR(255),
             email VARCHAR(255),
-            password VARCHAR(255)
+            password VARCHAR(255),
+            twofa_secret VARCHAR(255),
+            role VARCHAR(10)
         )",
 
             "CREATE TABLE IF NOT EXISTS Client (

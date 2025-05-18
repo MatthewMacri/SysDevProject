@@ -1,8 +1,9 @@
 <?php
-
+use App\Http\Controllers\core\DatabaseController;
 
 // Connect to SQLite
-$db = new PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/SysDevProject/database/Datab.db");
+$databaseInstance = DatabaseController::getInstance();
+$db = $databaseInstance->getConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Fetch projects from PROJECT table

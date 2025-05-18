@@ -1,13 +1,17 @@
 <?php
 // Load the database class and required controller namespaces
-require_once 'app/Models/database.php';
+require_once 'vendor/autoload.php';
+$app = require_once 'bootstrap/app.php';
+
+require_once app_path('\Http\Controllers\core\DatabaseController.php');
+
 use App\Http\Controllers\core\DatabaseController;
 use App\Http\Controllers\entitiesControllers\AdminController;
 use App\Http\Controllers\supplierController\SupplierController;
 use App\Http\Controllers\mediaControllers\PhotoController;
 
 // Create a new database instance
-$db = new DatabaseController();
+$db = DatabaseController::getInstance();
 
 if (!isset($_GET['controller'])) {
     header('Location: resources/views/login/loginview.php');

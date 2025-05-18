@@ -1,19 +1,17 @@
 <?php
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
 // Return JSON response
 header('Content-Type: application/json');
 
 try {
-    // Path to SQLite database
-    $dbPath = "C:/xampp/htdocs/SysDevProject/database/Datab.db";
-
-    // Debug safeguard: ensure DB file exists
-    if (!file_exists($dbPath)) {
-        echo json_encode(["error" => "Database not found at: " . $dbPath]);
-        exit;
-    }
-
     // Connect to SQLite database with PDO
-    $db = new PDO("sqlite:" . $dbPath);
+    $database = DatabaseController::getInstance();
+    $db = $database->getConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch project tasks for Gantt visualization

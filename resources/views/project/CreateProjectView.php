@@ -12,19 +12,18 @@
 </head>
 
 <body>
-    <?php
+  <?php
 
-    use Controllers\DatabaseController;
+  use App\Http\Controllers\core\DatabaseController;
 
+  require_once '../../components/navbar.php';
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
-    require_once '../../../config/config.php';
-    require_once '../../components/navbar.php';
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-      
-    require_once __DIR__ . '../../../../app/Http/Controllers/core/databasecontroller.php';
+    require_once app_path('Http/Controllers/core/databaseController.php');
     $db = DatabaseController::getInstance();
-    $db->init();
     $pdo = $db->getConnection();
 
     // Collect values
@@ -47,42 +46,42 @@
     $supplierPhone = $_POST['supplier-phone'];
 
     try {
-        // Insert client
-        $stmt = $pdo->prepare("INSERT INTO Client (client_name, company_name, email, client_phone_number) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$clientName, $clientCompany, $clientEmail, $clientPhone]);
-        $clientId = $pdo->lastInsertId();
+      // Insert client
+      $stmt = $pdo->prepare("INSERT INTO Client (client_name, company_name, email, client_phone_number) VALUES (?, ?, ?, ?)");
+      $stmt->execute([$clientName, $clientCompany, $clientEmail, $clientPhone]);
+      $clientId = $pdo->lastInsertId();
 
-        // Insert supplier
-        $stmt = $pdo->prepare("INSERT INTO Supplier (supplier_name, company_name, email, supplier_phone_number) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$supplierName, $supplierCompany, $supplierEmail, $supplierPhone]);
-        $supplierId = $pdo->lastInsertId();
+      // Insert supplier
+      $stmt = $pdo->prepare("INSERT INTO Supplier (supplier_name, company_name, email, supplier_phone_number) VALUES (?, ?, ?, ?)");
+      $stmt->execute([$supplierName, $supplierCompany, $supplierEmail, $supplierPhone]);
+      $supplierId = $pdo->lastInsertId();
 
-        // Insert project
-        $stmt = $pdo->prepare("INSERT INTO Project (
+      // Insert project
+      $stmt = $pdo->prepare("INSERT INTO Project (
             serial_number, supplier_id, client_id, project_name, project_description, 
             start_date, end_date, buffered_date, buffer_days, status
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-        $stmt->execute([
-            $serialNumber,
-            $supplierId,
-            $clientId,
-            $projectTitle,
-            $description,
-            $startDate,
-            $endDate,
-            $endDate,      // buffered_date same as end_date initially
-            0,             // buffer_days
-            'prospecting'  // status
-        ]);
+      $stmt->execute([
+        $serialNumber,
+        $supplierId,
+        $clientId,
+        $projectTitle,
+        $description,
+        $startDate,
+        $endDate,
+        $endDate,      // buffered_date same as end_date initially
+        0,             // buffer_days
+        'prospecting'  // status
+      ]);
 
-        echo "<p style='color:green; text-align:center;'>✅ Project created successfully.</p>";
+      echo "<p style='color:green; text-align:center;'>✅ Project created successfully.</p>";
     } catch (PDOException $e) {
-        echo "<p style='color:red; text-align:center;'>❌ Failed: " . $e->getMessage() . "</p>";
+      echo "<p style='color:red; text-align:center;'>❌ Failed: " . $e->getMessage() . "</p>";
     }
-}
-?>
-  <main style ="margin: 20px auto; max-width: 1400px; padding: 20px;">
+  }
+  ?>
+  <main style="margin: 20px auto; max-width: 1400px; padding: 20px;">
     <form class="project-form" method="POST" action="">
       <div class="form-section">
         <div class="form-group">
@@ -92,11 +91,14 @@
         <div class="form-group">
           <label for="serial-prefix">Project Serial Number<span class="required">*</span></label>
           <div style="display: flex; gap: 5px; align-items: center;">
-            <input type="text" id="serial-prefix" name="serial-prefix" maxlength="3" placeholder="SN" required pattern="[A-Za-z]{2,3}" style="width: 50px;" />
+            <input type="text" id="serial-prefix" name="serial-prefix" maxlength="3" placeholder="SN" required
+              pattern="[A-Za-z]{2,3}" style="width: 50px;" />
             <span>-</span>
-            <input type="text" id="serial-year" name="serial-year" maxlength="4" placeholder="2023" required pattern="\d{4}" style="width: 70px;" />
+            <input type="text" id="serial-year" name="serial-year" maxlength="4" placeholder="2023" required
+              pattern="\d{4}" style="width: 70px;" />
             <span>-</span>
-            <input type="text" id="serial-number" name="serial-number" maxlength="3" placeholder="001" required pattern="\d{3}" style="width: 50px;" />
+            <input type="text" id="serial-number" name="serial-number" maxlength="3" placeholder="001" required
+              pattern="\d{3}" style="width: 50px;" />
           </div>
         </div>
         <div class="form-group">
@@ -179,14 +181,14 @@
           </button>
         </div>
 
-      <div class="date-picker-container">
-        <button type="button" onclick="window.location.href='/SysDevProject/resources/views/photo/uploadPhoto.php'">
-          <div class="date-label">Add Media</div>
-          <i class="fas fa-plus media-icon"></i>
-        </button>
-      </div>
+        <div class="date-picker-container">
+          <button type="button" onclick="window.location.href='/SysDevProject/resources/views/photo/uploadPhoto.php'">
+            <div class="date-label">Add Media</div>
+            <i class="fas fa-plus media-icon"></i>
+          </button>
+        </div>
 
-      
+
 
       </div>
       <p class="required-note"><span class="required">*</span> Required field</p>

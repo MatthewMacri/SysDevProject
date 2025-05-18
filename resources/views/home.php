@@ -70,6 +70,7 @@
   </section>
 
   <!-- Logout Script (attached to logout button) -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");
