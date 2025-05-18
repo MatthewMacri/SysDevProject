@@ -1,4 +1,9 @@
 <?php
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
 use App\Http\Controllers\core\DatabaseController;
 
 // Connect to SQLite
