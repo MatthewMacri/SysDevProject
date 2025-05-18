@@ -1,13 +1,17 @@
 <?php
 // Load the database class and required controller namespaces
-require_once 'app/Models/database.php';
-use App\Models\Database;
-use Controllers\AdminController;
-use Controllers\SupplierController;
-use Controllers\PhotoController;
+require_once 'vendor/autoload.php';
+$app = require_once 'bootstrap/app.php';
+
+require_once app_path('\Http\Controllers\core\DatabaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
+use App\Http\Controllers\entitiesControllers\AdminController;
+use App\Http\Controllers\supplierController\SupplierController;
+use App\Http\Controllers\mediaControllers\PhotoController;
 
 // Create a new database instance
-$db = new Database();
+$db = DatabaseController::getInstance();
 
 if (!isset($_GET['controller'])) {
     header('Location: resources/views/login/loginview.php');
@@ -28,17 +32,17 @@ switch ($controller) {
 
     case 'admin':
         require_once 'app/Http/Controllers/entitiesControllers/admincontroller.php';
-        $obj = new AdminController($db->connect()); // Pass database connection to admin controller
+        $obj = new AdminController($db->getConnection()); // Pass database connection to admin controller
         break;
 
     case 'supplier':
         require_once 'app/Http/Controllers/supplierController/suppliercontroller.php';
-        $obj = new SupplierController($db->connect()); // Pass database connection to supplier controller
+        $obj = new SupplierController($db->getConnection()); // Pass database connection to supplier controller
         break;
 
     case 'photo':
         require_once 'app/Http/Controllers/mediaController/photocontroller.php';
-        $obj = new PhotoController($db->connect()); // Pass database connection to photo controller
+        $obj = new PhotoController($db->getConnection()); // Pass database connection to photo controller
         break;
 
     case 'home':

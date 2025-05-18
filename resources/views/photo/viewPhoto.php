@@ -10,9 +10,11 @@
 <body>
 
   <!-- Shared navigation bar -->
-  <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
+  <?php
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
   ?>
 
   <!-- Section for displaying all uploaded photos -->

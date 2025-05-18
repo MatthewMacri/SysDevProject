@@ -1,10 +1,17 @@
 <?php
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
 // Set content type to JSON for API response
 header('Content-Type: application/json');
 
 try {
     // Connect to the SQLite database
-    $db = new PDO("sqlite:C:/xampp/htdocs/SysDevProject/database/Datab.db");
+    $database = DatabaseController::getInstance();
+    $db = $database->getConnection();
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Prepare SQL to fetch the 5 most recent projects

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\projectAssociatesControllers;
 
 use PDO;
 use App\Http\Controllers\core\DatabaseController;

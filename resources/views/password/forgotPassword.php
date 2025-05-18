@@ -41,11 +41,11 @@
           })
             .then(res => res.text())
             .then(data => {
-              console.log("📩 Server response:", data);
+              console.log("Server response:", data);
               feedback.innerHTML = `<p>${data}</p>`;
             })
             .catch(err => {
-              console.error("❌ Request failed:", err);
+              console.error("Request failed:", err);
               feedback.innerHTML = `<p style="color:red;">Request failed.</p>`;
             });
         });

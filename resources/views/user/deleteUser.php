@@ -1,6 +1,11 @@
 <?php
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
 use App\Http\Controllers\core\DatabaseController;
-use Controllers\Usercontroller;
+use App\Http\Controllers\entitiesControllers\Usercontroller;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['adminPassword'])) {
   require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/databasecontroller.php';

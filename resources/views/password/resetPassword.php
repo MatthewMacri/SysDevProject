@@ -1,6 +1,14 @@
 <?php
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
+
 // Establish a connection to the SQLite database
-$db = new PDO("sqlite:../../database/Datab.db");
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Retrieve the token from the GET request, or terminate if not present

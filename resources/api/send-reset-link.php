@@ -1,6 +1,6 @@
 <?php
 
-use Controllers\AuthController;
+use App\Http\Controllers\core\AuthController;
 
 // Call the controller that contains sendResetLink()
 require_once __DIR__ . '../../../app/Http/Controllers/core/authController.php';
