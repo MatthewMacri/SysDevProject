@@ -26,7 +26,7 @@ if (session_status() == PHP_SESSION_NONE) {
   </div>
 
   <!-- Center Logo -->
-  <a class="logo-container" href="#">
+  <a class="logo-container" href="/SysDevProject/resources/views/home.php">
     <img src="/SysDevProject/public/images/logo/New_TGE_Logo_2025.png" alt="Logo" class="logo">
   </a>
 
