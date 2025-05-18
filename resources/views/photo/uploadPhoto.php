@@ -1,16 +1,17 @@
 <?php
 session_start();
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
-  if (!isset($_SESSION['role'])) {
-        header("Location: ../login/loginview.php");
-        exit;
-  } 
+if (!isset($_SESSION['role'])) {
+  header("Location: ../login/loginview.php");
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Upload Photo</title>
@@ -19,20 +20,26 @@ if (session_status() == PHP_SESSION_NONE) {
   <link rel="stylesheet" href="../../css/home.css">
   <link rel="stylesheet" href="../../css/form.css">
 </head>
+
 <body>
 
-  <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+  <?php
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
-    // Get project_id from query string
-    $projectId = isset($_GET['project_id']) ? htmlspecialchars($_GET['project_id']) : '';
+  require_once config_path('/config.php');
+
+  // Get project_id from query string
+  $projectId = isset($_GET['project_id']) ? htmlspecialchars($_GET['project_id']) : '';
   ?>
 
   <!-- Main form section for uploading photo data -->
   <section class="section">
     <!-- Back Button -->
-    <a href="../project/CreateProjectView.php?project_id=<?= $projectId ?>" style="display: inline-block; margin-bottom: 15px; background-color: #ccc; padding: 8px 12px; border-radius: 4px; color: #000; text-decoration: none;">← Back to Create Project</a>
-    
+    <a href="../project/CreateProjectView.php?project_id=<?= $projectId ?>"
+      style="display: inline-block; margin-bottom: 15px; background-color: #ccc; padding: 8px 12px; border-radius: 4px; color: #000; text-decoration: none;">←
+      Back to Create Project</a>
+
     <h2>Upload Photo</h2>
 
     <!-- Upload photo form -->
@@ -55,8 +62,9 @@ if (session_status() == PHP_SESSION_NONE) {
   </section>
 
 </body>
+
 </html>
 
-<?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/views/video/uploadYoutubeVideo.php';
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/views/video/uploadYoutubeVideo.php';
 ?>

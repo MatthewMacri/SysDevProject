@@ -42,7 +42,7 @@ yarn-error.log
 # Laravel Sail Docker files
 /docker-compose.override.yml
 .env.sail
-# .env.example
+.env.example
 .env
 env
 

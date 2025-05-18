@@ -16,9 +16,10 @@
 
   use App\Http\Controllers\core\DatabaseController;
 
-  require_once '../../components/navbar.php';
   require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
   $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
 
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
