@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
     confirm2faBtn.addEventListener("click", () => {
         const twofaCode = document.getElementById("twofaCode").value.trim();
 
-        fetch("../../../verify.php", {
+        fetch("/SysDevProject/verify.php", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then((data) => {
                 if (data.success) {
                     window.location.href =
-                        "/SysDevProject/resources/views/home.php"; // ✅ Redirect to homepage
+                        "/SysDevProject/resources/views/home.php"; // Redirect to homepage
                 } else {
                     throw new Error("Invalid 2FA code");
                 }

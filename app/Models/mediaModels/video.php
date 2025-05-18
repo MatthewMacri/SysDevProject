@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\mediaModels;
 
-require_once (dirname(__DIR__, 2) . 'Http/Controllers/core/databasecontroller.php');
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
 
 use App\Http\Controllers\core\DatabaseController;
 

@@ -1,10 +1,13 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\entitiesControllers;
 
-use App\Models\ApplicationUser;
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
-require_once dirname(__DIR__, 5) . '/SysDevProject/app/Models/users/ApplicationUser.php';
+require_once app_path ('Models/users/ApplicationUser.php');
+
+use App\Models\users\ApplicationUser;
 
 class Usercontroller
 {
@@ -28,7 +31,11 @@ class Usercontroller
      */
     public function changePasswordForm()
     {
-        include 'resources/views/user/changePassword.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/user/changePassword.php');
     }
 
     /**

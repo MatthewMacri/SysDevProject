@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers\entitiesControllers;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/databaseController.php';
-require_once BASE_PATH . '/app/Models/Project.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+require_once app_path('Models/project.php');
 
 use App\Http\Controllers\core\DatabaseController;
 use App\Models\Project;
-use App\Models\Client;
-use App\Models\Supplier;
-use App\Models\Photo;
-use App\Models\Video;
+use App\Models\projectAssociatesControllers\Client;
+use App\Models\projectAssociatesControllers\Supplier;
+use Resources\services\ProjectService;
+use App\Models\mediaModels\Photo;
+use App\Models\mediaModels\Video;
 
 class ProjectController
 {
@@ -39,7 +43,11 @@ class ProjectController
         $projects = Project::searchWithFilters($filters);
 
         // Include the view to display the search results
-        include $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/views/project/SearchProject.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/project/SearchProject.php');
     }
 
     /**
@@ -127,8 +135,13 @@ class ProjectController
             $clientModel = new Client($clientName, $clientCompany, $clientEmail, $clientPhone);
             $supplierModel = new Supplier();
 
-            include_once BASE_PATH . '/resources/services/projectService.php';
-            $service = new \Services\ProjectService(
+            if (!function_exists('resource_path')) {
+                require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+                $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+            }
+
+            include_once resource_path('services/projectService.php');
+            $service = new ProjectService(
                 $projectModel,
                 $clientModel,
                 $supplierModel

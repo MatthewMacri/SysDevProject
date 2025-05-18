@@ -28,9 +28,11 @@
 <body>
 
   <!-- Include the top navigation bar -->
-  <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
+  <?php
+  require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,2) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
   ?>
 
   <!-- Kanban Board Section -->
@@ -70,6 +72,7 @@
   </section>
 
   <!-- Logout Script (attached to logout button) -->
+  <script src="https://www.w3schools.com/lib/w3data.js"></script>
   <script>
     w3IncludeHTML(function () {
       const logoutBtn = document.querySelector(".logout-btn");

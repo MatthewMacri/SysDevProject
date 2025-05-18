@@ -1,10 +1,10 @@
 <?php
-namespace Services;
+namespace Resources\services;
 
 use App\Models\Project;
-use App\Models\Client;
-use App\Models\Supplier;
-use Controllers\DatabaseController;
+use App\Models\projectAssociatesControllers\Client;
+use App\Models\projectAssociatesControllers\Supplier;
+use App\Http\Controllers\core\DatabaseController;
 
 class ProjectService {
     private Client $clientModel;

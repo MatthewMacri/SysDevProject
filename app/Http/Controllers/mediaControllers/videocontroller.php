@@ -1,9 +1,13 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\mediaControllers;
 
-require_once 'app/Models/mediaModels/video.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
+require_once app_path('Models/mediaModels/video.php');
+
+use App\Models\mediaModels\Video;
 class VideoController {
     private $model;
 
@@ -14,7 +18,7 @@ class VideoController {
      */
     public function __construct($db) {
         // Instantiate the Video model with the database connection
-        $this->model = new \App\Models\Video($db);
+        $this->model = new Video($db);
     }
 
     /**
@@ -29,7 +33,11 @@ class VideoController {
         $videos = $this->model->getAll();
 
         // Include the view to display the videos
-        include 'resources/views/viewVideos.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/viewVideos.php');
     }
 
     /**
@@ -39,7 +47,11 @@ class VideoController {
      */
     public function uploadForm() {
         // Include the video upload form view
-        include 'resources/views/uploadVideo.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/uploadVideo.php');
     }
 
     /**

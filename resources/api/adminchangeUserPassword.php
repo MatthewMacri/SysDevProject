@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\core\DatabaseController;
+
 session_start();
 header('Content-Type: application/json');
 
@@ -18,7 +20,8 @@ if (!$username || !$newPassword || !$adminPassword) {
 }
 
 try {
-  $db = new PDO("sqlite:" . $_SERVER['DOCUMENT_ROOT'] . "/SysDevProject/database/Datab.db");
+  $database = DatabaseController::getInstance();
+  $db = $database->getConnection();
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // Get admin's actual password

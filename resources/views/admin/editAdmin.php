@@ -10,11 +10,12 @@
 </head>
 <body>
 
-<?php 
-  // Including the shared top navigation bar
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
-?>
+<?php
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
+  ?>
 
 <!-- Main Section for Editing Admin -->
 <section class="section">

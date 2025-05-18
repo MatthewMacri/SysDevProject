@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers\core;
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once config_path('config.php');
 
 use PDO;
 use PDOException;
 
-class DatabaseController {
+class DatabaseController
+{
     // Singleton instance of DatabaseController
     private static ?DatabaseController $instance = null;
     private PDO $connection;
-    private static String $databasePath;
+    private static string $databasePath;
 
     /**
      * Private constructor to prevent direct instantiation.
@@ -20,11 +24,21 @@ class DatabaseController {
      * @param string $databasePath Path to the SQLite database.
      */
     // Private constructor to prevent direct instantiation
-    private function __construct(string $databasePath = DB_PATH)
+    private function __construct()
     {
+        if (!function_exists('database_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+
+        if (empty(self::$databasePath)) {
+            self::$databasePath = database_path('texasgears.db');
+        }
+
         try {
-            $this->connection = new PDO("sqlite:" . $databasePath);
+            $this->connection = new PDO("sqlite:" . self::$databasePath);
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->init();
         } catch (PDOException $e) {
             die("Database connection failed: " . $e->getMessage());
         }
@@ -37,10 +51,10 @@ class DatabaseController {
      * @param string $databasePath Path to the SQLite database (default is 'database.sqlite').
      * @return self The singleton instance of DatabaseController.
      */
-    public static function getInstance(string $databasePath = DB_PATH): self
+    public static function getInstance(): self
     {
         if (self::$instance === null) {
-            self::$instance = new self($databasePath);
+            self::$instance = new self();
         }
         return self::$instance;
     }
@@ -65,26 +79,30 @@ class DatabaseController {
         // Array of SQL queries to create tables
         $queries = [
 
-        "CREATE TABLE IF NOT EXISTS Users (
+            "CREATE TABLE IF NOT EXISTS Users (
             user_id INTEGER PRIMARY KEY AUTOINCREMENT,
             user_name VARCHAR(255),
             first_name VARCHAR(255),
             last_name VARCHAR(255),
             email VARCHAR(255),
             password VARCHAR(255),
-            is_deactivated BIT
+            is_deactivated BIT,
+            twofa_secret VARCHAR(255),
+            role VARCHAR(10)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Admins (
+            "CREATE TABLE IF NOT EXISTS Admins (
             admin_id INTEGER PRIMARY KEY AUTOINCREMENT,
             admin_name VARCHAR(255),
             first_name VARCHAR(255),
             last_name VARCHAR(255),
             email VARCHAR(255),
-            password VARCHAR(255)
+            password VARCHAR(255),
+            twofa_secret VARCHAR(255),
+            role VARCHAR(10)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Client (
+            "CREATE TABLE IF NOT EXISTS Client (
             client_id INTEGER PRIMARY KEY AUTOINCREMENT,
             client_name VARCHAR(255),
             company_name VARCHAR(255),
@@ -92,7 +110,7 @@ class DatabaseController {
             client_phone_number VARCHAR(255)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Supplier (
+            "CREATE TABLE IF NOT EXISTS Supplier (
             supplier_id INTEGER PRIMARY KEY AUTOINCREMENT,
             supplier_name VARCHAR(255),
             company_name VARCHAR(255),
@@ -100,7 +118,7 @@ class DatabaseController {
             supplier_phone_number VARCHAR(255)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Project (
+            "CREATE TABLE IF NOT EXISTS Project (
             project_id INTEGER PRIMARY KEY AUTOINCREMENT,
             serial_number VARCHAR(255),
             supplier_id INT,
@@ -117,7 +135,7 @@ class DatabaseController {
             FOREIGN KEY (client_id) REFERENCES Client(client_id)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Photo (
+            "CREATE TABLE IF NOT EXISTS Photo (
             photo_id INTEGER PRIMARY KEY AUTOINCREMENT,
             project_id INT,
             photo_url VARCHAR(255),
@@ -127,7 +145,7 @@ class DatabaseController {
             FOREIGN KEY (project_id) REFERENCES Project(project_id)
         )",
 
-        "CREATE TABLE IF NOT EXISTS Video (
+            "CREATE TABLE IF NOT EXISTS Video (
             video_id INTEGER PRIMARY KEY AUTOINCREMENT,
             project_id INT,
             video_url VARCHAR(255),
@@ -137,7 +155,7 @@ class DatabaseController {
             FOREIGN KEY (project_id) REFERENCES Project(project_id)
         )",
 
-        "CREATE TABLE IF NOT EXISTS `Supplier-Project` (
+            "CREATE TABLE IF NOT EXISTS `Supplier-Project` (
             supplier_project_id INTEGER PRIMARY KEY AUTOINCREMENT,
             supplier_id INT,
             project_id INT,
@@ -147,14 +165,25 @@ class DatabaseController {
             FOREIGN KEY (project_id) REFERENCES Project(project_id)
         )",
 
-        "CREATE TABLE IF NOT EXISTS password_resets (
+            "CREATE TABLE IF NOT EXISTS password_resets (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             email VARCHAR(255) NOT NULL,
             token VARCHAR(255) NOT NULL,
             expires_at INTEGER NOT NULL
+        )",
+            "CREATE TABLE IF NOT EXISTS project_history (
+            history_id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER,
+            admin_id INTEGER,
+            project_id INTEGER NOT NULL,
+            modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            modification_description VARCHAR(255) NOT NULL,
+            FOREIGN KEY (user_id) REFERENCES Users(user_id),
+            FOREIGN KEY (admin_id) REFERENCES Admins(admin_id),
+            FOREIGN KEY (project_id) REFERENCES Project(project_id)
         )"
-        ];  
+        ];
 
-    
         foreach ($queries as $query) {
             $pdo->exec($query);
         }

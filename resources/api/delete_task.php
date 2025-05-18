@@ -1,9 +1,11 @@
 <?php
+use App\Http\Controllers\core\DatabaseController;
 // Set response header for JSON
 header('Content-Type: application/json');
 
 // Connect to SQLite database
-$db = new SQLite3('../../database/Datab.db');
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 
 // Decode incoming JSON data
 $data = json_decode(file_get_contents("php://input"), true);

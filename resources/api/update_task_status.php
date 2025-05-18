@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\core\DatabaseController;
 // Return JSON response
 header('Content-Type: application/json');
 
@@ -22,7 +23,8 @@ $taskId = str_replace('task-', '', $data['task_id']);  // Strip prefix if used i
 $newStatus = strtoupper(trim($data['new_status']));    // Normalize status text
 
 // Connect to SQLite database
-$db = new SQLite3('C:/xampp/htdocs/SysDevProject/database/Datab.db');
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 
 // Prepare SQL update statement securely
 $stmt = $db->prepare("UPDATE tasks SET status = :status WHERE id = :id");

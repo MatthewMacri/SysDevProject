@@ -1,28 +1,43 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\entitiesControllers;
 
-require_once 'app/Models/users/admin.php';
-use App\Models\Admin;
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+require_once app_path('Models/users/admin.php');
+use App\Models\users\Admin;
 
-class AdminController {
+class AdminController
+{
     private $model;
-    private $encryptionKey = 'your-secret-encryption-key'; // CHANGE THIS to a secure key
+    private $encryptionKey = '796a3a9391c45035412c62f92e889080';
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->model = new Admin($db);
     }
 
-    public function index() {
+    public function index()
+    {
         $admins = $this->model->getAllAdmins();
-        include 'resources/views/admin/listAdmins.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/admin/listAdmins.php');
     }
 
-    public function create() {
-        include 'resources/views/admin/createAdmin.php';
+    public function create()
+    {
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/admin/createAdmin.php');
     }
 
-    public function store($postData) {
+    public function store($postData)
+    {
         // Encrypt the password before storing it
         $encryptedPassword = $this->encryptPassword($postData['password']);
         $postData['password'] = $encryptedPassword;
@@ -32,12 +47,18 @@ class AdminController {
         header('Location: ?controller=admin&action=index');
     }
 
-    public function edit($id) {
+    public function edit($id)
+    {
         $admin = $this->model->getAdminById($id);
-        include 'resources/views/admin/editAdmin.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/admin/editAdmin.php');
     }
 
-    public function update($id, $postData) {
+    public function update($id, $postData)
+    {
         // Encrypt the password before updating
         if (isset($postData['password'])) {
             $encryptedPassword = $this->encryptPassword($postData['password']);
@@ -48,19 +69,22 @@ class AdminController {
         header('Location: ?controller=admin&action=index');
     }
 
-    public function delete($id) {
+    public function delete($id)
+    {
         $this->model->deleteAdmin($id);
         header('Location: ?controller=admin&action=index');
     }
 
     // Method to encrypt the password
-    private function encryptPassword($password) {
+    private function encryptPassword($password)
+    {
         // Encrypt the password using openssl
         return openssl_encrypt($password, 'AES-128-ECB', $this->encryptionKey);
     }
 
     // Method to decrypt the password (for verification during login)
-    public function decryptPassword($encryptedPassword) {
+    public function decryptPassword($encryptedPassword)
+    {
         return openssl_decrypt($encryptedPassword, 'AES-128-ECB', $this->encryptionKey);
     }
 }

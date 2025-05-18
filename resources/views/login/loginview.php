@@ -1,10 +1,17 @@
 <?php
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+use App\Http\Controllers\core\DatabaseController;
+
+$db = DatabaseController::getInstance();
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
     if (isset($_SESSION['role'])) {
       header("Location: ../home.php");
       exit;
-    } 
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -19,7 +26,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
 
   <!-- Include static login form content (HTML page) -->
-  <?php include 'login.html'; ?>
+  <?php include 'login.html';  ?>
 
   <!-- Link to login functionality (JS) -->
   <script src="../../js/login.js"></script>
