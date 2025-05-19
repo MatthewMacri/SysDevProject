@@ -5,9 +5,9 @@ namespace App\Http\Controllers\entitiesControllers;
 require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
-require_once app_path ('Models/users/ApplicationUser.php');
+require_once app_path ('Models/users/User.php');
 
-use App\Models\users\ApplicationUser;
+use App\Models\users\User;
 
 class Usercontroller
 {
@@ -15,13 +15,13 @@ class Usercontroller
     private $model;
 
     /**
-     * Constructor to initialize the ApplicationUser model.
+     * Constructor to initialize the User model.
      * 
      * @param object $db Database connection instance
      */
     public function __construct($db)
     {
-        $this->model = new ApplicationUser($db);
+        $this->model = new User($db);
     }
 
     /**
@@ -65,7 +65,7 @@ class Usercontroller
         $pdo = $this->model->getDb()->getConnection();
 
         // Retrieve the user from the database by username
-        $user = ApplicationUser::selectByUsername($pdo, $username);
+        $user = User::selectByUsername($pdo, $username);
 
         // If no user found, return error
         if (!$user) {
