@@ -39,7 +39,7 @@ while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     }
 
     $columns[$status][] = [
-        'id' => 'task-' . $row['id'],
+        'id' => 'task-' . $row['project_id'],
         'title' => $row['project_name']
     ];
 }
