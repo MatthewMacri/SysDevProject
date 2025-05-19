@@ -11,7 +11,7 @@ use App\Http\Controllers\core\DatabaseController;
 
 class Video {
     private ?int $videoId;         // ID of the video
-    private ?int $projectId;       // ID of the associated project
+    private ?String $projectId;       // ID of the associated project
     private ?string $videoUrl;     // URL of the video
     private ?string $format;       // Format of the video (e.g., mp4)
     private ?int $duration;        // Duration of the video in seconds
@@ -30,6 +30,10 @@ class Video {
 
     // Getter and setter methods for the class properties
 
+    public function getDb(): DatabaseController {
+        return $this->db;
+    }
+
     public function getVideoId(): ?int {
         return $this->videoId;
     }
@@ -42,7 +46,7 @@ class Video {
         return $this->projectId;
     }
 
-    public function setProjectId(?int $projectId): void {
+    public function setProjectId(?String $projectId): void {
         $this->projectId = $projectId;
     }
 

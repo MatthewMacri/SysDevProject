@@ -1185,3 +1185,93 @@ All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","las
 LOGIN HIT
 DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
 All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+User result: {"user_id":1,"user_name":"user1","first_name":"user1","last_name":"user1","email":"user1@example.com","password":"qpUgAwfADq8J8geNC83t5w==","is_deactivated":0,"twofa_secret":"NZHSHRHN67CQRVXJ","role":"user"}
+Input password: 12
+Stored encryption: qpUgAwfADq8J8geNC83t5w==
+Decrypted password: 12
+password_verify result: true
+Looking for username: [user1]
+LOGIN HIT
+DB Path: C:\xampp\htdocs\SysDevProject\database\texasgears.db
+All admins from DB: [{"admin_id":1,"admin_name":"admin","first_name":"test","last_name":"bin testing","email":"test@example.com","password":"qpUgAwfADq8J8geNC83t5w==","twofa_secret":"KYTYWIPLM34XYHA2","role":"admin"}]
+User result: {"user_id":1,"user_name":"user1","first_name":"user1","last_name":"user1","email":"user1@example.com","password":"qpUgAwfADq8J8geNC83t5w==","is_deactivated":0,"twofa_secret":"NZHSHRHN67CQRVXJ","role":"user"}
+Input password: 12
+Stored encryption: qpUgAwfADq8J8geNC83t5w==
+Decrypted password: 12
+password_verify result: true
+Looking for username: [user1]

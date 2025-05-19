@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 } catch (err) {
                     console.error("JSON parse error:", err);
                     console.log("Raw response:", text);
-                    alert("Unexpected response from server.");
+                    alert("Error: " . text);
                 }
             })
             .catch((err) => {
