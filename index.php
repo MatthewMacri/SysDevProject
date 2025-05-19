@@ -22,7 +22,7 @@ if (!isset($_GET['controller'])) {
 $controller = $_GET['controller'];
 $action = $_GET['action'] ?? 'index'; // If no action is given, use 'index' as default
 
-echo "Routing to controller: $controller, action: $action";
+// echo "Routing to controller: $controller, action: $action";
 // Load the correct controller based on the URL
 switch ($controller) {
     case 'project':
