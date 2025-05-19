@@ -1,5 +1,8 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/DatabaseController.php';
+
+
 use App\Http\Controllers\core\DatabaseController;
 
 if(session_status()==PHP_SESSION_NONE)session_start();
@@ -27,18 +30,21 @@ try {
   $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   // Get admin's actual password
-  $stmt = $db->prepare("SELECT password FROM admin WHERE admin_id = ?");
+  $stmt = $db->prepare("SELECT password FROM Admins WHERE admin_id = ?");
   $stmt->execute([$_SESSION['admin_id']]);
   $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if (!$admin || base64_decode(string: $admin['password']) !== $adminPassword) {
-    echo json_encode(['success' => false, 'message' => 'Admin password is incorrect.']);
-    exit;
+  $encryptionKey = '796a3a9391c45035412c62f92e889080'; // Same key as in login
+  $decryptedAdminPassword = openssl_decrypt($admin['password'], 'AES-128-ECB', $encryptionKey);
+
+  if (!$admin || $decryptedAdminPassword !== $adminPassword) {
+      echo json_encode(['success' => false, 'message' => 'Admin password is incorrect.']);
+      exit;
   }
 
   // Encode and update new password
   $is_deactivated = $deactivated;
-  $stmt = $db->prepare("UPDATE user SET is_deactivated = ? WHERE user_name = ?");
+  $stmt = $db->prepare("UPDATE Users SET is_deactivated = ? WHERE user_name = ?");
   $stmt->execute([$is_deactivated, $username]);
 
   echo json_encode(['success' => true, 'message' => 'account deactivation status changed successfully.']);
