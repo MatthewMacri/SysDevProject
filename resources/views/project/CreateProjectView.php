@@ -29,7 +29,15 @@
 
     // Collect values
     $projectTitle = $_POST['project-title'];
-    $serialNumber = $_POST['project-serial-number'];
+
+    //serial number fiels 
+    $serialPrefix = $_POST['serial-prefix'];
+    $serialYear = $_POST['serial-year'];
+    $serialNum = $_POST['serial-number'];
+
+    // Combine to form the full serial number
+    $serialNumber = $serialPrefix . '-' . $serialYear . '-' . $serialNum;
+
     $description = $_POST['project-description'];
     $startDate = $_POST['project-start-date'];
     $endDate = $_POST['project-End-date'];
