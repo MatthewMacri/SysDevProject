@@ -15,12 +15,12 @@
 
   <?php
   require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-  $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+  require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
   require resource_path('components/navbar.php');
   ?>
 
-  <form action="/admin/change-password" method="post">
+  <form action="?controller=user&action=changePassword" method="post">
     <div class="form-box">
       <label for="username">Username</label>
       <input type="text" id="username" name="username" placeholder="Value" required />

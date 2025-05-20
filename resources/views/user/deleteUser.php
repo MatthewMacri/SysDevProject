@@ -1,4 +1,6 @@
 <?php
+
+
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
@@ -29,9 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
   $stmt->execute([$_SESSION['username']]);
   $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  if (!$admin || !password_verify($adminPassword, $admin['password'])) {
-    echo json_encode(['success' => false, 'message' => 'Admin password incorrect']);
-    exit;
+  $encryptionKey = '796a3a9391c45035412c62f92e889080';
+  $decryptedPassword = openssl_decrypt($admin['password'], 'AES-128-ECB', $encryptionKey);
+
+  if ($decryptedPassword === false || $adminPassword !== $decryptedPassword) {
+      echo json_encode(['success' => false, 'message' => 'Admin password incorrect']);
+      exit;
   }
 
   $result = $userController->deleteUserByUsername($username);

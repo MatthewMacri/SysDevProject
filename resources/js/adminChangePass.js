@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const cancelBtn = document.getElementById("cancelChange");
   const changeBtn = document.querySelector(".changePasswordButton");
 
-  changeBtn.addEventListener("click", () => {
+  changeBtn.addEventListener("click", (e) => {
+    e.preventDefault();
     const username = document.getElementById("username").value;
     document.getElementById("changeUserID").textContent = username;
     document.getElementById("changePasswordPopup").style.display = "flex";
@@ -27,11 +28,13 @@ document.addEventListener("DOMContentLoaded", () => {
       .then(res => res.json())
       .then(data => {
         alert(data.message);
-        if (data.success) hideChangePasswordPopup();
+        if (data.success) {
+          hideChangePasswordPopup();
+        }
       })
       .catch(err => {
-        console.error("Error:", err);
-        alert("Something went wrong.");
+        console.error("Request failed:", err);
+        alert("Something went wrong. Please try again.");
       });
     });
   }
