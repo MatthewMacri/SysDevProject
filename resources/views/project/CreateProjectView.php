@@ -91,7 +91,7 @@
   }
   ?>
   <main style="margin: 20px auto; max-width: 1400px; padding: 20px;">
-    <form class="project-form" method="POST" action="/SysDevProject/project/formSubmission">
+    <form class="project-form" method="POST" action="createProjectView.php">
       <div class="form-section">
         <div class="form-group">
           <label for="project-title"><?php echo _('Project Title'); ?><span class="required">*</span></label>
