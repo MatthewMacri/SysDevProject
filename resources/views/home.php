@@ -1,5 +1,5 @@
 <?php
-require_once dirname(__DIR__) . '/services/i18n.php';
+require_once dirname(__DIR__, 1) . '/services/i18n.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }

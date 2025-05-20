@@ -15,12 +15,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lang'])) {
   $_SESSION['locale'] = $_POST['lang'];
 }
 
-$locale = $_SESSION['locale'] ?? 'en_US';
+$locale = $_POST['lang'] ?? 'en_US';
+$domain = 'messages';
 
 putenv("LC_ALL=$locale");
+putenv("LANG=$locale");
+putenv("LANGUAGE=$locale");
+
 setlocale(LC_ALL, $locale);
-bindtextdomain("messages", dirname(__DIR__, 2) . '/resources/lang/locale');
-bind_textdomain_codeset("messages", "UTF-8");
+bindtextdomain($domain, resource_path('lang\locale'));
+file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')). "\n", FILE_APPEND);
+bind_textdomain_codeset($domain, "UTF-8");
 textdomain("messages");
 ?>
 

@@ -1,1 +1,62 @@
-C:\xampp\htdocs\SysDevProject\resources/lang/locale
+C:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeArray
+(
+    [lang] => fr_FR
+)
+Array
+(
+    [lang] => fr_FR
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localeArray
+(
+    [lang] => en_US
+)
+Array
+(
+    [lang] => en_US
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localeArray
+(
+    [lang] => en_US
+)
+Array
+(
+    [lang] => en_US
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localeArray
+(
+    [lang] => en_US
+)
+Array
+(
+    [lang] => en_US
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localepost: Array
+(
+    [lang] => en_US
+)
+Array
+(
+    [lang] => en_US
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localepost: Array
+(
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localepost: Array
+(
+)
+post: Array
+(
+)
+post: Array
+(
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localepost: Array
+(
+)
+post: Array
+(
+)
+post: Array
+(
+)
+C:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/localeC:\xampp\htdocs\SysDevProject\resources/lang/locale
