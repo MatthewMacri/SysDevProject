@@ -24,7 +24,7 @@ putenv("LANGUAGE=$locale");
 
 setlocale(LC_ALL, $locale);
 bindtextdomain($domain, resource_path('lang\locale'));
-file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')) . "\n", FILE_APPEND);
+// file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')) . "\n", FILE_APPEND);
 bind_textdomain_codeset($domain, "UTF-8");
 textdomain("messages");
 ?>
@@ -68,20 +68,26 @@ textdomain("messages");
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php"><?php echo _('Manage Password'); ?></a>
+          <a href="/SysDevProject/resources/views/admin/createUser.php"><?php echo _('Create User'); ?></a>
+          <a href="/SysDevProject/resources/views/user/deleteUser.php"><?php echo _('Delete User'); ?></a>
+          <a href="/SysDevProject/resources/views/admin/userActivation.php"><?php echo _('User Status'); ?></a>
+          <a href="/SysDevProject/resources/views/project/archive.php"><?php echo _('Project Archive'); ?></a>
           <form method="POST">
             <select name="lang" onchange="this.form.submit()">
               <option value="en_US" <?= ($_SESSION['locale'] ?? '') === 'en_US' ? 'selected' : '' ?>>English</option>
               <option value="fr_FR" <?= ($_SESSION['locale'] ?? '') === 'fr_FR' ? 'selected' : '' ?>>Français</option>
             </select>
           </form>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php"><?php echo _('Manage Password'); ?></a>
-          <a href="/SysDevProject/resources/views/admin/createUser.php"><?php echo _('Create User'); ?></a>
-          <a href="/SysDevProject/resources/views/user/deleteUser.php"><?php echo _('Delete User'); ?></a>
-          <a href="/SysDevProject/resources/views/admin/userActivation.php"><?php echo _('User Status'); ?></a>
-          <a href="/SysDevProject/resources/views/project/archive.php"><?php echo _('Project Archive'); ?></a>
         <?php else: ?>
           <a href="/SysDevProject/resources/views/user/changePassword.php"><?php echo _('Manage Password'); ?></a>
           <a href="/SysDevProject/resources/views/project/archive.php"><?php echo _('Project Archive'); ?></a>
+          <form method="POST">
+            <select name="lang" onchange="this.form.submit()">
+              <option value="en_US" <?= ($_SESSION['locale'] ?? '') === 'en_US' ? 'selected' : '' ?>>English</option>
+              <option value="fr_FR" <?= ($_SESSION['locale'] ?? '') === 'fr_FR' ? 'selected' : '' ?>>Français</option>
+            </select>
+          </form>
         <?php endif; ?>
       </div>
     </div>
