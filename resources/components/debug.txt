@@ -74,3 +74,11 @@ bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
 bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
 bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
 bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
+bindtextdomain:C:\xampp\htdocs\SysDevProject\resources\lang\locale
