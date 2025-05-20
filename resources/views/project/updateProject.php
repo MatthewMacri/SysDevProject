@@ -108,7 +108,7 @@
 
     <!-- Form Actions -->
     <div class="form-actions">
-      <button type="button" class="form-button cancel-button">Cancel</button>
+     <a href="/SysDevProject/resources/views/project/searchProject.php" class="form-button cancel-button">Cancel</a>
       <button type="submit" class="form-button confirm-Confirm">Confirm</button>
     </div>
   </form>
