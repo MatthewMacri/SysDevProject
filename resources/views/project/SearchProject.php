@@ -11,6 +11,8 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../../css/searchProject.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Page-specific JavaScript -->
+  <script src="../../js/searchProject.js"></script>
 </head>
 
 <body>
@@ -18,9 +20,21 @@
   <!-- Include shared navigation bar -->
   <?php
   require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+  require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+  require_once dirname(__DIR__, 3) . '/app/Http/Controllers/core/DatabaseController.php';
 
   require resource_path('components/navbar.php');
+
+  use App\Http\Controllers\core\DatabaseController;
+
+  $db = DatabaseController::getInstance()->getConnection();
+
+  // delete project
+  if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_serial'])) {
+      $serial = $_POST['delete_serial'];
+      $stmt = $db->prepare("DELETE FROM Project WHERE serial_number = :serial");
+      $stmt->execute([':serial' => $serial]);
+  }
   ?>
 
   <main>
@@ -81,18 +95,6 @@
                 <small>Supplier: <?= htmlspecialchars($project['supplier_name']) ?></small>
               </div>
               <div class="project-status"><?= htmlspecialchars($project['status']) ?></div>
-            </div>
-
-            <!-- Action Buttons -->
-            <div class="button-row">
-              <div class="left-buttons">
-                <button class="action-button">Update</button>
-                <button class="action-button">Delete</button>
-                <button class="action-button">History</button>
-              </div>
-              <div class="right-button">
-                <button class="action-button">Export as PDF</button>
-              </div>
             </div>
           </div>
         <?php endforeach; ?>
