@@ -18,7 +18,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Texas Gears Login</title>
+  <title><?php echo _('Texas Gears Login'); ?></title>
 
   <!-- Link to login page CSS for styling -->
   <link rel="stylesheet" href="../../css/login.css">
@@ -26,7 +26,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
 
   <!-- Include static login form content (HTML page) -->
-  <?php include 'login.html';  ?>
+  <?php include 'login.php';  ?>
 
   <!-- Link to login functionality (JS) -->
   <script src="../../js/login.js"></script>

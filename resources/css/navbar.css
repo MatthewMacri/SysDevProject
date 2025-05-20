@@ -160,3 +160,33 @@ body {
       0 0.4px #F68A30,
       0 -0.4px #F68A30;
 }
+
+.dropdown-content form {
+    margin: 0;
+    padding: 8px 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.dropdown-content select {
+    border: none;
+    background: transparent;
+    font: inherit;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    padding: 5px;
+    width: 100%;
+    appearance: none;
+}
+
+.dropdown-content select:focus {
+    outline: none;
+}
+
+.dropdown-content select:hover {
+    background-color: #ddd;
+}

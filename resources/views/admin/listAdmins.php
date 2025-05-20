@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin List</title>
+  <title><?php echo _('Admin List'); ?></title>
   
   <!-- Link to the stylesheet for the Admin List page -->
   <link rel="stylesheet" href="../../css/listAdmins.css">
@@ -19,10 +19,10 @@
 
   <!-- Main Content Section for Admin List -->
   <section class="section">
-    <h2>Admin List</h2>
+    <h2><?php echo _('Admin List'); ?></h2>
     
     <!-- Button to add a new admin -->
-    <a class="view-button" href="?controller=admin&action=create">Add Admin</a>
+    <a class="view-button" href="/SysDevProject/admin/create"><?php echo _('Add Admin'); ?></a>
     
     <!-- List of Admins -->
     <ul class="admin-list">
@@ -35,38 +35,6 @@
       <?php endforeach; ?>
     </ul>
   </section>
-
-  <!-- Script for Logout Functionality -->
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
-  <script>
-    w3IncludeHTML(function () {
-      const logoutBtn = document.querySelector(".logout-btn");
-      
-      // Add an event listener to the logout button
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          fetch("/SysDevProject/logout.php", {
-            method: "POST",
-            credentials: "include"
-          })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              // Clear authentication cookie and redirect to login page
-              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.href = "/SysDevProject/resources/views/login.html";
-            } else {
-              alert("Logout failed");
-            }
-          })
-          .catch(err => {
-            console.error("Logout error:", err);
-            alert("Logout request failed.");
-          });
-        });
-      }
-    });
-  </script>
 
 </body>
 </html>

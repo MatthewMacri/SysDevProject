@@ -1,11 +1,32 @@
 <?php
+require_once dirname(__DIR__, 1) . '/services/i18n.php';
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
+
 if (session_status() == PHP_SESSION_NONE) {
-    session_start();
+  session_start();
 }
-  if (!isset($_SESSION['role'])) {
-        header("Location: ../login/loginview.php");
-        exit;
-  } 
+if (!isset($_SESSION['role'])) {
+  header("Location: SysDevProject/resources/views/login/loginview.php");
+  exit;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lang'])) {
+  $_SESSION['locale'] = $_POST['lang'];
+}
+
+$locale = $_POST['lang'] ?? 'en_US';
+$domain = 'messages';
+
+putenv("LC_ALL=$locale");
+putenv("LANG=$locale");
+putenv("LANGUAGE=$locale");
+
+setlocale(LC_ALL, $locale);
+bindtextdomain($domain, resource_path('lang\locale'));
+// file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')) . "\n", FILE_APPEND);
+bind_textdomain_codeset($domain, "UTF-8");
+textdomain("messages");
 ?>
 
 <!-- Include external CSS for navbar -->
@@ -17,11 +38,11 @@ if (session_status() == PHP_SESSION_NONE) {
 <div class="navbar">
   <!-- Left Navigation Links -->
   <div class="nav-left">
-    <a href="/SysDevProject/resources/views/home.php" class="active">Home</a>
-    <a href="/SysDevProject/resources/views/project/searchProject.php">Project Search</a>
-    <a href="/SysDevProject/resources/views/project/history.php">Project History</a>
-    <a href="/SysDevProject/resources/views/project/createProjectView.php">Create Project</a>
-    <a href="/SysDevProject/resources/views/statusOverview.php">Status Overview</a>
+    <a href="/SysDevProject/resources/views/home.php" class="active"> <?php echo _('Home'); ?></a>
+    <a href="/SysDevProject/resources/views/project/searchProject.php"><?php echo _('Project Search'); ?></a>
+    <a href="/SysDevProject/resources/views/project/history.php"><?php echo _('Project History'); ?></a>
+    <a href="/SysDevProject/resources/views/project/createProjectView.php"><?php echo _('Create Project'); ?></a>
+    <a href="/SysDevProject/resources/views/statusOverview.php"><?php echo _('Status Overview'); ?></a>
   </div>
 
   <!-- Center Logo -->
@@ -33,28 +54,40 @@ if (session_status() == PHP_SESSION_NONE) {
   <div class="nav-right">
     <!-- Search Box -->
     <div class="search-box">
-      <input type="text" placeholder="Search">
+      <input type="text" placeholder="<?php echo _('Search'); ?>">
       <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </div>
 
     <!-- Logout Button -->
-    <a href="/SysDevProject/logout.php">
-      <button class="logout-btn">Logout</button>
-    </a>
+    <form method="POST" action="/SysDevProject/logout.php" style="display:inline;">
+      <button type="submit" class="logout-btn"><?php echo _('Logout'); ?></button>
+    </form>
 
     <!-- User Role Dropdown Menu -->
     <div class="dropdown">
       <span class="dropdown-icon"><i class="fa-regular fa-user"></i></span>
       <div class="dropdown-content">
         <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
-          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php">Manage Password</a>
-          <a href="/SysDevProject/resources/views/admin/createUser.php">Create User</a>
-          <a href="/SysDevProject/resources/views/user/deleteUser.php">Delete User</a>
-          <a href="/SysDevProject/resources/views/admin/userActivation.php">User Status</a>
-          <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
+          <a href="/SysDevProject/resources/views/admin/adminChangePassword.php"><?php echo _('Manage Password'); ?></a>
+          <a href="/SysDevProject/resources/views/admin/createUser.php"><?php echo _('Create User'); ?></a>
+          <a href="/SysDevProject/resources/views/user/deleteUser.php"><?php echo _('Delete User'); ?></a>
+          <a href="/SysDevProject/resources/views/admin/userActivation.php"><?php echo _('User Status'); ?></a>
+          <a href="/SysDevProject/resources/views/project/archive.php"><?php echo _('Project Archive'); ?></a>
+          <form method="POST">
+            <select name="lang" onchange="this.form.submit()">
+              <option value="en_US" <?= ($_SESSION['locale'] ?? '') === 'en_US' ? 'selected' : '' ?>>English</option>
+              <option value="fr_FR" <?= ($_SESSION['locale'] ?? '') === 'fr_FR' ? 'selected' : '' ?>>Français</option>
+            </select>
+          </form>
         <?php else: ?>
-          <a href="/SysDevProject/resources/views/user/changePassword.php">Manage Password</a>
-          <a href="/SysDevProject/resources/views/project/archive.php">Project Archive</a>
+          <a href="/SysDevProject/resources/views/user/changePassword.php"><?php echo _('Manage Password'); ?></a>
+          <a href="/SysDevProject/resources/views/project/archive.php"><?php echo _('Project Archive'); ?></a>
+          <form method="POST">
+            <select name="lang" onchange="this.form.submit()">
+              <option value="en_US" <?= ($_SESSION['locale'] ?? '') === 'en_US' ? 'selected' : '' ?>>English</option>
+              <option value="fr_FR" <?= ($_SESSION['locale'] ?? '') === 'fr_FR' ? 'selected' : '' ?>>Français</option>
+            </select>
+          </form>
         <?php endif; ?>
       </div>
     </div>

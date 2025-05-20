@@ -66,7 +66,7 @@ class SupplierController {
         $this->model->create($postData);
 
         // Redirect to the supplier list page after creation
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 
     /**
@@ -101,7 +101,7 @@ class SupplierController {
         $this->model->update($id, $postData);
 
         // Redirect to the supplier list page after update
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 
     /**
@@ -116,6 +116,6 @@ class SupplierController {
         $this->model->delete($id);
 
         // Redirect to the supplier list page after deletion
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 }

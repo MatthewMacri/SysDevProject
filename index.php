@@ -2,6 +2,7 @@
 // Load the database class and required controller namespaces
 require_once 'vendor/autoload.php';
 $app = require_once 'bootstrap/app.php';
+require_once __DIR__ . '/resources/services/i18n.php';
 
 require_once app_path('\Http\Controllers\core\DatabaseController.php');
 
@@ -32,7 +33,7 @@ switch ($controller) {
 
     case 'admin':
         require_once 'app/Http/Controllers/entitiesControllers/admincontroller.php';
-        $obj = new AdminController($db->getConnection()); // Pass database connection to admin controller
+        $obj = new AdminController($db); // Pass database connection to admin controller
         break;
 
     case 'supplier':

@@ -103,7 +103,7 @@ class VideoController {
         }
 
         // Redirect to the video index page after deletion
-        header('Location: ?controller=video&action=index');
+        header('Location: /SysDevProject/video/index');
         exit;
     }
 }

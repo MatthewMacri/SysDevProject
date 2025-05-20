@@ -14,7 +14,7 @@ if (!isset($_SESSION['role'])) {
 
 <head>
   <meta charset="UTF-8">
-  <title>Upload Photo</title>
+  <title><?php echo _('Upload Photo'); ?></title>
 
   <!-- Basic styling only -->
   <link rel="stylesheet" href="../../css/home.css">
@@ -38,26 +38,26 @@ if (!isset($_SESSION['role'])) {
     <!-- Back Button -->
     <a href="../project/CreateProjectView.php?project_id=<?= $projectId ?>"
       style="display: inline-block; margin-bottom: 15px; background-color: #ccc; padding: 8px 12px; border-radius: 4px; color: #000; text-decoration: none;">←
-      Back to Create Project</a>
+      <?php echo _('Back to Create Project'); ?></a>
 
     <h2>Upload Photo</h2>
 
     <!-- Upload photo form -->
-    <form method="post" action="?controller=photo&action=upload">
+    <form method="post" action="/SysDevProject/photo/upload">
       <!-- Project ID -->
-      <input type="text" name="project_id" placeholder="Project ID" required value="<?= $projectId ?>"><br><br>
+      <input type="text" name="project_id" placeholder="<?php echo _('Project ID'); ?>" required value="<?= $projectId ?>"><br><br>
 
       <!-- Photo URL -->
-      <input type="text" name="photo_url" placeholder="Photo URL" required><br><br>
+      <input type="text" name="photo_url" placeholder="<?php echo _('Photo URL'); ?>" required><br><br>
 
       <!-- Format -->
-      <input type="text" name="format" placeholder="Format (jpg/png)" required><br><br>
+      <input type="text" name="format" placeholder="<?php echo _('Format (jpg/png)'); ?>" required><br><br>
 
       <!-- Caption -->
-      <input type="text" name="caption" placeholder="Caption (optional)"><br><br>
+      <input type="text" name="caption" placeholder="<?php echo _('Caption (optional)'); ?>"><br><br>
 
       <!-- Submit -->
-      <button type="submit">Upload</button>
+      <button type="submit"><?php echo _('Upload'); ?></button>
     </form>
   </section>
 
@@ -66,5 +66,7 @@ if (!isset($_SESSION['role'])) {
 </html>
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/views/video/uploadYoutubeVideo.php';
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+require_once resource_path('views/video/uploadYoutubeVideo.php');
 ?>

@@ -71,7 +71,7 @@ class PhotoController {
         ]);
 
         // Redirect to the photo index page after upload
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 
     /**
@@ -106,7 +106,7 @@ class PhotoController {
         $this->model->update($id, $postData);
 
         // Redirect to the photo index page after update
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 
     /**
@@ -121,6 +121,6 @@ class PhotoController {
         $this->model->delete($id);
 
         // Redirect to the photo index page after deletion
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 }
