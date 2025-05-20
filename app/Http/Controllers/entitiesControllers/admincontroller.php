@@ -46,11 +46,13 @@ class AdminController
             require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
             $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
         }
+        $password = $data['email'] ?? null;
+        $encryptedPassword = $this->encryptPassword($password);
         $this->userModel->setUserName($data['username'] ?? null);
         $this->userModel->setFirstName($data['firstName'] ?? null);
         $this->userModel->setLastName($data['lastName'] ?? null);
         $this->userModel->setEmail($data['email'] ?? null);
-        $this->userModel->setPassword($data['password'] ?? null);
+        $this->userModel->setPassword($encryptPassword ?? null);
         $this->userModel->setIsDeactivated(false);
         $this->userModel->setSecret('');
 
