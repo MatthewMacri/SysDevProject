@@ -37,6 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
 
+        // Clear old results
+        document.getElementById("results").innerHTML = "";
+
         // Loop through each project and create a card for it
         data.forEach(project => {
           const card = `
