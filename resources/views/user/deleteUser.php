@@ -1,43 +1,65 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+require_once dirname(__DIR__, 3) . '/app/Http/Controllers/core/DatabaseController.php';
+require_once dirname(__DIR__, 3) . '/app/Models/users/User.php';
 
-require_once app_path('Http/Controllers/core/databaseController.php');
-
+use App\Models\users\User;
 use App\Http\Controllers\core\DatabaseController;
 use App\Http\Controllers\entitiesControllers\Usercontroller;
 
+session_start();
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['adminPassword'])) {
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/core/databasecontroller.php';
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Models/users/ApplicationUser.php';
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/app/Http/Controllers/entitiesControllers/Usercontroller.php';
+    $username = $_POST['username'];
+    $adminPassword = $_POST['adminPassword'];
 
-  session_start();
-  $db = DatabaseController::getInstance();
-  $userController = new Usercontroller($db);
+    if (!isset($_SESSION['admin_id'])) {
+        echo json_encode(['success' => false, 'message' => 'Not authorized']);
+        exit;
+    }
 
-  if (!isset($_SESSION['username']) || $_SESSION['role'] !== 'admin') {
-    echo json_encode(['success' => false, 'message' => 'Unauthorized']);
-    exit;
-  }
+    try {
+        $db = DatabaseController::getInstance();
+        $pdo = $db->getConnection();
 
-  $username = $_POST['username'];
-  $adminPassword = $_POST['adminPassword'];
+        // Fetch admin's encrypted password
+        $stmt = $pdo->prepare("SELECT password FROM Admins WHERE admin_id = ?");
+        $stmt->execute([$_SESSION['admin_id']]);
+        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
 
-  $pdo = $db->getConnection();
-  $stmt = $pdo->prepare("SELECT * FROM Admins WHERE admin_name = ?");
-  $stmt->execute([$_SESSION['username']]);
-  $admin = $stmt->fetch(PDO::FETCH_ASSOC);
+        if (!$admin) {
+            echo json_encode(['success' => false, 'message' => 'Admin not found']);
+            exit;
+        }
 
-  if (!$admin || !password_verify($adminPassword, $admin['password'])) {
-    echo json_encode(['success' => false, 'message' => 'Admin password incorrect']);
-    exit;
-  }
+        $encryptionKey = '796a3a9391c45035412c62f92e889080';
+        $decryptedPassword = openssl_decrypt($admin['password'], 'AES-128-ECB', $encryptionKey);
 
-  $result = $userController->deleteUserByUsername($username);
-  header('Content-Type: application/json');
-  echo json_encode($result);
-  exit;
+        if (!$decryptedPassword || $decryptedPassword !== $adminPassword) {
+            echo json_encode(['success' => false, 'message' => 'Admin password incorrect']);
+            exit;
+        }
+
+        // Delete the user
+        $stmt = $pdo->prepare("DELETE FROM Users WHERE user_name = ?");
+        $stmt->execute([$username]);
+
+        if ($stmt->rowCount() === 0) {
+            echo json_encode(['success' => false, 'message' => 'User not found or already deleted.']);
+        } else {
+            echo json_encode(['success' => true, 'message' => 'User deleted successfully.']);
+        }
+        exit;
+
+    } catch (PDOException $e) {
+        echo json_encode(['success' => false, 'message' => 'DB error: ' . $e->getMessage()]);
+        exit;
+    }
 }
 ?>
 

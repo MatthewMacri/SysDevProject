@@ -46,6 +46,11 @@ switch ($controller) {
         $obj = new PhotoController($db->getConnection()); // Pass database connection to photo controller
         break;
 
+    case 'user':
+        require_once 'app/Http/Controllers/entitiesControllers/usercontroller.php';
+        $obj = new \App\Http\Controllers\entitiesControllers\Usercontroller($db); // note: class name is `Usercontroller` lowercase "c"
+        break;  
+    
     case 'home':
         // If "home" controller is requested, just redirect to a static homepage
         header('Location: views/home.html');
