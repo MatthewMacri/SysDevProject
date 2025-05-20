@@ -1,0 +1,728 @@
+# English translations for PACKAGE package.
+# Copyright (C) 2025 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# <EMAIL@ADDRESS>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-20 01:49-0400\n"
+"PO-Revision-Date: 2025-05-20 02:36-0400\n"
+"Last-Translator: <EMAIL@ADDRESS>\n"
+"Language-Team: English\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:20
+msgid "Home"
+msgstr "Home"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:21
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:6
+msgid "Project Search"
+msgstr "Project Search"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:22
+msgid "Project History"
+msgstr "Project History"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:23
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:7
+msgid "Create Project"
+msgstr "Create Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:24
+msgid "Status Overview"
+msgstr "Status Overview"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:36
+msgid "Search"
+msgstr "Search"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:42
+msgid "Logout"
+msgstr "Logout"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:50
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:56
+msgid "Manage Password"
+msgstr "Manage Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:51
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:5
+msgid "Create User"
+msgstr "Create User"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:52
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:50
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:72
+msgid "Delete User"
+msgstr "Delete User"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:53
+msgid "User Status"
+msgstr "User Status"
+
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:54
+#: C:\xampp\htdocs\SysDevProject\resources\components\navbar.php:57
+msgid "Project Archive"
+msgstr "Project Archive"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:7
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:32
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:46
+msgid "Change Password"
+msgstr "Change Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:25
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:40
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:32
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:67
+msgid "Username"
+msgstr "Username"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:28
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\editAdmin.php:39
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:35
+msgid "New Password"
+msgstr "New Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:40
+msgid "You are changing the password for user"
+msgstr "You are changing the password for user"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:42
+msgid "Please make sure to save the password in a safe place!"
+msgstr "Please make sure to save the password in a safe place!"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:46
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:67
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:92
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:216
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:59
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:71
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:80
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:91
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:59
+msgid "Cancel"
+msgstr "Cancel"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\adminChangePassword.php:47
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:68
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:93
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:217
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:72
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:81
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:92
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:60
+msgid "Confirm"
+msgstr "Confirm"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:33
+msgid "Create Admin"
+msgstr "Create Admin"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:23
+msgid "Create New Admin"
+msgstr "Create New Admin"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:26
+msgid "Admin Username"
+msgstr "Admin Username"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:32
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:27
+msgid "First Name"
+msgstr "First Name"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:36
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:28
+msgid "Last Name"
+msgstr "Last Name"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:29
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:44
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:147
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:168
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:36
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:35
+msgid "Email"
+msgstr "Email"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createAdmin.php:30
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:48
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:38
+msgid "Password"
+msgstr "Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:26
+msgid "Create New User"
+msgstr "Create New User"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\createUser.php:52
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:41
+msgid "Confirm Password"
+msgstr "Confirm Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\editAdmin.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\editAdmin.php:22
+msgid "Edit Admin"
+msgstr "Edit Admin"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\editAdmin.php:42
+msgid "Update Admin"
+msgstr "Update Admin"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\listAdmins.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\listAdmins.php:22
+#: C:\xampp\htdocs\SysDevProject\resources\views\index.php:2
+msgid "Admin List"
+msgstr "Admin List"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\listAdmins.php:25
+#: C:\xampp\htdocs\SysDevProject\resources\views\index.php:5
+msgid "Add Admin"
+msgstr "Add Admin"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\admin\userActivation.php:6
+msgid "User Activation"
+msgstr "User Activation"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:9
+msgid "Login - Texas Gears Engineering"
+msgstr "Login - Texas Gears Engineering"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:43
+msgid "Login"
+msgstr "Login"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:48
+msgid "Forgot password?"
+msgstr "Forgot password?"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:56
+msgid ""
+"Forgetting your password as a user will send an email to the admin to change "
+"your password.\n"
+"        Would you like to continue?"
+msgstr ""
+"Oublier votre mot de passe en tant qu'utilisateur enverra un courriel à "
+"l'administrateur pour modifier votre mot de passe.\n"
+"Souhaitez-vous continuer ?"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:62
+msgid "Enter Username"
+msgstr "Enter Username"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:76
+msgid "Two-Factor Authentication"
+msgstr "Two-Factor Authentication"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:77
+msgid "Scan the QR code below with your authenticator app."
+msgstr "Scan the QR code below with your authenticator app."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:82
+msgid "After scanning, enter the 6-digit code from your app."
+msgstr "After scanning, enter the 6-digit code from your app."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\login.php:86
+msgid "2FA Code"
+msgstr "2FA Code"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\login\loginview.php:21
+msgid "Texas Gears Login"
+msgstr "Texas Gears Login"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:6
+msgid "Forgot Password"
+msgstr "Forgot Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:16
+msgid "← Back to Login"
+msgstr "← Back to Login"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:21
+msgid "Reset Your Password"
+msgstr "Reset Your Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:22
+msgid "Email Address"
+msgstr "Email Address"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:24
+msgid "Send Reset Link"
+msgstr "Send Reset Link"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\password\forgotPassword.php:49
+msgid "Request failed."
+msgstr "Request failed."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:25
+msgid "Edit Photo"
+msgstr "Edit Photo"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:31
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:48
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:27
+msgid "Project ID"
+msgstr "Project ID"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:35
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:51
+msgid "Photo URL"
+msgstr "Photo URL"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:39
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:38
+msgid "Format"
+msgstr "Format"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:43
+msgid "Caption"
+msgstr "Caption"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\editPhoto.php:47
+msgid "Update Photo"
+msgstr "Update Photo"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:17
+msgid "Upload Photo"
+msgstr "Upload Photo"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:41
+msgid "Back to Create Project"
+msgstr "Back to Create Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:54
+msgid "Format (jpg/png)"
+msgstr "Format (jpg/png)"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:57
+msgid "Caption (optional)"
+msgstr "Caption (optional)"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\uploadPhoto.php:60
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:39
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadYoutubeVideo.php:53
+msgid "Upload"
+msgstr "Upload"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:5
+msgid "Uploaded Photos"
+msgstr "Uploaded Photos"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:22
+msgid "All Uploaded Photos"
+msgstr "All Uploaded Photos"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:25
+msgid "Upload New Photo"
+msgstr "Upload New Photo"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:39
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewYoutubeVideo.php:29
+msgid "Uploaded"
+msgstr "Uploaded"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:42
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:39
+msgid "Edit"
+msgstr "Edit"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\photo\viewPhoto.php:44
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:60
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:90
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:41
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:41
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewYoutubeVideo.php:33
+msgid "Delete"
+msgstr "Delete"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:5
+msgid "Admin Archive Project"
+msgstr "Admin Archive Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:30
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:51
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:101
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\history.php:29
+msgid "Project Serial Number"
+msgstr "Project Serial Number"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:34
+msgid "Archive Project"
+msgstr "Archive Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:40
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:203
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\history.php:36
+msgid "Required field"
+msgstr "Required field"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:45
+msgid "List of Archived Projects"
+msgstr "List of Archived Projects"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:52
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:32
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:47
+msgid "Project Status"
+msgstr "Project Status"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:54
+msgid "Example Project Title"
+msgstr "Example Project Title"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:55
+msgid "Very Brief Description"
+msgstr "Very Brief Description"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:58
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:91
+msgid "History"
+msgstr "History"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\archive.php:59
+msgid "Unarchive"
+msgstr "Unarchive"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:97
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:41
+msgid "Project Title"
+msgstr "Project Title"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:114
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:42
+msgid "Project Description"
+msgstr "Project Description"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:121
+msgid "Project Start Date"
+msgstr "Project Start Date"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:129
+msgid "Project End Date"
+msgstr "Project End Date"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:137
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:49
+msgid "Client Details"
+msgstr "Client Details"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:139
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:59
+msgid "Client Name"
+msgstr "Client Name"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:143
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:164
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:33
+msgid "Company Name"
+msgstr "Company Name"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:151
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:172
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:39
+msgid "Phone Number"
+msgstr "Phone Number"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:158
+msgid "Supplier Details"
+msgstr "Supplier Details"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:160
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:53
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:30
+msgid "Supplier Name"
+msgstr "Supplier Name"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:180
+msgid "Add Another Supplier"
+msgstr "Add Another Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:187
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:55
+msgid "Supplier Date"
+msgstr "Supplier Date"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:195
+msgid "Add Media"
+msgstr "Add Media"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\CreateProjectView.php:214
+msgid ""
+"You are creating a project. Please make sure the information provided is "
+"correct."
+msgstr ""
+"You are creating a project. Please make sure the information provided is "
+"correct."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:6
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:6
+msgid "Project Details"
+msgstr "Project Details"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:29
+msgid "Lorem Ipsum Project"
+msgstr "Lorem Ipsum Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:30
+msgid "Project U-1234567"
+msgstr "Project U-1234567"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:37
+msgid ""
+"Project Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+msgstr ""
+"Project Details: Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:42
+msgid "Client Details: lorem ipsum"
+msgstr "Client Details: lorem ipsum"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:43
+msgid "Supplier Info: "
+msgstr "Supplier Info: "
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:44
+msgid "Supplier date: 2025-01-02"
+msgstr "Supplier date: 2025-01-02"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:45
+msgid "Client date: 2025-03-02"
+msgstr "Client date: 2025-03-02"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:46
+msgid "Buffer days (slack time): 5 days"
+msgstr "Buffer days (slack time): 5 days"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:51
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:68
+msgid "Project Media"
+msgstr "Project Media"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:52
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:71
+msgid "KanBan Board"
+msgstr "KanBan Board"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:53
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:74
+msgid "Gantt Chart"
+msgstr "Gantt Chart"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\deleteProject.php:68
+msgid ""
+"You are attempting to DELETE a project. Please make sure the information "
+"provided is correct."
+msgstr ""
+"Vous êtes sur le point de SUPPRIMER un projet. Veuillez vous assurer que les "
+"informations fournies sont correctes."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\history.php:6
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\history.php:32
+msgid "History of Project"
+msgstr "History of Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:35
+msgid "Serial Number"
+msgstr "Serial Number"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:65
+msgid "Search Project"
+msgstr "Search Project"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:80
+msgid "Client"
+msgstr "Client"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:81
+msgid "Supplier"
+msgstr "Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:89
+msgid "Update"
+msgstr "Update"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:94
+msgid "Export as PDF"
+msgstr "Export as PDF"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\SearchProject.php:100
+msgid "No projects found."
+msgstr "No projects found."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:36
+msgid "Project Serial #"
+msgstr "Project Serial #"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:52
+msgid "Supplier Info"
+msgstr "Supplier Info"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:58
+msgid "Client Date"
+msgstr "Client Date"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:61
+msgid "Buffer Days (Slack Time)"
+msgstr "Buffer Days (Slack Time)"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\project\updateProject.php:89
+msgid ""
+"You are updating a project. Please make sure the information provided is "
+"correct."
+msgstr ""
+"You are updating a project. Please make sure the information provided is "
+"correct."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:24
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:26
+msgid "Create New Supplier"
+msgstr "Create New Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\createSupplier.php:42
+msgid "Add Supplier"
+msgstr "Add Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\editSupplier.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\editSupplier.php:24
+msgid "Edit Supplier"
+msgstr "Edit Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\editSupplier.php:42
+msgid "Update Supplier"
+msgstr "Update Supplier"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:23
+msgid "All Suppliers"
+msgstr "All Suppliers"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:34
+msgid "Company"
+msgstr "Company"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\supplier\listSupplier.php:36
+msgid "Phone"
+msgstr "Phone"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:29
+msgid "Old Password"
+msgstr "Old Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:55
+msgid "Are you sure you want to change your password?"
+msgstr "Are you sure you want to change your password?"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\changePassword.php:56
+msgid "This action cannot be undone."
+msgstr "This action cannot be undone."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:68
+msgid "TGUser"
+msgstr "TGUser"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:69
+msgid "Admin Password"
+msgstr "Admin Password"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:70
+msgid "Value"
+msgstr "Value"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:79
+msgid "You are deleting user"
+msgstr "You are deleting user"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\user\deleteUser.php:79
+msgid "Confirm to proceed."
+msgstr "Confirm to proceed."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:23
+msgid "Upload Video"
+msgstr "Upload Video"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:30
+msgid "Video URL"
+msgstr "Video URL"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadVideo.php:33
+msgid "Format (mp4)"
+msgstr "Format (mp4)"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadYoutubeVideo.php:15
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\uploadYoutubeVideo.php:46
+msgid "Upload YouTube Video"
+msgstr "Upload YouTube Video"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:21
+msgid "All Uploaded Videos"
+msgstr "All Uploaded Videos"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:24
+msgid "Upload New Video"
+msgstr "Upload New Video"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:33
+msgid "Your browser does not support the video tag."
+msgstr "Your browser does not support the video tag."
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:38
+msgid "Duration"
+msgstr "Duration"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewVideo.php:38
+msgid "seconds | Uploaded"
+msgstr "seconds | Uploaded"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewYoutubeVideo.php:5
+#: C:\xampp\htdocs\SysDevProject\resources\views\video\viewYoutubeVideo.php:21
+msgid "All Uploaded YouTube Videos"
+msgstr "All Uploaded YouTube Videos"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:15
+msgid "Texas Gears Dashboard"
+msgstr "Texas Gears Dashboard"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:51
+#: C:\xampp\htdocs\SysDevProject\resources\views\statusOverview.php:65
+msgid "Kanban Overview"
+msgstr "Kanban Overview"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:54
+#: C:\xampp\htdocs\SysDevProject\resources\views\statusOverview.php:67
+msgid "View Kanban"
+msgstr "View Kanban"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:68
+#: C:\xampp\htdocs\SysDevProject\resources\views\statusOverview.php:81
+msgid "Gantt Overview"
+msgstr "Gantt Overview"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:70
+msgid "View Gantt"
+msgstr "View Gantt"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\home.php:79
+msgid "Most Recent Projects"
+msgstr "Most Recent Projects"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\statusOverview.php:32
+msgid "Status Overview - Texas Gears"
+msgstr "Status Overview - Texas Gears"
+
+#: C:\xampp\htdocs\SysDevProject\resources\views\statusOverview.php:83
+msgid "View"
+msgstr "View"

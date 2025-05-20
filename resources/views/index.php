@@ -1,8 +1,8 @@
 <!-- Admin List Title -->
-<h2>Admin List</h2>
+<h2><?php echo _('Admin List'); ?></h2>
 
 <!-- Link to create a new admin -->
-<a href="/SysDevProject/admin/create/">Add Admin</a>
+<a href="/SysDevProject/admin/create/"><?php echo _('Add Admin'); ?></a>
 
 <!-- Display list of all admins -->
 <ul>

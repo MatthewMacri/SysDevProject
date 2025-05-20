@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Upload Video</title>
+  <title><?php echo _('Upload Video'); ?></title>
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="../../css/form.css">
@@ -20,23 +20,23 @@
 
   <!-- Upload Video Form -->
   <section class="section">
-    <h2>Upload Video</h2>
+    <h2><?php echo _('Upload Video'); ?></h2>
     <form method="post" action="?controller=video&action=upload">
       
       <!-- Project ID (required) -->
-      <input type="text" name="project_id" placeholder="Project ID" required><br>
+      <input type="text" name="project_id" placeholder="<?php echo _('Project ID'); ?>" required><br>
 
       <!-- Video URL -->
-      <input type="text" id="video_url" name="video_url" placeholder="Video URL" required><br>
+      <input type="text" id="video_url" name="video_url" placeholder="<?php echo _('Video URL'); ?>" required><br>
 
       <!-- Format (e.g., mp4) -->
-      <input type="text" name="format" placeholder="Format (mp4)" required><br>
+      <input type="text" name="format" placeholder="<?php echo _('Format (mp4)'); ?>" required><br>
 
       <!-- Hidden field to capture duration using JS -->
       <input type="hidden" id="duration" name="duration">
 
       <!-- Submit form -->
-      <button type="submit">Upload</button>
+      <button type="submit"><?php echo _('Upload'); ?></button>
     </form>
   </section>
 

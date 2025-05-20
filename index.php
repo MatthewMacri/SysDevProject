@@ -2,6 +2,7 @@
 // Load the database class and required controller namespaces
 require_once 'vendor/autoload.php';
 $app = require_once 'bootstrap/app.php';
+require_once __DIR__ . '/resources/services/i18n.php';
 
 require_once app_path('\Http\Controllers\core\DatabaseController.php');
 

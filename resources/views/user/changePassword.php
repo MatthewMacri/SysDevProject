@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Change Password</title>
+  <title><?php echo _('Change Password'); ?></title>
 
   <!-- Favicon and Styles -->
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
@@ -26,24 +26,24 @@
       
       <!-- Old Password -->
       <div class="form-group">
-        <label for="oldPassword">Old Password</label>
+        <label for="oldPassword"><?php echo _('Old Password'); ?></label>
         <input type="password" id="oldPassword" name="oldPassword" required>
       </div>
 
       <!-- New Password -->
       <div class="form-group">
-        <label for="newPassword">New Password</label>
+        <label for="newPassword"><?php echo _('New Password'); ?></label>
         <input type="password" id="newPassword" name="newPassword" required>
       </div>
 
       <!-- Confirm New Password -->
       <div class="form-group">
-        <label for="confirmPassword">Confirm Password</label>
+        <label for="confirmPassword"><?php echo _('Confirm Password'); ?></label>
         <input type="password" id="confirmPassword" name="confirmPassword" required>
       </div>
 
       <!-- Submit triggers JS confirmation -->
-      <button type="submit" class="btn">Change Password</button>
+      <button type="submit" class="btn"><?php echo _('Change Password'); ?></button>
     </form>
   </div>
   </div>
@@ -52,12 +52,12 @@
   <div id="changePasswordPopup" class="modal-container">
     <div class="confirm-content">
       <p>
-        Are you sure you want to change your password?<br>
-        This action cannot be undone.
+        <?php echo _('Are you sure you want to change your password?'); ?><br>
+        <?php echo _('This action cannot be undone.'); ?>
       </p>
       <div class="confirm-buttons">
-        <button type="button" class="btn" id="cancelChange">Cancel</button>
-        <button type="button" class="btn" id="confirmChange">Confirm</button>
+        <button type="button" class="btn" id="cancelChange"><?php echo _('Cancel'); ?></button>
+        <button type="button" class="btn" id="confirmChange"><?php echo _('Confirm'); ?></button>
       </div>
     </div>
   </div>

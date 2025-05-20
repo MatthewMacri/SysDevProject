@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit Admin</title>
+  <title><?php echo _('Edit Admin'); ?></title>
   
   <!-- Link to stylesheets for the page -->
   <link rel="stylesheet" href="../../css/home.css">
@@ -19,7 +19,7 @@
 
 <!-- Main Section for Editing Admin -->
 <section class="section">
-  <h2>Edit Admin</h2>
+  <h2><?php echo _('Edit Admin'); ?></h2>
   
   <!-- Form to update admin details -->
  <form method="post" action="/sysdevproject/admin/update/<?= $admin['admin_id'] ?>">
@@ -36,10 +36,10 @@
       <input type="email" name="email" value="<?= htmlspecialchars($admin['email']) ?>" required><br>
 
       <!-- New Password (Optional) -->
-      <input type="password" name="password" placeholder="New Password"><br>
+      <input type="password" name="password" placeholder="<?php echo _('New Password'); ?>"><br>
 
       <!-- Submit Button to update the admin -->
-      <button type="submit">Update Admin</button>
+      <button type="submit"><?php echo _('Update Admin'); ?></button>
   </form>
 </section>
 

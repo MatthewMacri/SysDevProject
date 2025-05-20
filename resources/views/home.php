@@ -1,4 +1,5 @@
 <?php
+require_once dirname(__DIR__) . '/services/i18n.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -12,7 +13,7 @@ if (session_status() == PHP_SESSION_NONE) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Texas Gears Dashboard</title>
+  <title><?php echo _('Texas Gears Dashboard'); ?></title>
 
   <!-- External Styles for icons, kanban, and gantt components -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -48,10 +49,10 @@ if (session_status() == PHP_SESSION_NONE) {
   <!-- Kanban Board Section -->
   <section class="section kanban-header">
     <div class="kanban-header-content">
-      <h2 class="kanban-title" style="color: #F68A30;">Kanban Overview</h2>
+      <h2 class="kanban-title" style="color: #F68A30;"><?php echo _('Kanban Overview'); ?></h2>
       <!-- Link to full Kanban board page -->
       <a href="kanbanPage.html" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View Kanban
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View Kanban'); ?>
       </a>
     </div>
     <!-- Filter input to search tasks by text -->
@@ -65,9 +66,9 @@ if (session_status() == PHP_SESSION_NONE) {
   <!-- Gantt Chart Section -->
   <section class="section">
     <div class="section-header">
-      <h2>Gantt Overview</h2>
+      <h2><?php echo _('Gantt Overview'); ?></h2>
       <a href="#kanban" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View Gantt
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View Gantt'); ?>
       </a>
     </div>
     <!-- Div where Gantt chart will load -->
@@ -76,7 +77,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
   <!-- Recent Projects Section -->
   <section class="section">
-    <h2>Most Recent Projects</h2>
+    <h2><?php echo _('Most Recent Projects'); ?></h2>
     <!-- Cards will be injected dynamically into this div -->
     <div id="recent-projects-container"></div>
   </section>

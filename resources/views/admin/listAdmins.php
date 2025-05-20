@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Admin List</title>
+  <title><?php echo _('Admin List'); ?></title>
   
   <!-- Link to the stylesheet for the Admin List page -->
   <link rel="stylesheet" href="../../css/listAdmins.css">
@@ -19,10 +19,10 @@
 
   <!-- Main Content Section for Admin List -->
   <section class="section">
-    <h2>Admin List</h2>
+    <h2><?php echo _('Admin List'); ?></h2>
     
     <!-- Button to add a new admin -->
-    <a class="view-button" href="/SysDevProject/admin/create">Add Admin</a>
+    <a class="view-button" href="/SysDevProject/admin/create"><?php echo _('Add Admin'); ?></a>
     
     <!-- List of Admins -->
     <ul class="admin-list">

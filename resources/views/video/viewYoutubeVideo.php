@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>All Uploaded YouTube Videos</title>
+  <title><?php echo _('All Uploaded YouTube Videos'); ?></title>
   <!-- Link to base CSS for layout -->
   <link rel="stylesheet" href="../../css/home.css">
 </head>
@@ -18,7 +18,7 @@
 
   <!-- Section to show all uploaded YouTube videos -->
   <section class="section">
-    <h2>All Uploaded YouTube Videos</h2>
+    <h2><?php echo _('All Uploaded YouTube Videos'); ?></h2>
     <ul id="video-list">
       <?php foreach ($videos as $index => $video): ?>
         <li>
@@ -26,11 +26,11 @@
           <div id="player-<?= $index ?>" data-url="<?= htmlspecialchars($video->getVideoUrl()) ?>"></div>
 
           <!-- Show upload time -->
-          Uploaded: <?= htmlspecialchars($video->getUploadTime()) ?><br>
+          <?php echo _('Uploaded'); ?>: <?= htmlspecialchars($video->getUploadTime()) ?><br>
 
           <!-- Delete link for this video -->
           <a href="?controller=video&action=delete&id=<?= $video->getVideoId() ?>"
-             onclick="return confirm('Delete this video?')">Delete</a>
+             onclick="return confirm('Delete this video?')"><?php echo _('Delete'); ?></a>
         </li>
       <?php endforeach; ?>
     </ul>

@@ -209,14 +209,15 @@ class User
      * @param int $id User ID
      * @return User|null Returns an User object if found, null otherwise
      */
-    public static function selectById(PDO $pdo, int $id): ?self
+    public static function selectById(DatabaseController $db, int $id): ?self
     {
+        $pdo = self::$db->getConnection();
         $stmt = $pdo->prepare("SELECT * FROM users WHERE userID = :id");
         $stmt->execute([':id' => $id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($data) {
-            $user = new self($pdo);
+            $user = new self($db);
             $user->setUserID($data['userID']);
             $user->setUserName($data['userName']);
             $user->setFirstName($data['firstName']);
@@ -237,13 +238,14 @@ class User
      * @param PDO $pdo Database connection
      * @return array Returns an array of User objects
      */
-    public static function selectAll(PDO $pdo): array
+    public static function selectAll(DatabaseController $db): array
     {
+        $pdo = self::$db->getConnection();
         $stmt = $pdo->query("SELECT * FROM users");
         $users = [];
 
         while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-            $user = new self($pdo);
+            $user = new self($db);
             $user->setUserID($row['userID']);
             $user->setUserName($row['userName']);
             $user->setFirstName($row['firstName']);
@@ -265,14 +267,15 @@ class User
      * @param string $username Username
      * @return User|null Returns an User object if found, null otherwise
      */
-    public static function selectByUsername(PDO $pdo, string $username): ?self
+    public static function selectByUsername(DatabaseController $db, string $username): ?self
     {
+        $pdo = self::$db->getConnection();
         $stmt = $pdo->prepare("SELECT * FROM users WHERE userName = :username");
         $stmt->execute([':username' => $username]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($data) {
-            $user = new self($pdo);
+            $user = new self($db);
             $user->setUserID($data['userID']);
             $user->setUserName($data['userName']);
             $user->setFirstName($data['firstName']);

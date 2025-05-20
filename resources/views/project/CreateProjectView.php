@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Project</title>
+  <title><?php echo _('Create Project'); ?></title>
   <link rel="stylesheet" href="../../css/navbar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
@@ -94,11 +94,11 @@
     <form class="project-form" method="POST" action="/SysDevProject/project/formSubmission">
       <div class="form-section">
         <div class="form-group">
-          <label for="project-title">Project Title<span class="required">*</span></label>
+          <label for="project-title"><?php echo _('Project Title'); ?><span class="required">*</span></label>
           <input type="text" id="project-title" name="project-title" required>
         </div>
         <div class="form-group">
-          <label for="serial-prefix">Project Serial Number<span class="required">*</span></label>
+          <label for="serial-prefix"><?php echo _('Project Serial Number'); ?><span class="required">*</span></label>
           <div style="display: flex; gap: 5px; align-items: center;">
             <input type="text" id="serial-prefix" name="serial-prefix" maxlength="3" placeholder="SN" required
               pattern="[A-Za-z]{2,3}" style="width: 50px;" />
@@ -111,14 +111,14 @@
           </div>
         </div>
         <div class="form-group">
-          <label for="project-description">Project Description<span class="required">*</span></label>
+          <label for="project-description"><?php echo _('Project Description'); ?><span class="required">*</span></label>
           <textarea id="project-description" name="project-description" required></textarea>
         </div>
       </div>
 
       <div class="date-picker-container">
         <button type="button" onclick="document.getElementById('project-start-date').showPicker()">
-          <div class="date-label">Project Start Date<span class="required">*</span></div>
+          <div class="date-label"><?php echo _('Project Start Date'); ?><span class="required">*</span></div>
           <i class="fas fa-calendar-alt calendar-icon"></i>
           <input type="date" id="project-start-date" name="project-start-date" class="hidden-date-input" required />
         </button>
@@ -126,7 +126,7 @@
 
       <div class="date-picker-container">
         <button type="button" onclick="document.getElementById('project-End-date').showPicker()">
-          <div class="date-label">Project End Date<span class="required">*</span></div>
+          <div class="date-label"><?php echo _('Project End Date'); ?><span class="required">*</span></div>
           <i class="fas fa-calendar-alt calendar-icon"></i>
           <input type="date" id="project-End-date" name="project-End-date" class="hidden-date-input" required />
         </button>
@@ -134,42 +134,42 @@
 
 
       <div class="form-section client-details">
-        <h2>Client Details</h2>
+        <h2><?php echo _('Client Details'); ?></h2>
         <div class="form-group">
-          <label for="client-name">Client Name<span class="required">*</span></label>
+          <label for="client-name"><?php echo _('Client Name'); ?><span class="required">*</span></label>
           <input type="text" id="client-name" name="client-name" required>
         </div>
         <div class="form-group">
-          <label for="client-company">Company Name<span class="required">*</span></label>
+          <label for="client-company"><?php echo _('Company Name'); ?><span class="required">*</span></label>
           <input type="text" id="client-company" name="client-company" required>
         </div>
         <div class="form-group">
-          <label for="client-email">Email<span class="required">*</span></label>
+          <label for="client-email"><?php echo _('Email'); ?><span class="required">*</span></label>
           <input type="email" id="client-email" name="client-email" required>
         </div>
         <div class="form-group">
-          <label for="client-phone">Phone Number<span class="required">*</span></label>
+          <label for="client-phone"><?php echo _('Phone Number'); ?><span class="required">*</span></label>
           <input type="tel" id="client-phone" name="client-phone" required>
         </div>
       </div>
 
       <div id="supplier-sections">
         <div class="form-section supplier-details">
-          <h2>Supplier Details</h2>
+          <h2><?php echo _('Supplier Details'); ?></h2>
           <div class="form-group">
-            <label for="supplier-name">Supplier Name<span class="required">*</span></label>
+            <label for="supplier-name"><?php echo _('Supplier Name'); ?><span class="required">*</span></label>
             <input type="text" id="supplier-name" name="supplier-name" required>
           </div>
           <div class="form-group">
-            <label for="supplier-company">Company Name<span class="required">*</span></label>
+            <label for="supplier-company"><?php echo _('Company Name'); ?><span class="required">*</span></label>
             <input type="text" id="supplier-company" name="supplier-company" required>
           </div>
           <div class="form-group">
-            <label for="supplier-email">Email<span class="required">*</span></label>
+            <label for="supplier-email"><?php echo _('Email'); ?><span class="required">*</span></label>
             <input type="email" id="supplier-email" name="supplier-email" required>
           </div>
           <div class="form-group">
-            <label for="supplier-phone">Phone Number<span class="required">*</span></label>
+            <label for="supplier-phone"><?php echo _('Phone Number'); ?><span class="required">*</span></label>
             <input type="tel" id="supplier-phone" name="supplier-phone" required>
           </div>
         </div>
@@ -177,14 +177,14 @@
 
       <div class="suplier-button">
         <button type="button" id="supplierButton" class="add-supplier-btn">
-          Add Another Supplier <i class="fas fa-plus"></i>
+          <?php echo _('Add Another Supplier'); ?> <i class="fas fa-plus"></i>
         </button>
       </div>
 
       <div class="bottom-buttons">
         <div class="date-picker-container">
           <button type="button" onclick="document.getElementById('supplier-date').showPicker()">
-            <div class="date-label">Suplier Date<span class="required">*</span></div>
+            <div class="date-label"><?php echo _('Supplier Date'); ?><span class="required">*</span></div>
             <i class="fas fa-calendar-alt calendar-icon"></i>
             <input type="date" id="supplier-date" class="hidden-date-input" />
           </button>
@@ -192,7 +192,7 @@
 
         <div class="date-picker-container">
           <button type="button" onclick="window.location.href='/SysDevProject/resources/views/photo/uploadPhoto.php'">
-            <div class="date-label">Add Media</div>
+            <div class="date-label"><?php echo _('Add Media'); ?></div>
             <i class="fas fa-plus media-icon"></i>
           </button>
         </div>
@@ -200,7 +200,7 @@
 
 
       </div>
-      <p class="required-note"><span class="required">*</span> Required field</p>
+      <p class="required-note"><span class="required">*</span><?php echo _('Required field'); ?></p>
       <div class="form-actions">
         <button type="button" class="form-button cancel-button">Cancel</button>
         <button type="submit" class="form-button create-button">Create</button>
@@ -211,10 +211,10 @@
 
   <div id="confirmationPopup" class="popup-overlay">
     <div class="popup-box">
-      <p>You are creating a project. Please make sure the information provided is correct.</p>
+      <p><?php echo _('You are creating a project. Please make sure the information provided is correct.'); ?></p>
       <div class="popup-buttons">
-        <button id="cancelPopup" class="orange-btn small">Cancel</button>
-        <button id="confirmPopup" class="orange-btn small">Confirm</button>
+        <button id="cancelPopup" class="orange-btn small"><?php echo _('Cancel'); ?></button>
+        <button id="confirmPopup" class="orange-btn small"><?php echo _('Confirm'); ?></button>
       </div>
     </div>
   </div>

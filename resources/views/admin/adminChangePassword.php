@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Change Password</title>
+  <title><?php echo _('Change Password'); ?></title>
 
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
   <link rel="stylesheet" href="../../css/adminChangePassword.css" />
@@ -22,14 +22,14 @@
 
   <form action="/admin/change-password" method="post">
     <div class="form-box">
-      <label for="username">Username</label>
+      <label for="username"><?php echo _('Username'); ?></label>
       <input type="text" id="username" name="username" placeholder="Value" required />
 
-      <label for="new-password">New Password</label>
+      <label for="new-password"><?php echo _('New Password'); ?></label>
       <input type="password" id="new-password" name="new_password" placeholder="Value" required />
 
       <div class="button-center">
-        <button type="submit" class="changePasswordButton">Change Password</button>
+        <button type="submit" class="changePasswordButton"><?php echo _('Change Password'); ?></button>
       </div>
     </div>
   </form>
@@ -37,13 +37,14 @@
   <div id="changePasswordPopup" class="hidden-overlay">
     <div class="confirm-content">
       <p>
-        You are changing the password for user <span id="changeUserID"></span>.<br>
-        Please make sure to save the password in a safe place!
+        <?php echo _('You are changing the password for user'); ?>
+        <span id="changeUserID"></span>.<br>
+        <?php echo _('Please make sure to save the password in a safe place!'); ?>
       </p>
       <input type="password" id="adminConfirmPassword" placeholder="Enter Admin Password" class="popup-input" />
       <div class="confirm-buttons">
-        <button class="btn" id="cancelChange" onclick="hideChangePasswordPopup()">Cancel</button>
-        <button class="btn" id="confirmChange">Confirm</button>
+        <button class="btn" id="cancelChange" onclick="hideChangePasswordPopup()"><?php echo _('Cancel'); ?></button>
+        <button class="btn" id="confirmChange"><?php echo _('Confirm'); ?></button>
       </div>
     </div>
   </div>
