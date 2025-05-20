@@ -84,9 +84,9 @@
         'prospecting'  // status
       ]);
 
-      echo "<p style='color:green; text-align:center;'>✅ Project created successfully.</p>";
+      echo "<p style='color:green; text-align:center;'>Project created successfully.</p>";
     } catch (PDOException $e) {
-      echo "<p style='color:red; text-align:center;'>❌ Failed: " . $e->getMessage() . "</p>";
+      echo "<p style='color:red; text-align:center;'>Failed: " . $e->getMessage() . "</p>";
     }
   }
   ?>

@@ -15,24 +15,24 @@
 
   <?php
   require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+  $app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
   require resource_path('components/navbar.php');
   ?>
 
-  <div class="form-container">
+  <form action="/admin/change-password" method="post">
     <div class="form-box">
       <label for="username">Username</label>
-      <input type="text" id="username" placeholder="Value" />
+      <input type="text" id="username" name="username" placeholder="Value" required />
 
       <label for="new-password">New Password</label>
-      <input type="password" id="new-password" placeholder="Value" />
+      <input type="password" id="new-password" name="new_password" placeholder="Value" required />
 
       <div class="button-center">
-        <button class="changePasswordButton">Change Password</button>
+        <button type="submit" class="changePasswordButton">Change Password</button>
       </div>
     </div>
-  </div>
+  </form>
 
   <div id="changePasswordPopup" class="hidden-overlay">
     <div class="confirm-content">
