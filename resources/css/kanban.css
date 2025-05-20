@@ -143,11 +143,12 @@ body {
 
 /* Container holding input and controls */
 .kanban-footer {
-  display: flex;
+  display: none;
+  /* display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 6px;
-  margin-top: 10px;
+  margin-top: 10px; */
 }
 
 /* New Task Input */

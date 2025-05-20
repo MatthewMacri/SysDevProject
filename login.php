@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/resources/services/i18n.php';
 
 use App\Http\Controllers\core\DatabaseController;
 

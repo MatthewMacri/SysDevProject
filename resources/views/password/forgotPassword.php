@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Forgot Password</title>
+  <title><?php echo _('Forgot Password'); ?></title>
 
   <!-- Shared and page-specific styles -->
   <link rel="stylesheet" href="../../css/login.css">
@@ -13,15 +13,15 @@
 <body>
 
   <!-- Navigation link to return to the login page -->
-  <a class="top-left-link" href="login.html">← Back to Login</a>
+  <a class="top-left-link" href="login.html"><?php echo _('← Back to Login'); ?></a>
 
   <!-- Main container for the password reset form -->
   <div class="form-container">
     <form id="reset-form" class="form-box">
-      <h2>Reset Your Password</h2>
-      <label for="email">Email Address</label>
+      <h2><?php echo _('Reset Your Password'); ?></h2>
+      <label for="email"><?php echo _('Email Address'); ?></label>
       <input type="email" name="email" id="email-input" required />
-      <button type="submit">Send Reset Link</button>
+      <button type="submit"><?php echo _('Send Reset Link'); ?></button>
     </form>
     <div id="feedback"></div>
     <script>
@@ -46,7 +46,7 @@
             })
             .catch(err => {
               console.error("Request failed:", err);
-              feedback.innerHTML = `<p style="color:red;">Request failed.</p>`;
+              feedback.innerHTML = `<p style="color:red;"><?php echo _('Request failed.'); ?></p>`;
             });
         });
       });

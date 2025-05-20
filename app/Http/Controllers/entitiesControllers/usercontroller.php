@@ -13,6 +13,7 @@ class Usercontroller
 {
 
     private $model;
+    private $db;
 
     /**
      * Constructor to initialize the User model.
@@ -21,6 +22,7 @@ class Usercontroller
      */
     public function __construct($db)
     {
+        $this->db = $db;
         $this->model = new User($db);
     }
 
@@ -65,7 +67,7 @@ class Usercontroller
         $pdo = $this->model->getDb()->getConnection();
 
         // Retrieve the user from the database by username
-        $user = User::selectByUsername($pdo, $username);
+        $user = User::selectByUsername($this->db, $username);
 
         // If no user found, return error
         if (!$user) {
@@ -100,9 +102,9 @@ class Usercontroller
         $result = $this->model->delete($userId);
 
         if ($result) {
-            echo "✅ User deleted successfully.";
+            echo "User deleted successfully.";
         } else {
-            echo "❌ Failed to delete user.";
+            echo "Failed to delete user.";
         }
     }
 
@@ -114,7 +116,7 @@ class Usercontroller
     return [
         'success' => $success,
         'message' => $success ? "User deleted successfully." : "Failed to delete user."
-    ];
-}
+        ];
+    }
 
 }

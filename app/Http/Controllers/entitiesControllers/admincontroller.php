@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\entitiesControllers;
 
+use App\Models\users\User;
+use function Laravel\Prompts\error;
+
 require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 require_once app_path('Models/users/admin.php');
@@ -10,11 +13,13 @@ use App\Models\users\Admin;
 class AdminController
 {
     private $model;
+    private $userModel;
     private $encryptionKey = '796a3a9391c45035412c62f92e889080';
 
     public function __construct($db)
     {
-        $this->model = new Admin($db);
+        $this->model = new Admin($db->getConnection());
+        $this->userModel = new User($db);
     }
 
     public function index()
@@ -35,6 +40,27 @@ class AdminController
         }
         include resource_path('views/admin/createAdmin.php');
     }
+    public function createUser($data)
+    {
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        $this->userModel->setUserName($data['username'] ?? null);
+        $this->userModel->setFirstName($data['firstName'] ?? null);
+        $this->userModel->setLastName($data['lastName'] ?? null);
+        $this->userModel->setEmail($data['email'] ?? null);
+        $this->userModel->setPassword($data['password'] ?? null);
+        $this->userModel->setIsDeactivated(false);
+        $this->userModel->setSecret('');
+
+        $userCreate = $this->userModel->create();
+        if ($userCreate) {
+            header('Location: http://localhost/SysDevProject/resources/views/admin/createUser.php');
+        } else {
+            error("User not created successfully");
+        }
+    }
 
     public function store($postData)
     {
@@ -44,7 +70,7 @@ class AdminController
 
         // Now pass the encrypted password to the model to store in the database
         $this->model->addAdmin($postData);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     public function edit($id)
@@ -66,13 +92,13 @@ class AdminController
         }
 
         $this->model->updateAdmin($id, $postData);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     public function delete($id)
     {
         $this->model->deleteAdmin($id);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     // Method to encrypt the password

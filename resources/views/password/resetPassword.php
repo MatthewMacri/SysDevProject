@@ -29,16 +29,17 @@ if (!$tokenData || time() > $tokenData['expires_at']) {
 
 // Handle password update if form is submitted via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newPassword = password_hash($_POST['password'], PASSWORD_BCRYPT); // Securely hash the new password
+    $encryptionKey = '796a3a9391c45035412c62f92e889080';
+    $newPassword = openssl_encrypt($password, 'AES-128-ECB', $encryptionKey); // Securely encrypt the new password
     $email = $tokenData['email'];
 
     // Attempt to update the admin's password
-    $adminUpdate = $db->prepare("UPDATE admin SET password = ? WHERE email = ?");
+    $adminUpdate = $db->prepare("UPDATE Admins SET password = ? WHERE email = ?");
     $adminUpdate->execute([$newPassword, $email]);
 
     // If no admin was updated, attempt to update the user table instead
     if ($adminUpdate->rowCount() === 0) {
-        $userUpdate = $db->prepare("UPDATE user SET password = ? WHERE email = ?");
+        $userUpdate = $db->prepare("UPDATE Users SET password = ? WHERE email = ?");
         $userUpdate->execute([$newPassword, $email]);
     }
 

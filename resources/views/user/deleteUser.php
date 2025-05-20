@@ -69,7 +69,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Delete User</title>
+  <title><?php echo _('Delete User'); ?></title>
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
   <link rel="stylesheet" href="../../css/deleteUser.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -78,25 +78,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['a
 <body>
 
   <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
   ?>
 
   <div class="form-container">
     <div class="form-box">
-      <label for="username">Username</label>
-      <input type="text" id="username" placeholder="TGUser" />
-      <label for="admin-password">Admin Password</label>
-      <input type="password" id="admin-password" placeholder="Value" />
+      <label for="username"><?php echo _('Username'); ?></label>
+      <input type="text" id="username" placeholder="<?php echo _('TGUser'); ?>" />
+      <label for="admin-password"><?php echo _('Admin Password'); ?></label>
+      <input type="password" id="admin-password" placeholder="<?php echo _('Value'); ?>" />
       <div class="buttons">
-        <button class="deleteButton">Delete User</button>
+        <button class="deleteButton"><?php echo _('Delete User'); ?></button>
       </div>
     </div>
   </div>
 
 <div id="deleteConfirmBox" class="popup-overlay hidden-overlay">
   <div class="popup-box">
-    <p>You are deleting user <span id="deleteUserID"></span>.<br>Confirm to proceed.</p>
+    <p><?php echo _('You are deleting user'); ?> <span id="deleteUserID"></span>.<br><?php echo _('Confirm to proceed.'); ?></p>
     <div class="popup-buttons">
       <button class="orange-btn" onclick="hideDeleteConfirmBox()">Cancel</button>
       <button class="orange-btn" id="confirmDeleteBtn">Confirm</button>

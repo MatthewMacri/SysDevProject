@@ -6,7 +6,7 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Texas Gears Engineering</title>
+  <title><?php echo _('Login - Texas Gears Engineering'); ?></title>
 
   <!-- Favicon for browser tab -->
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
@@ -29,23 +29,23 @@
     <form id="loginForm">
       <!-- Username input field -->
       <div class="form-group">
-        <label for="username">Username</label>
+        <label for="username"><?php echo _('Username'); ?></label>
         <input type="text" id="username" name="username"/>
       </div>
 
       <!-- Password input field -->
       <div class="form-group">
-        <label for="password">Password</label>
+        <label for="password"><?php echo _('Password'); ?></label>
         <input type="password" id="password" name="password"/>
       </div>
 
       <!-- Login button -->
-      <button type="submit" class="login-button">Login</button>
+      <button type="submit" class="login-button"><?php echo _('Login'); ?></button>
     </form>
 
     <!-- Link to password recovery page -->
     <div class="forgot-password">
-      <a href="../../views/password/forgotPassword.php">Forgot password?</a>
+      <a href="../../views/password/forgotPassword.php"><?php echo _('Forgot password?'); ?></a>
     </div>
   </div>
 
@@ -53,19 +53,19 @@
   <div id="forgotPasswordModal" class="modal-container" style="display: none;">
     <div class="confirm-content small-popup">
       <p>
-        Forgetting your password as a user will send an email to the admin to change your password.
-        Would you like to continue?
+        <?php echo _('Forgetting your password as a user will send an email to the admin to change your password.
+        Would you like to continue?'); ?>
       </p>
 
       <!-- Username input for forgot password -->
       <div class="form-group">
-        <input type="text" id="forgotUsername" class="popup-input" placeholder="Enter Username" />
+        <input type="text" id="forgotUsername" class="popup-input" placeholder="<?php echo _('Enter Username'); ?>" />
       </div>
 
       <!-- Cancel and Confirm buttons -->
       <div class="confirm-buttons">
-        <button class="btn" id="cancelForgotBtn" style="background-color: #f58220; color: white;">Cancel</button>
-        <button class="btn" id="confirmForgotBtn" style="background-color: #f58220; color: white;">Confirm</button>
+        <button class="btn" id="cancelForgotBtn" style="background-color: #f58220; color: white;"><?php echo _('Cancel'); ?></button>
+        <button class="btn" id="confirmForgotBtn" style="background-color: #f58220; color: white;"><?php echo _('Confirm'); ?></button>
       </div>
     </div>
   </div>
@@ -73,24 +73,24 @@
   <!-- Two-Factor Authentication (2FA) Modal -->
   <div id="twofaModal" class="modal-container" style="display: none;">
     <div class="confirm-content small-popup">
-      <h3>Two-Factor Authentication</h3>
-      <p>Scan the QR code below with your authenticator app.</p>
+      <h3><?php echo _('Two-Factor Authentication'); ?></h3>
+      <p><?php echo _('Scan the QR code below with your authenticator app.'); ?></p>
 
       <!-- Container for dynamically generated QR code -->
       <div class="qrcode" id="qrcode"></div>
 
-      <p style="margin: 10px 0 15px;">After scanning, enter the 6-digit code from your app.</p>
+      <p style="margin: 10px 0 15px;"><?php echo _('After scanning, enter the 6-digit code from your app.'); ?></p>
 
       <!-- Input for 2FA code -->
       <div class="form-group">
-        <label for="twofaCode">2FA Code</label>
+        <label for="twofaCode"><?php echo _('2FA Code'); ?></label>
         <input type="text" id="twofaCode" class="popup-input" />
       </div>
 
       <!-- 2FA action buttons -->
       <div class="confirm-buttons">
-        <button class="btn" id="cancel2faBtn">Cancel</button>
-        <button class="btn" id="confirm2faBtn">Confirm</button>
+        <button class="btn" id="cancel2faBtn"><?php echo _('Cancel'); ?></button>
+        <button class="btn" id="confirm2faBtn"><?php echo _('Confirm'); ?></button>
       </div>
     </div>
   </div>

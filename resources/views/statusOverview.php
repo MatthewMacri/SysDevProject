@@ -1,12 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-  if (!isset($_SESSION['role'])) {
-        header("Location: ./login/loginview.php");
-        exit;
-  } 
-
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
 
@@ -37,7 +29,7 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Status Overview - Texas Gears</title>
+  <title><?php echo _('Status Overview - Texas Gears'); ?></title>
 
   <!-- External stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -70,9 +62,9 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
   <!-- Kanban Section -->
   <section class="section kanban-header">
     <div class="kanban-header-content">
-      <h2 class="kanban-title" style="color: #F68A30;">Kanban Overview</h2>
+      <h2 class="kanban-title" style="color: #F68A30;"><?php echo _('Kanban Overview'); ?></h2>
       <a href="kanbanPage.html" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View Kanban
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View Kanban'); ?>
       </a>
     </div>
 
@@ -86,9 +78,9 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
   <!-- Gantt Section -->
   <section class="section">
     <div class="section-header">
-      <h2>Gantt Overview</h2>
+      <h2><?php echo _('Gantt Overview'); ?></h2>
       <a href="#kanban" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View'); ?>
       </a>
     </div>
 
@@ -98,8 +90,8 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
   <!-- External JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx.all.js"></script>
   <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx-gantt.min.js"></script>
+  <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx.all.js"></script>
 
   <!-- Local JS -->
   <script src="/SysDevProject/resources/js/home.js"></script>

@@ -12,7 +12,7 @@ if (!isset($_SESSION['role'])) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Upload YouTube Video</title>
+    <title><?php echo _('Upload YouTube Video'); ?></title>
     <link rel="stylesheet" href="../../css/form.css">
     <script src="https://www.youtube.com/iframe_api"></script>
 </head>
@@ -43,14 +43,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 ?>
 
 <section class="section">
-    <h2>Upload YouTube Video</h2>
+    <h2><?php echo _('Upload YouTube Video'); ?></h2>
     <form id="uploadForm" method="post" action="">
         <input type="text" name="project_id" placeholder="Project ID" required><br><br>
         <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
         <input type="hidden" name="format" value="youtube">
         <input type="hidden" id="duration" name="duration">
         <br>
-        <button type="button" onclick="startProcess()">Upload</button>
+        <button type="button" onclick="startProcess()"><?php echo _('Upload'); ?></button>
     </form>
 
     <!-- Hidden YouTube Player -->
