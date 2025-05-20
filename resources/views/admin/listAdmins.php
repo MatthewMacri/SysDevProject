@@ -22,7 +22,7 @@
     <h2>Admin List</h2>
     
     <!-- Button to add a new admin -->
-    <a class="view-button" href="?controller=admin&action=create">Add Admin</a>
+    <a class="view-button" href="/SysDevProject/admin/create">Add Admin</a>
     
     <!-- List of Admins -->
     <ul class="admin-list">

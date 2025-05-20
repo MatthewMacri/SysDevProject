@@ -21,7 +21,7 @@
 
   <!-- Admin creation form -->
   <h2>Create New Admin</h2>
-  <form method="post" action="?controller=admin&action=store">
+  <form method="post" action="/SysDevProject/admin/store">
     <!-- Admin account fields -->
     <input type="text" name="admin_name" placeholder="Admin Username" required><br>
     <input type="text" name="first_name" placeholder="First Name" required><br>

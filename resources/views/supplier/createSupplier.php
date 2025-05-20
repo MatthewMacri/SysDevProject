@@ -24,7 +24,7 @@
     <h2>Create New Supplier</h2>
 
     <!-- Form to submit supplier data to the MVC controller -->
-    <form method="post" action="?controller=supplier&action=store">
+    <form method="post" action="/SysDevProject/supplier/store">
 
       <!-- Supplier Name -->
       <input type="text" name="supplier_name" placeholder="Supplier Name" required><br>

@@ -91,7 +91,7 @@
   }
   ?>
   <main style="margin: 20px auto; max-width: 1400px; padding: 20px;">
-    <form class="project-form" method="POST" action="">
+    <form class="project-form" method="POST" action="/SysDevProject/project/formSubmission">
       <div class="form-section">
         <div class="form-group">
           <label for="project-title">Project Title<span class="required">*</span></label>

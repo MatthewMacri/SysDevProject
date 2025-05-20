@@ -54,7 +54,7 @@
     </div>
 
     <!-- Delete Confirmation Form -->
-    <form method="POST" action="?controller=project&action=delete">
+    <form method="POST" action="/SysDevProject/project/delete">
       <div class="form-actions">
         <button type="button" class="form-button cancel-button">Cancel</button>
         <button type="submit" class="form-button delete-button">Delete</button>

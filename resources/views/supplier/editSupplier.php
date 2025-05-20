@@ -24,7 +24,7 @@
     <h2>Edit Supplier</h2>
 
     <!-- Form is pre-filled with the supplier's current information -->
-    <form method="post" action="?controller=supplier&action=update&id=<?= htmlspecialchars($supplier['supplier_id']) ?>">
+    <form method="post" action=" /SysDevProject/supplier/update/<?= htmlspecialchars($supplier['supplier_id']) ?>">
 
       <!-- Supplier Name input -->
       <input type="text" name="supplier_name" value="<?= htmlspecialchars($supplier['supplier_name']) ?>" required><br>

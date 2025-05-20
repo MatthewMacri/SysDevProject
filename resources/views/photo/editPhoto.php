@@ -25,7 +25,7 @@
   <h2>Edit Photo</h2>
 
   <!-- Form for updating photo details -->
-  <form method="post" action="?controller=photo&action=update&id=<?= htmlspecialchars($photo['photo_id']) ?>">
+  <form method="post" action="/SysDevProject/photo/update/<?= htmlspecialchars($photo['photo_id']) ?>">
 
     <!-- Project ID (linked to the photo) -->
     <label>Project ID</label>

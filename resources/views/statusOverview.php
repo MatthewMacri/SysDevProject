@@ -1,12 +1,4 @@
 <?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-  if (!isset($_SESSION['role'])) {
-        header("Location: ./login/loginview.php");
-        exit;
-  } 
-
 require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
 $app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
 

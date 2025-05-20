@@ -25,7 +25,7 @@
 
   <main>
     <!-- Update Project Form -->
-    <form class="project-form" method="POST" action="?controller=project&action=update">
+    <form class="project-form" method="POST" action="/SysDevProject/project/update">
       <!-- Optional: override method for RESTful routing -->
       <input type="hidden" name="_method" value="PUT">
 

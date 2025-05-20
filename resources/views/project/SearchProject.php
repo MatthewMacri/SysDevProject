@@ -28,7 +28,7 @@
     <!-- Project Search Form -->
     <div class="Search-container" style="margin-top: 40px;">
       <form class="project-search-box" method="GET"
-            action="/SysDevProject/index.php?controller=project&action=search">
+            action="/SysDevProject/project/search">
 
         <!-- Serial Number -->
         <div class="form-group">

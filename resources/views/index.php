@@ -2,7 +2,7 @@
 <h2>Admin List</h2>
 
 <!-- Link to create a new admin -->
-<a href="?controller=admin&action=create">Add Admin</a>
+<a href="/SysDevProject/admin/create/">Add Admin</a>
 
 <!-- Display list of all admins -->
 <ul>

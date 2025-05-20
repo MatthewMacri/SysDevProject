@@ -43,7 +43,7 @@ if (!isset($_SESSION['role'])) {
     <h2>Upload Photo</h2>
 
     <!-- Upload photo form -->
-    <form method="post" action="?controller=photo&action=upload">
+    <form method="post" action="/SysDevProject/photo/upload">
       <!-- Project ID -->
       <input type="text" name="project_id" placeholder="Project ID" required value="<?= $projectId ?>"><br><br>
 

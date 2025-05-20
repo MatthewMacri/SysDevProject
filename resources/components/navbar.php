@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
   if (!isset($_SESSION['role'])) {
-        header("Location: ../login/loginview.php");
+        header("Location: SysDevProject/resources/views/login/loginview.php");
         exit;
   } 
 ?>

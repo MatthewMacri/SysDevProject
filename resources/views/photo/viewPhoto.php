@@ -22,7 +22,7 @@
     <h2>All Uploaded Photos</h2>
 
     <!-- Button to open the upload form -->
-    <a class="view-button" href="/photo/uploadForm">Upload New Photo</a>
+    <a class="view-button" href="/SysDevProject/photo/uploadForm">Upload New Photo</a>
 
     <!-- Loop through each photo and display details -->
     <ul>
@@ -39,8 +39,8 @@
           Uploaded: <?= htmlspecialchars($photo['upload_time']) ?><br>
 
           <!-- Edit and Delete actions with ID passed via query string -->
-          <a class="btn" href="?controller=photo&action=edit&id=<?= $photo['photo_id'] ?>">Edit</a>
-          <a class="btn danger" href="?controller=photo&action=delete&id=<?= $photo['photo_id'] ?>" 
+          <a class="btn" href="/SysDevProject/photo/edit/<?= $photo['photo_id'] ?>">Edit</a>
+          <a class="btn danger" href="/SysDevProject/photo/delete/<?= $photo['photo_id'] ?>" 
              onclick="return confirm('Are you sure you want to delete this photo?')">Delete</a>
         </li>
       <?php endforeach; ?>

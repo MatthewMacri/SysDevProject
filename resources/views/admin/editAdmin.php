@@ -22,7 +22,7 @@
   <h2>Edit Admin</h2>
   
   <!-- Form to update admin details -->
-  <form method="post" action="?controller=admin&action=update&id=<?= $admin['admin_id'] ?>">
+ <form method="post" action="/sysdevproject/admin/update/<?= $admin['admin_id'] ?>">
       <!-- Admin Name -->
       <input type="text" name="admin_name" value="<?= htmlspecialchars($admin['admin_name']) ?>" required><br>
 

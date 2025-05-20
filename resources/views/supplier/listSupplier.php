@@ -23,7 +23,7 @@
     <h2>All Suppliers</h2>
 
     <!-- Button/link to create a new supplier -->
-    <a class="view-button" href="?controller=supplier&action=createForm">Create New Supplier</a>
+    <a class="view-button" href="/SysDevProject/supplier/createForm">Create New Supplier</a>
 
     <!-- Loop through all suppliers and display them -->
     <ul>
@@ -36,8 +36,8 @@
           Phone: <?= htmlspecialchars($supplier['supplier_phone_number']) ?><br>
 
           <!-- Links to edit or delete the supplier -->
-          <a href="?controller=supplier&action=edit&id=<?= $supplier['supplier_id'] ?>">Edit</a> |
-          <a href="?controller=supplier&action=delete&id=<?= $supplier['supplier_id'] ?>"
+          <a href="/SysDevProject/supplier/edit/<?= $supplier['supplier_id'] ?>">Edit</a> |
+          <a href="/SysDevProject/supplier/delete/<?= $supplier['supplier_id'] ?>"
              onclick="return confirm('Are you sure you want to delete this supplier?')">Delete</a>
         </li>
       <?php endforeach; ?>

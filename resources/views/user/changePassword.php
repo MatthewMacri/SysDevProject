@@ -22,7 +22,7 @@
   <!-- Password Change Form -->
   <div class="form-center-wrapper">
     <div class="form-container">
-    <form id="changePasswordForm" method="POST" action="?controller=user&action=changePassword">
+    <form id="changePasswordForm" method="POST" action="/SysDevProject/user/changePassword">
       
       <!-- Old Password -->
       <div class="form-group">
