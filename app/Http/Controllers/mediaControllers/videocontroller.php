@@ -70,9 +70,7 @@ class VideoController {
         $result = $this->model->getDb()->runQuery($query, $params);
 
         if (empty($result)) {
-            // Project not found
-            echo "<script>alert('Invalid Project ID. Please enter a valid one.'); window.history.back();</script>";
-            exit;
+            return;
         }
 
 
