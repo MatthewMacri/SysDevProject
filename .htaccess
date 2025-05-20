@@ -1,0 +1,11 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Send all requests through index.php if no real file/folder exists
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Capture controller and action from URL
+    RewriteRule ^([\w-]+)/?$ index.php?controller=$1 [QSA,L]
+    RewriteRule ^([\w-]+)/([\w-]+)/?$ index.php?controller=$1&action=$2 [QSA,L]
+</IfModule>
