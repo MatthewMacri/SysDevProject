@@ -72,24 +72,5 @@
   <!-- JavaScript logic for user activation functionality -->
   <script src="../../js/userActivation.js"></script>
 
-  <!-- Include W3Schools library for HTML includes -->
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
-
-  <!-- Logout handler using a click event -->
-  <script>
-    w3IncludeHTML(() => {
-      const logoutBtn = document.querySelector(".logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          // Clear the auth cookie and redirect to login page
-          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          window.location.href = "../login.html";
-        });
-      }
-    });
-  </script>
-
-
-
 </body>
 </html>

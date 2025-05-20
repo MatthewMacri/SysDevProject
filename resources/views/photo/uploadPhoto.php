@@ -66,5 +66,7 @@ if (!isset($_SESSION['role'])) {
 </html>
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/resources/views/video/uploadYoutubeVideo.php';
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+require_once resource_path('views/video/uploadYoutubeVideo.php');
 ?>

@@ -24,7 +24,7 @@ putenv("LANGUAGE=$locale");
 
 setlocale(LC_ALL, $locale);
 bindtextdomain($domain, resource_path('lang\locale'));
-file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')). "\n", FILE_APPEND);
+file_put_contents(__DIR__ . "/debug.txt", "bindtextdomain:" . bindtextdomain($domain, resource_path('lang\locale')) . "\n", FILE_APPEND);
 bind_textdomain_codeset($domain, "UTF-8");
 textdomain("messages");
 ?>
@@ -59,9 +59,9 @@ textdomain("messages");
     </div>
 
     <!-- Logout Button -->
-    <a href="/SysDevProject/logout.php">
-      <button class="logout-btn"><?php echo _('Logout'); ?></button>
-    </a>
+    <form method="POST" action="/SysDevProject/logout.php" style="display:inline;">
+      <button type="submit" class="logout-btn"><?php echo _('Logout'); ?></button>
+    </form>
 
     <!-- User Role Dropdown Menu -->
     <div class="dropdown">
