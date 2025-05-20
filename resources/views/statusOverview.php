@@ -90,8 +90,8 @@ while ($row = $query->fetch(PDO::FETCH_ASSOC)) {
   <!-- External JS -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/jkanban@1.3.1/dist/jkanban.min.js"></script>
-  <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx.all.js"></script>
   <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx-gantt.min.js"></script>
+  <script src="https://cdn3.devexpress.com/jslib/24.2.6/js/dx.all.js"></script>
 
   <!-- Local JS -->
   <script src="/SysDevProject/resources/js/home.js"></script>
