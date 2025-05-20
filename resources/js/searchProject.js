@@ -53,9 +53,9 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
               <div class="button-row">
                 <div class="left-buttons">
-                  <button class="action-button">Update</button>
-                  <button class="action-button">Delete</button>
-                  <button class="action-button">History</button>
+                  <a class="action-button" href="/SysDevProject/resources/views/project/updateProject.php?serial=${project.serial_number}">Update</a>
+                  <a class="action-button">Delete</a>
+                  <a class="action-button">History</a>
                 </div>
                 <div class="right-button">
                   <button class="action-button">Export as PDF</button>

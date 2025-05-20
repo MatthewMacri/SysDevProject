@@ -17,71 +17,103 @@
 
   <!-- Include shared navigation bar -->
   <?php
-  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
-  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+  if (!function_exists('resource_path')) {
+      require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+      require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+      require_once dirname(__DIR__, 3) . '/app/Http/Controllers/core/DatabaseController.php';
+  }
 
+  use App\Http\Controllers\core\DatabaseController;
   require resource_path('components/navbar.php');
+
+  // Get project serial from query
+  $serial = $_GET['serial'] ?? null;
+
+  if (!$serial) {
+      die('No serial number provided.');
+  }
+
+
+  // Connect to database
+  $databaseInstance = DatabaseController::getInstance();
+  $db = $databaseInstance->getConnection();
+
+  // Fetch project details
+  $stmt = $db->prepare("SELECT * FROM Project WHERE serial_number = :serial");
+  $stmt->execute([':serial' => $serial]);
+  $project = $stmt->fetch(PDO::FETCH_ASSOC);
+
+  if (!$project) {
+      die("Project not found.");
+  }
   ?>
 
+
   <main>
-    <!-- Update Project Form -->
-    <form class="project-form" method="POST" action="?controller=project&action=update">
-      <!-- Optional: override method for RESTful routing -->
-      <input type="hidden" name="_method" value="PUT">
+  <!-- Update Project Form -->
+  <form class="project-form" method="POST" action="?controller=project&action=update">
+    <!-- Hidden Serial Number (primary key in use) -->
+    <input type="hidden" name="serial" value="<?= htmlspecialchars($project['serial_number']) ?>">
 
-      <!-- Project Header Fields -->
-      <div class="project-header">
-        <div>
-          <input id="projectTitle" name="projectTitle" class="input-title" placeholder="Project Title" />
-          <p class="project-id" id="projectSerial">Project Serial #</p>
-        </div>
-        <input id="projectStatus" name="projectStatus" class="input-status" placeholder="Status" />
+    <!-- Project Header Fields -->
+    <div class="project-header">
+      <div>
+        <input id="projectTitle" name="projectTitle" class="input-title" placeholder="Project Title"
+               value="<?= htmlspecialchars($project['project_name'] ?? '') ?>" />
+        <p class="project-id" id="projectSerial">Project Serial #: <?= htmlspecialchars($project['serial_number'] ?? '') ?></p>
       </div>
-      
-      <!-- Project Description -->
-      <h4>Project Description:</h4>
-      <div class="project-description">
-        <textarea id="projectDescription" name="projectDescription" class="input-textarea"></textarea>
-      </div>
+      <input id="projectStatus" name="projectStatus" class="input-status" placeholder="Status"
+             value="<?= htmlspecialchars($project['status'] ?? '') ?>" />
+    </div>
 
-      <!-- Project Metadata -->
-      <div class="gray-box">
-        <label for="clientDetails">Client Details:</label>
-        <textarea id="clientDetails" name="clientDetails" class="input-textarea"></textarea>
+    <!-- Project Description -->
+    <h4>Project Description:</h4>
+    <div class="project-description">
+      <textarea id="projectDescription" name="projectDescription" class="input-textarea"><?= htmlspecialchars($project['project_description'] ?? '') ?></textarea>
+    </div>
 
-        <label for="supplierInfo">Supplier Info:</label>
-        <textarea id="supplierInfo" name="supplierInfo" class="input-textarea"></textarea>
+    <!-- Project Metadata -->
+    <div class="gray-box">
+      <label for="clientDetails">Client Details:</label>
+      <textarea id="clientDetails" name="clientDetails" class="input-textarea"><?= htmlspecialchars($project['client_details'] ?? '') ?></textarea>
 
-        <label for="supplierDate">Supplier Date:</label>
-        <input type="date" id="supplierDate" name="supplierDate" class="input-date" />
+      <label for="supplierInfo">Supplier Info:</label>
+      <textarea id="supplierInfo" name="supplierInfo" class="input-textarea"><?= htmlspecialchars($project['supplier_info'] ?? '') ?></textarea>
 
-        <label for="clientDate">Client Date:</label>
-        <input type="date" id="clientDate" name="clientDate" class="input-date" />
+      <label for="supplierDate">Supplier Date:</label>
+      <input type="date" id="supplierDate" name="supplierDate" class="input-date"
+             value="<?= htmlspecialchars($project['start_date'] ?? '') ?>" />
 
-        <label for="bufferDays">Buffer Days (Slack Time):</label>
-        <input type="number" id="bufferDays" name="bufferDays" class="input-number" />
-      </div>
+      <label for="clientDate">Client Date:</label>
+      <input type="date" id="clientDate" name="clientDate" class="input-date"
+             value="<?= htmlspecialchars($project['end_date'] ?? '') ?>" />
 
-      <!-- Media Action Buttons -->
-      <div class="media-section">
-        <button type="button" class="media-button">
-          Project Media <i class="fas fa-image"></i>
-        </button>
-        <button type="button" class="media-button">
-          KanBan Board <i class="fas fa-table-columns"></i>
-        </button>
-        <button type="button" class="media-button">
-          Gantt Chart <i class="fas fa-chart-bar"></i>
-        </button>
-      </div>
+      <label for="bufferDays">Buffer Days (Slack Time):</label>
+      <input type="number" id="bufferDays" name="bufferDays" class="input-number"
+             value="<?= htmlspecialchars($project['buffer_days'] ?? '') ?>" />
+    </div>
 
-      <!-- Form Actions -->
-      <div class="form-actions">
-        <button type="button" class="form-button cancel-button">Cancel</button>
-        <button type="submit" class="form-button confirm-Confirm">Confirm</button>
-      </div>
-    </form>
-  </main>
+    <!-- Media Action Buttons -->
+    <div class="media-section">
+      <button type="button" class="media-button">
+        Project Media <i class="fas fa-image"></i>
+      </button>
+      <button type="button" class="media-button">
+        KanBan Board <i class="fas fa-table-columns"></i>
+      </button>
+      <button type="button" class="media-button">
+        Gantt Chart <i class="fas fa-chart-bar"></i>
+      </button>
+    </div>
+
+    <!-- Form Actions -->
+    <div class="form-actions">
+      <button type="button" class="form-button cancel-button">Cancel</button>
+      <button type="submit" class="form-button confirm-Confirm">Confirm</button>
+    </div>
+  </form>
+</main>
+
 
   <!-- Confirmation Popup -->
   <div id="confirmationPopup" class="popup-overlay">

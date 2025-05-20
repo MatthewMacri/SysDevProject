@@ -20,7 +20,7 @@ class Client
     {
         $this->clientName = $clientName;
         $this->companyName = $companyName;
-        $this->cliendEmail = $clientEmail;
+        $this->clientEmail = $clientEmail;
         $this->clientPhoneNumber = $clientPhoneNumber;
         $this->db = DatabaseController::getInstance()->getConnection();
     }

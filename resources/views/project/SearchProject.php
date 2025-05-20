@@ -11,6 +11,8 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" href="../../css/searchProject.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- Page-specific JavaScript -->
+  <script src="../../js/searchProject.js"></script>
 </head>
 
 <body>
@@ -85,14 +87,14 @@
 
             <!-- Action Buttons -->
             <div class="button-row">
-              <div class="left-buttons">
-                <button class="action-button">Update</button>
+              <!-- <div class="left-buttons">
+                <button class="action-button" onclick="window.location.href='/SysDevProject/resources/views/project/updateProject.php'">Update</button>
                 <button class="action-button">Delete</button>
                 <button class="action-button">History</button>
               </div>
               <div class="right-button">
                 <button class="action-button">Export as PDF</button>
-              </div>
+              </div> -->
             </div>
           </div>
         <?php endforeach; ?>
