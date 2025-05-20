@@ -62,6 +62,18 @@ class VideoController {
      * @return void
      */
     public function upload($postData) {
+
+    // Check if the Project ID exists using DatabaseController's runQuery method
+        $query = "SELECT * FROM Project WHERE serial_number = :serial_number";
+        $params = ['serial_number' => $postData['project_id']];
+        
+        $result = $this->model->getDb()->runQuery($query, $params);
+
+        if (empty($result)) {
+            return;
+        }
+
+
         // Set the video properties from the submitted form data
         $this->model->setProjectId($postData['project_id']);
         $this->model->setVideoUrl($postData['video_url']);
@@ -72,8 +84,7 @@ class VideoController {
         // Save the video to the database
         $this->model->save();
 
-        // Redirect to the video index page after upload
-        header('Location: ?controller=video&action=index');
+    
     }
 
     /**

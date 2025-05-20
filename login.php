@@ -65,6 +65,13 @@ if ($user) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+// Check Deactivation Check Added
+if ($user && isset($user['is_deactivated']) && $user['is_deactivated'] == 1) {
+    http_response_code(403);  // Forbidden
+    echo json_encode(["error" => "Account is deactivated."]);
+    exit;
+}
+
 // Log info for debugging
 file_put_contents("debug.txt", "User result: " . json_encode($user) . "\n", FILE_APPEND);
 file_put_contents("debug.txt", "Input password: $password\n", FILE_APPEND);
