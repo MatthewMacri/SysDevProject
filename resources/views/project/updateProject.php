@@ -23,7 +23,7 @@ require resource_path('components/navbar.php');
 
 $db = DatabaseController::getInstance()->getConnection();
 
-// ---------------- HANDLE POST (UPDATE) ----------------
+// updating project
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $serial = $_POST['serial'] ?? null;
 
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ]);
 }
 
-  // ---------------- FETCH PROJECT ----------------
+  // fetching project
   $serial = $_GET['serial'] ?? $_POST['serial'] ?? null;
   if (!$serial) die('No serial number provided.');
 
