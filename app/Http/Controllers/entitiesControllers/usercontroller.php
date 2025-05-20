@@ -1,22 +1,29 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\entitiesControllers;
 
-use App\Models\ApplicationUser;
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
-require_once 'app/Models/users/ApplicationUser.php';
+require_once app_path ('Models/users/User.php');
 
-class Usercontroller {
+use App\Models\users\User;
+
+class Usercontroller
+{
 
     private $model;
+    private $db;
 
     /**
-     * Constructor to initialize the ApplicationUser model.
+     * Constructor to initialize the User model.
      * 
      * @param object $db Database connection instance
      */
-    public function __construct($db) {
-        $this->model = new ApplicationUser($db);
+    public function __construct($db)
+    {
+        $this->db = $db;
+        $this->model = new User($db);
     }
 
     /**
@@ -24,8 +31,13 @@ class Usercontroller {
      * 
      * @return void
      */
-    public function changePasswordForm() {
-        include 'resources/views/user/changePassword.php';
+    public function changePasswordForm()
+    {
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/user/changePassword.php');
     }
 
     /**
@@ -35,9 +47,10 @@ class Usercontroller {
      * 
      * @return void
      */
-    public function changePassword($postData) {
+    public function changePassword($postData)
+    {
         // Start the session if not already started
-        if(session_status() == PHP_SESSION_NONE) { 
+        if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
 
@@ -54,7 +67,7 @@ class Usercontroller {
         $pdo = $this->model->getDb()->getConnection();
 
         // Retrieve the user from the database by username
-        $user = ApplicationUser::selectByUsername($pdo, $username);
+        $user = User::selectByUsername($this->db, $username);
 
         // If no user found, return error
         if (!$user) {
@@ -82,6 +95,28 @@ class Usercontroller {
 
         // Return success message
         echo "Password successfully changed.";
+    }
+
+    public function deleteUser($userId)
+    {
+        $result = $this->model->delete($userId);
+
+        if ($result) {
+            echo "User deleted successfully.";
+        } else {
+            echo "Failed to delete user.";
+        }
+    }
+
+    public function deleteUserByUsername($username): array {
+    $pdo = $this->model->getDb()->getConnection();
+    $stmt = $pdo->prepare("DELETE FROM Users WHERE user_name = ?");
+    $success = $stmt->execute([$username]);
+
+    return [
+        'success' => $success,
+        'message' => $success ? "User deleted successfully." : "Failed to delete user."
+        ];
     }
 
 }

@@ -1,112 +1,118 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['role'])) {
+    header("Location: ../login/loginview.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Upload YouTube Video</title>
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="../../css/form.css">
+    <meta charset="UTF-8">
+    <title><?php echo _('Upload YouTube Video'); ?></title>
+    <link rel="stylesheet" href="../../css/form.css">
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
 
-  <!-- Shared Navbar -->
-  <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
-  ?>
+<?php 
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
+use App\Http\Controllers\core\DatabaseController;
+use App\Http\Controllers\mediaControllers\VideoController;
 
-  <!-- Upload YouTube Video Form -->
-  <section class="section">
-    <h2>Upload YouTube Video</h2>
-    <form method="post" action="?controller=video&action=upload">
-      
-      <!-- Project ID -->
-      <input type="text" name="project_id" placeholder="Project ID" required><br>
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
 
-      <!-- YouTube URL -->
-      <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once app_path('Http/Controllers/core/databaseController.php');
+    require_once app_path('Http/Controllers/mediaControllers/videocontroller.php');
+    $db = DatabaseController::getInstance();
+    $videoController = new VideoController($db);
 
-      <!-- Format is always 'youtube' for this form -->
-      <input type="text" name="format" value="youtube" readonly><br>
+    if (empty($_POST['duration']) || !is_numeric($_POST['duration'])) {
+        exit;
+    }
 
-      <!-- Video duration auto-filled via YouTube API -->
-      <input type="hidden" id="duration" name="duration">
+    $_POST['duration'] = (int) $_POST['duration'];
+    $videoController->upload($_POST);
+}
+?>
 
-      <!-- Submit -->
-      <button type="submit">Upload</button>
+<section class="section">
+    <h2><?php echo _('Upload YouTube Video'); ?></h2>
+    <form id="uploadForm" method="post" action="">
+        <input type="text" name="project_id" placeholder="Project ID" required><br><br>
+        <input type="text" id="video_url" name="video_url" placeholder="YouTube Video URL" required><br>
+        <input type="hidden" name="format" value="youtube">
+        <input type="hidden" id="duration" name="duration">
+        <br>
+        <button type="button" onclick="startProcess()"><?php echo _('Upload'); ?></button>
     </form>
-  </section>
 
-  <!-- Hidden YouTube Player for metadata extraction -->
-  <div id="player" style="width:0; height:0;"></div>
+    <!-- Hidden YouTube Player -->
+    <div id="player" style="display:none;"></div>
+</section>
 
-  <!-- YouTube IFrame API -->
-  <script src="https://www.youtube.com/iframe_api"></script>
-  <script>
-    let player;
+<script>
+let player;
 
-    // Called automatically by the YouTube IFrame API
-    function onYouTubeIframeAPIReady() {
-      const urlInput = document.getElementById('video_url');
+// this extracts YouTube video ID from a URL
+function extractVideoId(url) {
+    // using regrex to get the video id 
+    const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
+    return match ? match[1] : null; 
+}
 
-      urlInput.addEventListener('blur', function () {
-        const videoId = extractVideoId(this.value.trim());
-        if (!videoId) return;
 
-        // Destroy previous instance if needed
-        if (player) player.destroy();
+// required function for the youtube ifram to work properly 
+function onYouTubeIframeAPIReady() {
+}
 
-        // Load new player invisibly
-        player = new YT.Player('player', {
-          height: '0',
-          width: '0',
-          videoId: videoId,
-          events: {
-            onReady: (event) => {
-              const duration = event.target.getDuration();
-              document.getElementById('duration').value = duration;
-            }
-          }
-        });
-      });
+//this load the youtube player to get duration
+function loadYouTubePlayer(videoId) {
+    if (player && player.destroy) {
+        player.destroy();
     }
 
-    // Extracts the 11-character video ID from various YouTube URL formats
-    function extractVideoId(url) {
-      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|v\/))([a-zA-Z0-9_-]{11})/);
-      return match ? match[1] : null;
-    }
-  </script>
-
-  <!-- Full Logout Script -->
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
-  <script>
-    w3IncludeHTML(function () {
-      const logoutBtn = document.querySelector(".logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          fetch("/SysDevProject/logout.php", {
-            method: "POST",
-            credentials: "include"
-          })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.href = "/SysDevProject/resources/views/login.html";
-            } else {
-              alert("Logout failed");
-            }
-          })
-          .catch(err => {
-            console.error("Logout error:", err);
-            alert("Logout request failed.");
-          });
-        });
-      }
+    player = new YT.Player('player', {
+        height: '0',
+        width: '0',
+        videoId: videoId,
+        events: {
+            'onReady': onPlayerReady
+        }
     });
-  </script>
+}
+
+function onPlayerReady(event) {
+
+    const duration = player.getDuration();
+    if (duration > 0) {
+        document.getElementById("duration").value = duration;
+        document.getElementById("uploadForm").submit();
+    } else {
+        // if duration is nto gotten yet wait some more time
+        setTimeout(onPlayerReady, 500);
+    }
+}
+
+//this is the fucntion which calls two other funtions to extarct teh youtube id and load the duration
+function startProcess() {
+    const videoUrl = document.getElementById("video_url").value.trim();
+    const videoId = extractVideoId(videoUrl);
+
+    if (!videoId) {
+        alert("Invalid YouTube URL.");
+        return;
+    }
+
+    loadYouTubePlayer(videoId);
+}
+</script>
 
 </body>
 </html>

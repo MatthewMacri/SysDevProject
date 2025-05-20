@@ -1,9 +1,13 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\mediaControllers;
 
-require_once 'app/Models/mediaModels/video.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
 
+require_once app_path('Models/mediaModels/video.php');
+
+use App\Models\mediaModels\Video;
 class VideoController {
     private $model;
 
@@ -14,7 +18,7 @@ class VideoController {
      */
     public function __construct($db) {
         // Instantiate the Video model with the database connection
-        $this->model = new \App\Models\Video($db);
+        $this->model = new Video($db);
     }
 
     /**
@@ -29,7 +33,11 @@ class VideoController {
         $videos = $this->model->getAll();
 
         // Include the view to display the videos
-        include 'resources/views/viewVideos.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/viewVideos.php');
     }
 
     /**
@@ -39,7 +47,11 @@ class VideoController {
      */
     public function uploadForm() {
         // Include the video upload form view
-        include 'resources/views/uploadVideo.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/uploadVideo.php');
     }
 
     /**
@@ -50,6 +62,18 @@ class VideoController {
      * @return void
      */
     public function upload($postData) {
+
+    // Check if the Project ID exists using DatabaseController's runQuery method
+        $query = "SELECT * FROM Project WHERE serial_number = :serial_number";
+        $params = ['serial_number' => $postData['project_id']];
+        
+        $result = $this->model->getDb()->runQuery($query, $params);
+
+        if (empty($result)) {
+            return;
+        }
+
+
         // Set the video properties from the submitted form data
         $this->model->setProjectId($postData['project_id']);
         $this->model->setVideoUrl($postData['video_url']);
@@ -60,8 +84,7 @@ class VideoController {
         // Save the video to the database
         $this->model->save();
 
-        // Redirect to the video index page after upload
-        header('Location: ?controller=video&action=index');
+    
     }
 
     /**
@@ -80,7 +103,7 @@ class VideoController {
         }
 
         // Redirect to the video index page after deletion
-        header('Location: ?controller=video&action=index');
+        header('Location: /SysDevProject/video/index');
         exit;
     }
 }

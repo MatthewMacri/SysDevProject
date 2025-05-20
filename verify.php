@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\core\DatabaseController;
 // Load dependencies (like PHPGangsta GoogleAuthenticator)
 require 'vendor/autoload.php';
 
@@ -26,12 +28,13 @@ if (!isset($_SESSION['role']) || !isset($_SESSION['id'])) {
 }
 
 // Determine which table to query based on the role
-$table = $_SESSION['role'] === 'admin' ? 'admin' : 'user';
-$idField = $table === 'admin' ? 'admin_id' : 'user_id';
+$table = $_SESSION['role'] === 'admin' ? 'Admins' : 'Users';
+$idField = $table === 'Admins' ? 'admin_id' : 'user_id';
 $id = $_SESSION['id'];
 
 // Connect to SQLite database
-$db = new PDO("sqlite:database/Datab.db");
+$databaseInstance = DatabaseController::getInstance();
+$db = $databaseInstance->getConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Get the user's 2FA secret key

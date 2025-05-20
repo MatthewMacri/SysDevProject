@@ -1,0 +1,20 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /SysDevProject/
+
+    # Send all requests through index.php if no real file/folder exists
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Capture controller and action from URL in order
+
+    #capture controller, action, and id like /controller/action/id
+    RewriteRule ^([\w-]+)/([\w-]+)/([\d]+)$ index.php?controller=$1&action=$2&id=$3 [QSA,L]
+
+    #capture controller and action like /controller/action
+    RewriteRule ^([\w-]+)/([\w-]+)/?$ index.php?controller=$1&action=$2 [QSA,L]
+
+    # capture controller like /controller
+    RewriteRule ^([\w-]+)/?$ index.php?controller=$1 [QSA,L]
+
+</IfModule>

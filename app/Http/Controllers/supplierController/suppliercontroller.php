@@ -1,9 +1,12 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\supplierController;
 
-require_once 'app/Models/projectAssociatesControllers/supplier.php';
-use App\Models\Supplier;
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once app_path('Models/projectAssociatesControllers/supplier.php');
+use App\Models\projectAssociatesControllers\Supplier;
 
 class SupplierController {
     private $model;
@@ -15,7 +18,7 @@ class SupplierController {
      */
     public function __construct($db) {
         // Instantiate the Supplier model with the database connection
-        $this->model = new Supplier($db);
+        $this->model = new Supplier();
     }
 
     /**
@@ -30,7 +33,11 @@ class SupplierController {
         $suppliers = $this->model->getAll();
 
         // Include the view to display the suppliers
-        include 'resources/views/supplier/listSupplier.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/supplier/listSupplier.php');
     }
 
     /**
@@ -40,7 +47,11 @@ class SupplierController {
      */
     public function createForm() {
         // Include the supplier creation form view
-        include 'resources/views/supplier/createSupplier.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/supplier/createSupplier.php');
     }
 
     /**
@@ -55,7 +66,7 @@ class SupplierController {
         $this->model->create($postData);
 
         // Redirect to the supplier list page after creation
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 
     /**
@@ -70,7 +81,11 @@ class SupplierController {
         $supplier = $this->model->getById($id);
 
         // Include the edit supplier form view
-        include 'resources/views/supplier/editSupplier.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/supplier/editSupplier.php');
     }
 
     /**
@@ -86,7 +101,7 @@ class SupplierController {
         $this->model->update($id, $postData);
 
         // Redirect to the supplier list page after update
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 
     /**
@@ -101,6 +116,6 @@ class SupplierController {
         $this->model->delete($id);
 
         // Redirect to the supplier list page after deletion
-        header('Location: ?controller=supplier&action=index');
+        header('Location: /SysDevProject/supplier/index');
     }
 }

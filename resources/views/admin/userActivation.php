@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>User Activation</title>
+  <title><?php echo _('User Activation'); ?></title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="/SysDevProject/public/images/logo/favicon-gear.png" />
@@ -15,9 +15,11 @@
 <body>
 
   <!-- Include the shared navigation bar component -->
-  <?php 
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-    require BASE_PATH . '/resources/components/navbar.php';
+  <?php
+  require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,3) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
   ?>
 
   <!-- Main form container for activating or deactivating a user -->
@@ -47,8 +49,8 @@
         Confirm to Proceed
       </p>
       <div class="confirm-buttons">
-        <button class="btn" onclick="hideConfirmBox()">Cancel</button>
-        <button class="btn">Confirm</button>
+        <button class="btn" id="cancelActivate">Cancel</button>
+        <button class="btn" id="confirmActivate">Confirm</button>
       </div>
     </div>
   </div>
@@ -61,28 +63,11 @@
         Confirm to Proceed
       </p>
       <div class="confirm-buttons">
-        <button class="btn" onclick="hideDeactivateConfirmBox()">Cancel</button>
-        <button class="btn">Confirm</button>
+        <button class="btn" id="cancelDeactivate">Cancel</button>
+        <button class="btn" id="confirmDeactivate">Confirm</button>
       </div>
     </div>
   </div>
-
-  <!-- Include W3Schools library for HTML includes -->
-  <script src="https://www.w3schools.com/lib/w3data.js"></script>
-
-  <!-- Logout handler using a click event -->
-  <script>
-    w3IncludeHTML(() => {
-      const logoutBtn = document.querySelector(".logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          // Clear the auth cookie and redirect to login page
-          document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-          window.location.href = "../login.html";
-        });
-      }
-    });
-  </script>
 
   <!-- JavaScript logic for user activation functionality -->
   <script src="../../js/userActivation.js"></script>

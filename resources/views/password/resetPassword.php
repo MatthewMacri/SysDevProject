@@ -1,6 +1,14 @@
 <?php
+require_once dirname(__DIR__, 3) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 3) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
+
 // Establish a connection to the SQLite database
-$db = new PDO("sqlite:../../database/Datab.db");
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Retrieve the token from the GET request, or terminate if not present
@@ -21,16 +29,17 @@ if (!$tokenData || time() > $tokenData['expires_at']) {
 
 // Handle password update if form is submitted via POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $newPassword = password_hash($_POST['password'], PASSWORD_BCRYPT); // Securely hash the new password
+    $encryptionKey = '796a3a9391c45035412c62f92e889080';
+    $newPassword = openssl_encrypt($password, 'AES-128-ECB', $encryptionKey); // Securely encrypt the new password
     $email = $tokenData['email'];
 
     // Attempt to update the admin's password
-    $adminUpdate = $db->prepare("UPDATE admin SET password = ? WHERE email = ?");
+    $adminUpdate = $db->prepare("UPDATE Admins SET password = ? WHERE email = ?");
     $adminUpdate->execute([$newPassword, $email]);
 
     // If no admin was updated, attempt to update the user table instead
     if ($adminUpdate->rowCount() === 0) {
-        $userUpdate = $db->prepare("UPDATE user SET password = ? WHERE email = ?");
+        $userUpdate = $db->prepare("UPDATE Users SET password = ? WHERE email = ?");
         $userUpdate->execute([$newPassword, $email]);
     }
 

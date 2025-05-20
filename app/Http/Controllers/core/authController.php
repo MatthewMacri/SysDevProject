@@ -1,25 +1,30 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\core;
 
-require 'vendor/autoload.php';
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+require_once __DIR__ . '/databaseController.php';
+$app = require_once dirname(__DIR__, 4) . 'bootstrap/app/php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-use Controllers\DatabaseController;
+use App\Http\Controllers\core\DatabaseController;
 
-class AuthController {
+class AuthController
+{
 
     /**
      * Sends a password reset link to the provided email.
      */
-    public function sendResetLink() {
+    public function sendResetLink()
+    {
         // Step 1: Get the email from POST request
         $email = $_POST['email'] ?? '';
-        if (!$email) return; // Exit if no email is provided
+        if (!$email)
+            return; // Exit if no email is provided
 
         // Step 2: Check if the email exists in either Users or Admins
-        $db = DatabaseController::getInstance(); 
+        $db = DatabaseController::getInstance();
         $pdo = $db->getConnection();
 
         // Query to check if email exists in Users or Admins
@@ -35,9 +40,13 @@ class AuthController {
 
         // Step 4: Save the token to the database (helper or raw query)
         $db->saveResetToken($email, $token, $expires);
-        
+
         // Step 5: Insert token into the password_resets table in the database
-        $pdo = new \PDO('sqlite:database/Datab.db');
+        $databasePath = database_path('texasgears.db');
+        if (!file_exists($databasePath)) {
+            die("SQLite file not found at: " . $databasePath);
+        }
+        $pdo = new \PDO('sqlite:' . $databasePath);
         $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         $stmt = $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)");
         $stmt->execute([$email, $token, $expires]);
@@ -49,15 +58,42 @@ class AuthController {
         $mail->SMTPAuth = true;
         $mail->Username = 'you@example.com';      // Change to actual email
         $mail->Password = 'yourpassword';         // Change to actual password
+        if (!$email) {
+            echo "❌ No email provided.";
+            return;
+        }
+
+        // Generate token
+        $token = bin2hex(random_bytes(32));
+        $expires = time() + 1800;
+
+        // Get DB instance
+        require_once __DIR__ . '/databaseController.php'; // if needed
+        $db = DatabaseController::getInstance();
+        $pdo = $db->getConnection();
+
+        // Save token
+        $pdo->prepare("DELETE FROM password_resets WHERE email = ?")->execute([$email]);
+        $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)")
+            ->execute([$email, $token, $expires]);
+
+        // Send email
+        $resetLink = "http://localhost:8000/resources/views/resetPassword.php?token=$token";
+
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'youremail@gmail.com';
+        $mail->Password = 'your_app_password';
         $mail->SMTPSecure = 'tls';
         $mail->Port = 587;
 
-        $mail->setFrom('you@example.com', 'Texas Gears');
+        $mail->setFrom('youremail@gmail.com', 'Texas Gears');
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->Subject = 'Reset Your Password';
-        $mail->Body = "Click this link to reset your password: 
-            <a href='http://localhost/SysDevProject/resources/views/password/resetPassword.php?token=$token'>Reset Password</a>";
+        $mail->Body = "Click here to reset your password: <a href='$resetLink'>$resetLink</a>";
 
         // Step 7: Send the email and handle success/failure
         if ($mail->send()) {
@@ -65,13 +101,15 @@ class AuthController {
             exit;
         } else {
             echo "Failed to send email: " . $mail->ErrorInfo;  // Error handling if email fails to send
+            echo "✅ Reset link sent to $email";
         }
     }
 
     /**
      * Resets the user's password using the provided token and new password.
      */
-    public function resetPassword() {
+    public function resetPassword()
+    {
         // Step 1: Get token and new password from POST data
         $token = $_POST['token'] ?? '';
         $password = $_POST['password'] ?? '';
@@ -104,8 +142,20 @@ class AuthController {
 
         // Step 6: Delete the reset token after use
         $db->deleteResetToken($token);
+        // Remove used token
+        $pdo->prepare("DELETE FROM password_resets WHERE token = ?")->execute([$token]);
 
         // Step 7: Return success message
         echo "Password updated successfully.";
     }
+}
+
+//ROUTER: handles requests from forms like forgotPassword.php
+$auth = new AuthController();
+$action = $_GET['action'] ?? '';
+
+if ($action === 'sendResetLink') {
+    $auth->sendResetLink();
+} elseif ($action === 'resetPassword') {
+    $auth->resetPassword();
 }

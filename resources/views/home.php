@@ -1,18 +1,19 @@
-<?php 
+<?php
+require_once dirname(__DIR__, 1) . '/services/i18n.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-    if (!isset($_SESSION['role'])) {
-      header("Location: ./login/loginview.php");
-      exit;
-    } 
 }
-?>
+  if (!isset($_SESSION['role'])) {
+        header("Location: ./login/loginview.php");
+        exit;
+  } 
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Texas Gears Dashboard</title>
+  <title><?php echo _('Texas Gears Dashboard'); ?></title>
 
   <!-- External Styles for icons, kanban, and gantt components -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -38,18 +39,20 @@ if (session_status() == PHP_SESSION_NONE) {
 <body>
 
   <!-- Include the top navigation bar -->
-  <?php 
-  require_once $_SERVER['DOCUMENT_ROOT'] . '/SysDevProject/config/config.php';
-  require BASE_PATH . '/resources/components/navbar.php';
+  <?php
+  require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+  $app = require_once dirname(__DIR__,2) . '/bootstrap/app.php';
+
+  require resource_path('components/navbar.php');
   ?>
 
   <!-- Kanban Board Section -->
   <section class="section kanban-header">
     <div class="kanban-header-content">
-      <h2 class="kanban-title" style="color: #F68A30;">Kanban Overview</h2>
+      <h2 class="kanban-title" style="color: #F68A30;"><?php echo _('Kanban Overview'); ?></h2>
       <!-- Link to full Kanban board page -->
       <a href="kanbanPage.html" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View Kanban
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View Kanban'); ?>
       </a>
     </div>
     <!-- Filter input to search tasks by text -->
@@ -63,9 +66,9 @@ if (session_status() == PHP_SESSION_NONE) {
   <!-- Gantt Chart Section -->
   <section class="section">
     <div class="section-header">
-      <h2>Gantt Overview</h2>
+      <h2><?php echo _('Gantt Overview'); ?></h2>
       <a href="#kanban" class="view-button">
-        <i class="fa-solid fa-table-columns"></i> View
+        <i class="fa-solid fa-table-columns"></i> <?php echo _('View Gantt'); ?>
       </a>
     </div>
     <!-- Div where Gantt chart will load -->
@@ -74,39 +77,10 @@ if (session_status() == PHP_SESSION_NONE) {
 
   <!-- Recent Projects Section -->
   <section class="section">
-    <h2>Most Recent Projects</h2>
+    <h2><?php echo _('Most Recent Projects'); ?></h2>
     <!-- Cards will be injected dynamically into this div -->
     <div id="recent-projects-container"></div>
   </section>
-
-  <!-- Logout Script (attached to logout button) -->
-  <script>
-    w3IncludeHTML(function () {
-      const logoutBtn = document.querySelector(".logout-btn");
-      if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-          fetch("/SysDevProject/logout.php", {
-            method: "POST",
-            credentials: "include"
-          })
-          .then(res => res.json())
-          .then(data => {
-            if (data.success) {
-              // Clear the auth cookie and redirect to login page
-              document.cookie = "auth=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-              window.location.href = "/SysDevProject/resources/views/login.html";
-            } else {
-              alert("Logout failed");
-            }
-          })
-          .catch(err => {
-            console.error("Logout error:", err);
-            alert("Logout request failed.");
-          });
-        });
-      }
-    });
-  </script>
 
 </body>
 </html>

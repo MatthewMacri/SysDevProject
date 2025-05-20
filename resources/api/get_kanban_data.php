@@ -1,12 +1,10 @@
 <?php
-// Check if SQLite3 extension is enabled
-if (!class_exists('SQLite3')) {
-    http_response_code(500);
-    echo json_encode([
-        'error' => 'SQLite3 extension is not enabled. Please enable it in php.ini by removing the semicolon (;) from extension=sqlite3'
-    ]);
-    exit;
-}
+require_once dirname(__DIR__, 2) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 2) . '/bootstrap/app.php';
+
+require_once app_path('Http/Controllers/core/databaseController.php');
+
+use App\Http\Controllers\core\DatabaseController;
 
 // Enable full error reporting for debugging (development only)
 ini_set('display_errors', 1);
@@ -17,10 +15,11 @@ error_reporting(E_ALL);
 header('Content-Type: application/json');
 
 // Connect to SQLite database
-$db = new SQLite3('C:/xampp/htdocs/SysDevProject/database/Datab.db');
+$database = DatabaseController::getInstance();
+$db = $database->getConnection();
 
 // Query all tasks
-$result = $db->query("SELECT id, title, status FROM tasks");
+$result = $db->query("SELECT project_id, project_name, status FROM Project");
 
 // Define columns for Kanban statuses
 $columns = [
@@ -31,7 +30,7 @@ $columns = [
 ];
 
 // Process result and group tasks by status
-while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
+while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
     $status = strtoupper(trim($row['status']));
 
     // Skip unknown statuses gracefully
@@ -40,8 +39,8 @@ while ($row = $result->fetchArray(SQLITE3_ASSOC)) {
     }
 
     $columns[$status][] = [
-        'id' => 'task-' . $row['id'],
-        'title' => $row['title']
+        'id' => 'task-' . $row['project_id'],
+        'title' => $row['project_name']
     ];
 }
 

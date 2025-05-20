@@ -37,10 +37,13 @@ document.addEventListener('DOMContentLoaded', function () {
           return;
         }
 
+        // Clear old results
+        document.getElementById("results").innerHTML = "";
+
         // Loop through each project and create a card for it
         data.forEach(project => {
           const card = `
-            <div class="result-card">
+             <div class="result-card">
               <div class="result-header">
                 <div>
                   <strong>${project.serial_number}</strong><br>
@@ -53,9 +56,14 @@ document.addEventListener('DOMContentLoaded', function () {
               </div>
               <div class="button-row">
                 <div class="left-buttons">
-                  <button class="action-button">Update</button>
-                  <button class="action-button">Delete</button>
-                  <button class="action-button">History</button>
+                  <a class="action-button" href="/SysDevProject/resources/views/project/updateProject.php?serial=${project.serial_number}">Update</a>
+
+                  <form method="POST" style="display:inline;">
+                    <input type="hidden" name="delete_serial" value="${project.serial_number}">
+                    <button type="submit" class="action-button" onclick="return confirm('Are you sure you want to delete this project?');">Delete</button>
+                  </form>
+
+                  <a class="action-button">History</a>
                 </div>
                 <div class="right-button">
                   <button class="action-button">Export as PDF</button>

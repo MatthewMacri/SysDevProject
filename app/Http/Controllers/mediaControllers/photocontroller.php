@@ -1,9 +1,12 @@
 <?php
 
-namespace Controllers;
+namespace App\Http\Controllers\mediaControllers;
 
-require_once 'app/Models/mediaModel/photo.php';
-use App\Models\Photo;
+require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+$app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+
+require_once app_path('Models/mediaModel/photo.php');
+use App\Models\mediaModels\Photo;
 
 class PhotoController {
     private $model;
@@ -29,7 +32,11 @@ class PhotoController {
         $photos = $this->model->getAll();
 
         // Include the view to display the photos
-        include 'resources/views/photo/viewPhoto.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/photo/viewPhoto.php');
     }
 
     /**
@@ -39,7 +46,11 @@ class PhotoController {
      */
     public function uploadForm() {
         // Include the photo upload form view
-        include 'resources/views/photo/uploadPhoto.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/photo/uploadPhoto.php');
     }
 
     /**
@@ -60,7 +71,7 @@ class PhotoController {
         ]);
 
         // Redirect to the photo index page after upload
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 
     /**
@@ -75,7 +86,11 @@ class PhotoController {
         $photo = $this->model->getById($id);
 
         // Include the photo edit form view
-        include 'resources/views/photo/editPhoto.php';
+        if (!function_exists('resource_path')) {
+            require_once dirname(__DIR__, 4) . '/vendor/autoload.php';
+            $app = require_once dirname(__DIR__, 4) . '/bootstrap/app.php';
+        }
+        include resource_path('views/photo/editPhoto.php');
     }
 
     /**
@@ -91,7 +106,7 @@ class PhotoController {
         $this->model->update($id, $postData);
 
         // Redirect to the photo index page after update
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 
     /**
@@ -106,6 +121,6 @@ class PhotoController {
         $this->model->delete($id);
 
         // Redirect to the photo index page after deletion
-        header('Location: ?controller=photo&action=index');
+        header('Location: /SysDevProject/photo/index');
     }
 }
