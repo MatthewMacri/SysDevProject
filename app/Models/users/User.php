@@ -126,7 +126,7 @@ class User
     public function create(): bool
     {
         $stmt = $this->db->getConnection()->prepare("
-            INSERT INTO users (userName, firstName, lastName, email, password, isDeactivated, secret)
+            INSERT INTO users (user_name, first_name, last_name, email, password, is_deactivated, twofa_secret)
             VALUES (:userName, :firstName, :lastName, :email, :password, :isDeactivated, :secret)
         ");
 
@@ -194,7 +194,7 @@ class User
     public function updateStatusByUsername(): bool
     {
         $stmt = $this->db->getConnection()->prepare("
-            UPDATE users SET isDeactivated = :isDeactivated WHERE userName = :username
+            UPDATE Users SET isDeactivated = :isDeactivated WHERE userName = :username
         ");
         return $stmt->execute([
             ':isDeactivated' => (int) $this->isDeactivated,
@@ -212,7 +212,7 @@ class User
     public static function selectById(DatabaseController $db, int $id): ?self
     {
         $pdo = self::$db->getConnection();
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE userID = :id");
+        $stmt = $pdo->prepare("SELECT * FROM Users WHERE userID = :id");
         $stmt->execute([':id' => $id]);
         $data = $stmt->fetch(PDO::FETCH_ASSOC);
 

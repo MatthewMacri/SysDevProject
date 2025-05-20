@@ -33,7 +33,7 @@ switch ($controller) {
 
     case 'admin':
         require_once 'app/Http/Controllers/entitiesControllers/admincontroller.php';
-        $obj = new AdminController($db->getConnection()); // Pass database connection to admin controller
+        $obj = new AdminController($db); // Pass database connection to admin controller
         break;
 
     case 'supplier':

@@ -100,9 +100,9 @@ class Usercontroller
         $result = $this->model->delete($userId);
 
         if ($result) {
-            echo "✅ User deleted successfully.";
+            echo "User deleted successfully.";
         } else {
-            echo "❌ Failed to delete user.";
+            echo "Failed to delete user.";
         }
     }
 
@@ -114,7 +114,7 @@ class Usercontroller
     return [
         'success' => $success,
         'message' => $success ? "User deleted successfully." : "Failed to delete user."
-    ];
-}
+        ];
+    }
 
 }

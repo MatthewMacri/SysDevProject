@@ -26,7 +26,7 @@
     <h2><?php echo _('Create New User'); ?></h2>
     
     <!-- Form to input new user data -->
-    <form method="POST">
+    <form method="POST" action="/SysDevProject/admin/createUser">
       
       <!-- Input field for First Name -->
       <label for="firstName"><?php echo _('First Name'); ?></label>
