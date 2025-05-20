@@ -44,7 +44,7 @@ class AdminController
 
         // Now pass the encrypted password to the model to store in the database
         $this->model->addAdmin($postData);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     public function edit($id)
@@ -66,13 +66,13 @@ class AdminController
         }
 
         $this->model->updateAdmin($id, $postData);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     public function delete($id)
     {
         $this->model->deleteAdmin($id);
-        header('Location: ?controller=admin&action=index');
+        header('Location: /SysDevProject/admin/index');
     }
 
     // Method to encrypt the password
