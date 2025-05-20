@@ -22,7 +22,7 @@
     <h2>All Uploaded Photos</h2>
 
     <!-- Button to open the upload form -->
-    <a class="view-button" href="?controller=photo&action=uploadForm">Upload New Photo</a>
+    <a class="view-button" href="/photo/uploadForm">Upload New Photo</a>
 
     <!-- Loop through each photo and display details -->
     <ul>
